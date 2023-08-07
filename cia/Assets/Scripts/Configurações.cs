@@ -8,6 +8,6 @@ public class Configurações : MonoBehaviour
     
     public void VoltarCena(){
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(PlayerPrefs.GetInt("Index"));
     }
 }
