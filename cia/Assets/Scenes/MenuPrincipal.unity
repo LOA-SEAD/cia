@@ -206,7 +206,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 10494744}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 670799232}
+        m_TargetAssemblyTypeName: GoTo, Assembly-CSharp
+        m_MethodName: LoadCena
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: "Configura\xE7\xE3oInicial"
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &10494744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -392,6 +404,7 @@ GameObject:
   - component: {fileID: 670799230}
   - component: {fileID: 670799229}
   - component: {fileID: 670799228}
+  - component: {fileID: 670799232}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -485,6 +498,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &670799232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 670799227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3484fca4ce07612459680590575ba1aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &726129873
 GameObject:
   m_ObjectHideFlags: 0
@@ -568,7 +593,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 726129876}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 670799232}
+        m_TargetAssemblyTypeName: GoTo, Assembly-CSharp
+        m_MethodName: LoadCena
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: TelaInstrucoes
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &726129876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -850,7 +887,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1006293370}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 670799232}
+        m_TargetAssemblyTypeName: GoTo, Assembly-CSharp
+        m_MethodName: LoadCena
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: TelaCreditos
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1006293370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -972,7 +1021,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1669170761}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 670799232}
+        m_TargetAssemblyTypeName: GoTo, Assembly-CSharp
+        m_MethodName: LoadCena
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Narrativa
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1669170761
 MonoBehaviour:
   m_ObjectHideFlags: 0
