@@ -23,7 +23,7 @@ public class DialogueTrigger : MonoBehaviour
 
     public void TriggerDialogue()
     {
-
+        
         dialoguecontroller.StartDialogue(dialogue);
     }
 }
