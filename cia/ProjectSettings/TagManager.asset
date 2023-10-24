@@ -6,6 +6,7 @@ TagManager:
   tags:
   - BackGround
   - Tempo
+  - Audio
   layers:
   - Default
   - TransparentFX

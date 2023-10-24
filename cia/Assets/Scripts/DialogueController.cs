@@ -23,11 +23,16 @@ public class DialogueController : MonoBehaviour
     public GameObject[] balloonsSprites;
     int currentBalloon = 0;
     int currentExpression=0;
+    private AudioManager audioManager;
+    public AudioClip music;  
 
     // Start is called before the first frame update
     private void Awake()
     {
         Read();
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        audioManager.PlayBGSong(music);
+
     }
     void Start()
     {
