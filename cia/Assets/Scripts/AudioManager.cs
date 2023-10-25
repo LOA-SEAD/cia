@@ -17,10 +17,32 @@ public class AudioManager : MonoBehaviour
     public AudioClip wronganswer;
     public AudioClip mouseOver;
     public AudioClip mouseClick;
+    [SerializeField] GameObject configurações;
+    
 
+    private VolumeSettings volSettings;
+
+    private void Awake()
+    {
+        volSettings = configurações.GetComponent<VolumeSettings>();
+    }
     private void Start()
     {
         PlayBGSong(background);
+        
+        
+        if (PlayerPrefs.HasKey("musicVolume"))
+        {
+            volSettings.LoadVolume();
+            
+        }
+        else
+        {
+            volSettings.SetMusicVolume();
+          
+        }
+        configurações.SetActive(false);
+
         DontDestroyOnLoad(this.gameObject);
     }
 
