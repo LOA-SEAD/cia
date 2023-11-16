@@ -401,7 +401,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 220899773}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 281019754}
+        m_TargetAssemblyTypeName: CaseController, Assembly-CSharp
+        m_MethodName: BackId
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &220899773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -568,6 +580,61 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &281019753
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 281019755}
+  - component: {fileID: 281019754}
+  m_Layer: 0
+  m_Name: CaseController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &281019754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 281019753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8855ec2b1bb2184c887279c4d60bfb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data_sentences: []
+  line: 0
+  nextButton: {fileID: 719147908}
+  backButton: {fileID: 220899770}
+  _csvFile: {fileID: 4900000, guid: f3bf56346c9c16b4faa0432d044e9768, type: 3}
+  caseDetails: []
+  data_string: 
+  caseID: 0
+  caseText: {fileID: 1699195328}
+  caseTitle: {fileID: 1859486128}
+  recordCaseText: {fileID: 45441442}
+--- !u!4 &281019755
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 281019753}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.3689375, y: -0.7254514, z: -0.030701658}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &431221155
 PrefabInstance:
@@ -1292,7 +1359,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 719147911}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 281019754}
+        m_TargetAssemblyTypeName: CaseController, Assembly-CSharp
+        m_MethodName: NextId
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &719147911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3094,7 +3173,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Durante uma noite de chuva foram encontradas pegadas no p\xE9dio "
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3256,10 +3335,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1579132534}
-        m_TargetAssemblyTypeName: GoTo, Assembly-CSharp
-        m_MethodName: LoadCena
-        m_Mode: 5
+      - m_Target: {fileID: 281019754}
+        m_TargetAssemblyTypeName: CaseController, Assembly-CSharp
+        m_MethodName: StartCase
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
