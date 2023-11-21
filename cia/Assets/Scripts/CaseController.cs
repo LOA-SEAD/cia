@@ -102,12 +102,6 @@ public class CaseController : MonoBehaviour
         data_string = _csvFile.text;
         caseDetails = new List<string>();
         caseDetails.AddRange(data_string.Split("\n"[0]));
-      
-        // Debug.Log(eachLine[id]);
-        //data_sentences = eachLine[id].Split(';');
-        
-        //Debug.Log(data_values[3]);
-        //Debug.Log(data_values[1]);
 
     }
 }

@@ -18,15 +18,13 @@ public class LetterObjectVisualTrigger : MonoBehaviour {
 
     private void Start()
     {
-        Debug.Log("Passou prestart");
         transform.DOScale(0, .5f).SetEase(Ease.OutBack).From();
-        Debug.Log("Passou start");
     }
 
     public void MouseDown()
     {
         //AudioManager.instance.PlaySound(AudioManager.instance.highlight, 1 + (WordHunt.instance.highlightedObjects.Count * 0.2f));
-        Debug.Log("Passou mouse down");
+
     }
 
     public void MouseUp()

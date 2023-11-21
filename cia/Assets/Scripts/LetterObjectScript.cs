@@ -8,10 +8,11 @@ public class LetterObjectScript : MonoBehaviour, IPointerDownHandler,IPointerUpH
     public event ClickAction MouseUp;
     public event ClickAction MouseExit;
     public event ClickAction MouseEnter;
+    public bool hasPainted = false;
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        Debug.Log("Passou pd");
+        
         WordHunt.instance.LetterClick((int)pos().x, (int)pos().y, true);
 
         MouseDown();

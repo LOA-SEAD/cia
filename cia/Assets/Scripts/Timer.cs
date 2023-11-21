@@ -22,7 +22,13 @@ public class Timer : MonoBehaviour
         float min = Mathf.FloorToInt(timer / 60);
         float sec = Mathf.FloorToInt(timer % 60);
         minutes.text = min.ToString() + ":";
-        seconds.text = sec.ToString();
-
+        if (sec < 10)
+        {
+            seconds.text ="0" + sec.ToString();
+        }
+        else
+        {
+            seconds.text = sec.ToString();
+        }
     }
 }

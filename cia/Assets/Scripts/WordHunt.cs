@@ -11,7 +11,11 @@ public class WordHunt : MonoBehaviour {
 
     public static WordHunt instance;
 
-    public TextAsset theme;
+    //public TextAsset theme;
+
+    [SerializeField] private TextAsset _csvFile;
+
+
 
     private CanvasGroup canvas;
 
@@ -21,15 +25,20 @@ public class WordHunt : MonoBehaviour {
     public delegate void Events();
     public static event Events Finish;
 
+    private ObjectivesController objController;
     private string[,] lettersGrid;
     private Transform[,] lettersTransforms;
     private string alphabet = "abcdefghijklmnopqrstuvwxyz";
+
+    
 
     [Header("Settings")]
     public bool invertedWordsAreValid;
 
     [Header("Text Asset")]
-    public TextAsset wordsSource;
+    private List<string> eachLine;
+    public String[] casewords;
+    public string data_string;
     public bool filterBadWords;
     public TextAsset badWordsSource;
     [Space]
@@ -62,11 +71,10 @@ public class WordHunt : MonoBehaviour {
 
     private void Awake()
     {
-
-        Debug.Log("1");
-        wordsSource = theme;
+        objController = GameObject.Find("ObjetivosBG").GetComponent<ObjectivesController>();
+        //wordsSource = theme;
         Setup();
-        Debug.Log("Passou 2");
+
         //canvas.alpha = 0;
         //canvas.blocksRaycasts = false;
 
@@ -75,7 +83,9 @@ public class WordHunt : MonoBehaviour {
     }
 
     public void Setup(){
-        Debug.Log("Passou 3");
+
+        Read();
+
         PrepareWords();
 
         InitializeGrid();
@@ -91,9 +101,9 @@ public class WordHunt : MonoBehaviour {
     private void PrepareWords()
     {
         //Pegar lista de palavras
-        words = wordsSource.text.Split(',').ToList();
+        words = eachLine[PlayerPrefs.GetInt("LoadCaseId", 0)].Split(';').ToList();
+      
 
-        Debug.Log("Passou prepare");
 
         //Filtrar palavrões e etc..
         if (filterBadWords)
@@ -132,10 +142,8 @@ public class WordHunt : MonoBehaviour {
 
         //Inicializar o tamanho dos arrays bidimensionais
         lettersGrid = new string[(int)gridSize.x, (int)gridSize.y];
-        Debug.Log(lettersGrid);
         lettersTransforms = new Transform[(int)gridSize.x, (int)gridSize.y];
 
-        Debug.Log("Passou grid");
 
         //Passar por todos os elementos x e y da grid
         for (int x = 0; x < gridSize.x; x++)
@@ -143,20 +151,19 @@ public class WordHunt : MonoBehaviour {
             for (int y = 0; y < gridSize.y; y++)
             {
 
-                Debug.Log("Passou grid 1,5");
                 lettersGrid[x, y] = "";
-                Debug.Log("Passou grid 1,6");
+             
                 GameObject letter = Instantiate(letterPrefab, transform.GetChild(0));
-                Debug.Log("Passou grid 1,7");
+               
                 letter.name = x.ToString() + "-" + y.ToString();
-                Debug.Log("Passou grid 1,8");
+             
                 lettersTransforms[x, y] = letter.transform;
-                Debug.Log("Passou grid 1,9");
+                
             }
         }
-        Debug.Log("Passou grid 2");
+  
         ApplyGridSettings();
-        Debug.Log("Passou grid 3");
+     
     }
 
     void ApplyGridSettings()
@@ -196,7 +203,9 @@ public class WordHunt : MonoBehaviour {
                     {
                         dirX = rn.Next(3) - 1;
                         dirY = rn.Next(3) - 1;
-                    }else{
+                    }
+                    else
+                    {
                         dirX = rn.Next(2);
                         dirY = rn.Next(2);
                     }
@@ -207,8 +216,10 @@ public class WordHunt : MonoBehaviour {
 
             } while (!inserted && tryAmount < 100);
 
-            if (inserted)
+            if (inserted) { 
                 insertedWords.Add(word);
+          
+            }
         }
     }
 
@@ -312,14 +323,22 @@ public class WordHunt : MonoBehaviour {
         foreach (Transform t in highlightedObjects)
         {
             word += t.GetComponentInChildren<Text>().text.ToLower();
+            
         }
 
-        if(insertedWords.Contains(word) || insertedWords.Contains(Reverse(word)))
+        
+        foreach(string w in insertedWords){
+            print(w);
+        }
+
+        if (insertedWords.Contains(word) || insertedWords.Contains(Reverse(word)))
         {
+            print("entrou");
             foreach (Transform h in highlightedObjects)
             {
                 h.GetComponent<Image>().color = new Color32(128, 255, 128, 255);
                 h.transform.DOPunchScale(-Vector3.one, 0.2f, 10, 1);
+                h.GetComponent<LetterObjectScript>().hasPainted = true;
             }
 
             //Visual Event
@@ -327,7 +346,7 @@ public class WordHunt : MonoBehaviour {
             RectTransform r2 = highlightedObjects[highlightedObjects.Count() - 1].GetComponent<RectTransform>();
             FoundWord(r1, r2);
 
-            print("<b>" + word.ToUpper() + "</b> was found!");
+            objController.CountObjective(word);
 
             //ScrollViewWords.instance.CheckWord(word);
 
@@ -370,8 +389,10 @@ public class WordHunt : MonoBehaviour {
 
             for (int i = min; i <= max; i++)
             {
-                lettersTransforms[x, i].GetComponent<Image>().color = selectColor;
-                highlightedObjects.Add(lettersTransforms[x, i]);
+                
+              lettersTransforms[x, i].GetComponent<Image>().color = selectColor;
+              highlightedObjects.Add(lettersTransforms[x, i]);
+                
             }
         }
         else if (y == orig.y)
@@ -405,13 +426,21 @@ public class WordHunt : MonoBehaviour {
 
     private void ClearWordSelection()
     {
-        foreach (Transform h in highlightedObjects)
+        foreach (Transform  h in highlightedObjects)
         {
 
-            if (h.GetComponent<Image>().color != new Color32(128, 255, 128, 255))
+            if (h.GetComponent<LetterObjectScript>().hasPainted == true)
             {
-                h.GetComponent<Image>().color = Color.white;
+                h.GetComponent<Image>().color = new Color32(128, 255, 128, 255);
+                //h.GetComponent<bool>().hasPainted
+
             }
+            else
+            {
+                h.GetComponent<Image>().color = Color.white;  
+
+            }
+
         }
 
         highlightedObjects.Clear();
@@ -422,16 +451,6 @@ public class WordHunt : MonoBehaviour {
         return (orig.x == x || orig.y == y || Math.Abs(orig.x - x) == Math.Abs(orig.y - y));
     }
 
-    private void DisplaySelectedWords()
-    {
-        float delay = 0;
-
-        for (int i = 0; i < insertedWords.Count; i++)
-        {
-            ScrollViewWords.instance.SpawnWordCell(insertedWords[i], delay);
-            delay += .05f;
-        }
-    }
 
 
     public static string Reverse(string s)
@@ -439,6 +458,16 @@ public class WordHunt : MonoBehaviour {
         char[] charArray = s.ToCharArray();
         Array.Reverse(charArray);
         return new string(charArray);
+    }
+
+    void Read()
+    {
+
+        data_string = _csvFile.text;
+        eachLine = new List<string>();
+        eachLine.AddRange(data_string.Split("|"[0]));
+        //casewords = eachLine[PlayerPrefs.GetInt("LoadCaseId", 0)].Split(';');
+
     }
 
 }

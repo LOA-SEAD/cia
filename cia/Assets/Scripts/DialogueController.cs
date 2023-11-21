@@ -111,12 +111,10 @@ public class DialogueController : MonoBehaviour
         data_string = _csvFile.text;
         eachLine = new List<string>();
         eachLine.AddRange(data_string.Split("\n"[0]));
-        // Debug.Log(eachLine[id]);
         data_sentences = eachLine[id].Split(';');
         data_balloons = eachLine[id + 1].Split(';');
         data_expressions = eachLine[id + 2].Split(';');
-        //Debug.Log(data_values[3]);
-        //Debug.Log(data_values[1]);
+
 
     }
 }
