@@ -63,7 +63,7 @@ public class CaseController : MonoBehaviour
     public void ShowRecords(int id)
     {
         string caseIDString = "RecordeCaso" + id;
-        int recordecaso = PlayerPrefs.GetInt(caseIDString, 0);
+        float recordecaso = PlayerPrefs.GetFloat(caseIDString, 0);
         Debug.Log(recordecaso);
         if(recordecaso ==0)
         {
@@ -71,7 +71,9 @@ public class CaseController : MonoBehaviour
         }
         else
         {
-            recordCaseText.text = recordecaso.ToString();
+           float minutes = Mathf.FloorToInt(recordecaso / 60);
+            float seconds = Mathf.FloorToInt(recordecaso % 60);
+            recordCaseText.text = minutes.ToString() + ":" + seconds.ToString();
         }
         
     }

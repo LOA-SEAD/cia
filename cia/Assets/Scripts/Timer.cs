@@ -9,6 +9,8 @@ public class Timer : MonoBehaviour
     public TMP_Text minutes;
     public TMP_Text seconds;
     public float _maxTime;
+    [SerializeField] GameObject timeOutText;
+    [SerializeField] GameObject canvasPrincipal;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,5 +32,18 @@ public class Timer : MonoBehaviour
         {
             seconds.text = sec.ToString();
         }
+
+        if(timer <= 0)
+        {
+            Time.timeScale = 0;
+            TimesOut();
+        }
+
+    }
+
+    void TimesOut()
+    {
+        canvasPrincipal.SetActive(false);
+        timeOutText.SetActive(true);
     }
 }

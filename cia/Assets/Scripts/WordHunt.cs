@@ -34,6 +34,7 @@ public class WordHunt : MonoBehaviour {
 
     [Header("Settings")]
     public bool invertedWordsAreValid;
+    public bool diagonalWordsAreValid;
 
     [Header("Text Asset")]
     private List<string> eachLine;
@@ -71,6 +72,7 @@ public class WordHunt : MonoBehaviour {
 
     private void Awake()
     {
+        Time.timeScale = 1;
         objController = GameObject.Find("ObjetivosBG").GetComponent<ObjectivesController>();
         //wordsSource = theme;
         Setup();
@@ -102,7 +104,7 @@ public class WordHunt : MonoBehaviour {
     {
         //Pegar lista de palavras
         words = eachLine[PlayerPrefs.GetInt("LoadCaseId", 0)].Split(';').ToList();
-      
+        objController.SetNumberOfWords(words.Count);
 
 
         //Filtrar palavrões e etc..
@@ -192,13 +194,21 @@ public class WordHunt : MonoBehaviour {
 
             do
             {
-                int row = rn.Next((int)gridSize.x);
+                int row;
+                int safetyFlag = 0;
+                do
+                {
+                    safetyFlag++;
+                    row = rn.Next((int)gridSize.x);
+                } while (row + word.Length > gridSize.x && row - word.Length < 0 && safetyFlag < 30); //garantir que as palavras grandes caibam na horizaontal
+                
                 int column = rn.Next((int)gridSize.y);
 
                 int dirX = 0; int dirY = 0;
 
                 while (dirX == 0 && dirY == 0)
                 {
+                    
                     if (invertedWordsAreValid)
                     {
                         dirX = rn.Next(3) - 1;
@@ -208,6 +218,23 @@ public class WordHunt : MonoBehaviour {
                     {
                         dirX = rn.Next(2);
                         dirY = rn.Next(2);
+                    }
+
+                    if (diagonalWordsAreValid == false)
+                    {
+                        if (rn.Next(2) == 0)
+                        {
+                            dirX = 0;
+                        }
+                        else
+                        {
+                            dirY = 0;
+                        }
+                    }
+
+                    if (word.Length > gridSize.y)
+                    {
+                        dirY = 0;
                     }
                 }
 
