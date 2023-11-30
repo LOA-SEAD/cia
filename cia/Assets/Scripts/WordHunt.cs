@@ -18,6 +18,7 @@ public class WordHunt : MonoBehaviour {
 
 
     private CanvasGroup canvas;
+    private AudioManager audioManager;
 
     public delegate void VisualEvents(RectTransform original, RectTransform final);
     public static event VisualEvents FoundWord;
@@ -29,6 +30,7 @@ public class WordHunt : MonoBehaviour {
     private string[,] lettersGrid;
     private Transform[,] lettersTransforms;
     private string alphabet = "abcdefghijklmnopqrstuvwxyz";
+    private InputFieldController inpFController;
 
     
 
@@ -74,8 +76,11 @@ public class WordHunt : MonoBehaviour {
     {
         Time.timeScale = 1;
         objController = GameObject.Find("ObjetivosBG").GetComponent<ObjectivesController>();
+        inpFController = GameObject.Find("TelaJogo").GetComponent<InputFieldController>(); 
+        // audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>(); descomentar
         //wordsSource = theme;
         Setup();
+
 
         //canvas.alpha = 0;
         //canvas.blocksRaycasts = false;
@@ -87,6 +92,8 @@ public class WordHunt : MonoBehaviour {
     public void Setup(){
 
         Read();
+
+        GetGridSize();
 
         PrepareWords();
 
@@ -100,10 +107,44 @@ public class WordHunt : MonoBehaviour {
 
     }
 
+    void GetGridSize()
+    {
+        
+        switch (PlayerPrefs.GetString("LoadCaseSize"))
+        {
+            case "P":
+                gridSize.x = 9;
+                gridSize.y = 6;
+                cellSize.x = 30;
+                cellSize.y = 30;
+                cellSpacing.x = 10;
+                cellSpacing.y = 10;
+                break;
+            case "M":
+                gridSize.x = 11;
+                gridSize.y = 7;
+                cellSize.x = 27;
+                cellSize.y = 27;
+                cellSpacing.x = 10;
+                cellSpacing.y = 7;
+                break;
+            case "G":
+                gridSize.x = 14;
+                gridSize.y = 8;
+                cellSize.x = 25;
+                cellSize.y = 25;
+                cellSpacing.x = 4;
+                cellSpacing.y = 4;
+                break;
+
+        }
+    }
+
     private void PrepareWords()
     {
         //Pegar lista de palavras
         words = eachLine[PlayerPrefs.GetInt("LoadCaseId", 0)].Split(';').ToList();
+        inpFController.PassWords(words);
         objController.SetNumberOfWords(words.Count);
 
 
@@ -384,9 +425,11 @@ public class WordHunt : MonoBehaviour {
             {
                 Finish();
             }
+            audioManager.RightAnswer();
         }
         else {
             ClearWordSelection();
+            audioManager.WrongAnswer();
         }
     }
 

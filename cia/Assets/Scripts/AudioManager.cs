@@ -86,6 +86,16 @@ public class AudioManager : MonoBehaviour
        
     }
 
+    public void RightAnswer()
+    {
+        sfx.PlayOneShot(rightanswer);
+    }
+
+    public void WrongAnswer()
+    {
+        sfx.PlayOneShot(wronganswer);
+    }
+
     public void PlayBGSong(AudioClip clip)
     {
         music.clip = clip;
@@ -96,6 +106,8 @@ public class AudioManager : MonoBehaviour
     {
         sfx.PlayOneShot(clip);
     }
+
+
 
    
 }

@@ -34,6 +34,16 @@ public class ObjectivesController : MonoBehaviour
         }
     }
 
+    public void CountObjectivePhrase()
+    {
+        contadorFrases++;
+        frasesTexto.text = "Complete as frases (" + contadorFrases+ "/" + totalPalavras + ")";
+        if (contadorFrases == totalPalavras)
+        {
+            CheckFinish();
+        }
+    }
+
     public void SetNumberOfWords(int number)
     {
         totalPalavras = number;
@@ -42,7 +52,7 @@ public class ObjectivesController : MonoBehaviour
 
     private void CheckFinish()
     {
-        if(contadorPalavras == totalPalavras)
+        if(contadorPalavras == totalPalavras && contadorFrases == totalPalavras)
         {
             string caseIDString = "RecordeCaso" + PlayerPrefs.GetInt("LoadCaseId", 0);
             if (timer.timer > PlayerPrefs.GetFloat(caseIDString, 0)){

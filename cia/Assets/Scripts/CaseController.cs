@@ -12,12 +12,20 @@ public class CaseController : MonoBehaviour
     [SerializeField] private GameObject nextButton;
     [SerializeField] private GameObject backButton;
     [SerializeField] private TextAsset _csvFile;
+    [SerializeField] private TextAsset _csvFile2;
     public List<string> caseDetails;
+    public List<string> caseSize;
     public string data_string;
-    public int caseID=0;    
+    public int caseID=0;
+    //public string  caseSize;
     public TMP_Text caseText;
     public TMP_Text caseTitle;
     public TMP_Text recordCaseText;
+    public float[] medalTimes = new float[] {240,210,180,210,180,150,180,150,120}; 
+    [SerializeField] TMP_Text caseSizeText;
+    [SerializeField] TMP_Text goldText;
+    [SerializeField] TMP_Text silverText;
+    [SerializeField] TMP_Text bronzeText;
 
 
     // Start is called before the first frame update
@@ -55,7 +63,9 @@ public class CaseController : MonoBehaviour
   
         caseText.text = "";
         caseText.text = caseDetails[caseID];
+        caseSizeText.text = "Tamanho do tabuleiro: " +  caseSize[caseID];
         caseTitle.text = "Caso " + (caseID+1);
+        SetTimeObjectives(caseID);
         ShowRecords(caseID);
 
     }
@@ -71,9 +81,7 @@ public class CaseController : MonoBehaviour
         }
         else
         {
-           float minutes = Mathf.FloorToInt(recordecaso / 60);
-            float seconds = Mathf.FloorToInt(recordecaso % 60);
-            recordCaseText.text = minutes.ToString() + ":" + seconds.ToString();
+            recordCaseText.text = SecondsToMinutes(recordecaso);
         }
         
     }
@@ -94,9 +102,57 @@ public class CaseController : MonoBehaviour
     public void StartCase()
     {
         PlayerPrefs.SetInt("LoadCaseId", caseID);
+        PlayerPrefs.SetString("LoadCaseSize", caseSize[caseID]);
         SceneManager.LoadScene("TelaJogo");
     }
 
+
+    void SetTimeObjectives(int id)
+    {
+        string gold = "";
+        string silver = "";
+        string bronze = "";
+
+        switch (caseSize[id]){
+            case "P":
+                gold = SecondsToMinutes(medalTimes[0]);
+                silver = SecondsToMinutes(medalTimes[1]);
+                bronze = SecondsToMinutes(medalTimes[2]);
+                break;
+            case "M":
+                gold = SecondsToMinutes(medalTimes[3]);
+                silver = SecondsToMinutes(medalTimes[4]);
+                bronze = SecondsToMinutes(medalTimes[5]);
+                break;
+            case "G":
+                gold = SecondsToMinutes(medalTimes[6]);
+                silver = SecondsToMinutes(medalTimes[7]);
+                bronze = SecondsToMinutes(medalTimes[8]);
+                break;
+
+        }
+
+        goldText.text = gold;
+        silverText.text = silver;
+        bronzeText.text = bronze;
+    } 
+
+    string SecondsToMinutes(float sec)
+    {
+        string time = "";
+        float minutes = Mathf.FloorToInt(sec / 60);
+        float seconds = Mathf.FloorToInt(sec % 60);
+        if (seconds < 10)
+        {
+            time = minutes.ToString() + ":0" + seconds.ToString();
+        }
+        else
+        {
+            time = minutes.ToString() + ":" + seconds.ToString();
+        }
+
+        return time;
+    }
 
     void Read()
     {
@@ -104,6 +160,11 @@ public class CaseController : MonoBehaviour
         data_string = _csvFile.text;
         caseDetails = new List<string>();
         caseDetails.AddRange(data_string.Split("\n"[0]));
+
+        data_string = _csvFile2.text;
+        caseSize = new List<string>();
+        caseSize.AddRange(data_string.Split(";"[0]));
+
 
     }
 }
