@@ -161,22 +161,12 @@ public class WordHunt : MonoBehaviour {
             }
         }
 
-        //Randomizar palavras
-        for (int i = 0; i < words.Count; i++)
-        {
-            string temp = words[i];
-
-            System.Random rn = new System.Random();
-
-            int randomIndex = rn.Next(words.Count());
-            words[i] = words[randomIndex];
-            words[randomIndex] = temp;
-        }
 
         //Filtrar as palavras que cabem na grid
         int maxGridDimension = Mathf.Max((int)gridSize.x, (int)gridSize.y);
 
         //Que palavras da lista cabem no grid
+        words.RemoveAt(words.Count-1);
         words = words.Where(x => x.Length <= maxGridDimension).ToList();
     }
 
@@ -225,9 +215,10 @@ public class WordHunt : MonoBehaviour {
 
     void InsertWordsOnGrid()
     {
-        foreach (string word in words)
+        
+        for (int i = 0; i < (words.Count); i++)
         {
-
+            word = words[i];
             System.Random rn = new System.Random();
 
             bool inserted = false;
@@ -241,7 +232,7 @@ public class WordHunt : MonoBehaviour {
                 {
                     safetyFlag++;
                     row = rn.Next((int)gridSize.x);
-                } while (row + word.Length > gridSize.x && row - word.Length < 0 && safetyFlag < 30); //garantir que as palavras grandes caibam na horizaontal
+                } while (row + word.Length > gridSize.x && row - word.Length < 0 && safetyFlag < 30); //garantir que as palavras grandes caibam na horizontal
                 
                 int column = rn.Next((int)gridSize.y);
 

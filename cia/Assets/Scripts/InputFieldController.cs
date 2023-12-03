@@ -18,6 +18,10 @@ public class InputFieldController : MonoBehaviour
     private AudioManager audioManager;
     private ObjectivesController objController;
     private List<bool> checkPositions = new List<bool>();
+    private int ultimoCaso = 2;
+    [SerializeField] GameObject grid;
+    [SerializeField] GameObject aviso;
+    [SerializeField] TMP_Text detalhesCaso;
 
     private int phraseId=0;
 
@@ -29,6 +33,7 @@ public class InputFieldController : MonoBehaviour
         Read();
         phraseTextBox.text = eachPhrase[phraseId];
         objController = GameObject.Find("ObjetivosBG").GetComponent<ObjectivesController>();
+        updateDetails();
     }
 
     public void ReadStringInput()
@@ -40,7 +45,7 @@ public class InputFieldController : MonoBehaviour
 
     public void NextCase(){
         phraseId++;
-        if (phraseId <= eachPhrase.Length) {
+        if (phraseId <= eachPhrase.Length - ultimoCaso) {
             phraseTextBox.text = eachPhrase[phraseId];
             audioManager.PlaySFX(changePhraseSound);
         }
@@ -89,8 +94,14 @@ public class InputFieldController : MonoBehaviour
     {
         if (wordsRead.Contains(input))
         {
+            Debug.Log(wordsRead[wordsRead.Count-1]);
             int pos = wordsRead.FindIndex(str => str.Contains(input));
-            if (checkPositions[pos] == false)
+            if (pos == eachPhrase.Length-1 && ultimoCaso == 0) {
+                //audioManager.RightAnswer();
+                aviso.SetActive(false);
+                objController.Finish();
+            }
+            else if (checkPositions[pos] == false && pos != eachPhrase.Length-1)
             {
                 //wordsRead[pos] = "e5ef1a3s2de87rf0SCwfBTHYwefedse578899";
                 objController.CountObjectivePhrase();
@@ -98,12 +109,43 @@ public class InputFieldController : MonoBehaviour
                 eachPhrase[pos] = updateString[0] + input + updateString[1];
                 phraseTextBox.text = eachPhrase[phraseId];
                 checkPositions[pos] = true;
-                audioManager.RightAnswer();
-                
-            
+                //audioManager.RightAnswer();
+                int i = 0;
+                while(checkPositions[i] == true && i< wordsRead.Count - 2)
+                {
+                    i++;
                 }
+                phraseId = i;
+                phraseTextBox.text = eachPhrase[phraseId];
+
+                updateDetails();
+            }
+
+
             
         }
         audioManager.WrongAnswer();
+    }
+
+    private void updateDetails()
+    {
+        detalhesCaso.text = "";
+        int i= 0;
+        foreach (string phrase in eachPhrase)
+        {
+            if (i< eachPhrase.Length -1 && ultimoCaso == 2) {
+                detalhesCaso.text = detalhesCaso.text + "\n\n" + phrase;
+            }
+            i++;
+        }
+    }
+    public void LastWord()
+    {
+        ultimoCaso = 0;
+        phraseId = eachPhrase.Length-1;
+        phraseTextBox.text = eachPhrase[phraseId];
+        grid.SetActive(false);
+        aviso.SetActive(true);
+
     }
 }

@@ -26,6 +26,9 @@ public class CaseController : MonoBehaviour
     [SerializeField] TMP_Text goldText;
     [SerializeField] TMP_Text silverText;
     [SerializeField] TMP_Text bronzeText;
+    [SerializeField] Image medalImage;
+    [SerializeField] GameObject casoAberto;
+    [SerializeField] GameObject casoFechado;
 
 
     // Start is called before the first frame update
@@ -38,7 +41,6 @@ public class CaseController : MonoBehaviour
     {
         ShowCase();
         
-
     }
 
 
@@ -78,12 +80,87 @@ public class CaseController : MonoBehaviour
         if(recordecaso ==0)
         {
             recordCaseText.text = "Sem recordes";
+            casoFechado.SetActive(false);
+            casoAberto.SetActive(true);
         }
         else
         {
             recordCaseText.text = SecondsToMinutes(recordecaso);
+            casoFechado.SetActive(true);
+            casoAberto.SetActive(false);
         }
-        
+        switch (caseSize[id])
+        {
+            case "P":
+                if (recordecaso >= medalTimes[0])
+                {
+                    medalImage.sprite = GameObject.Find("Medalha Ouro").GetComponent<Image>().sprite;
+
+                }
+                else if (recordecaso >= medalTimes[1])
+                {
+                    medalImage.sprite = GameObject.Find("Medalha Prata").GetComponent<Image>().sprite;
+
+                }
+                else if (recordecaso >= medalTimes[2])
+                {
+                    medalImage.sprite = GameObject.Find("Medalha Bronze").GetComponent<Image>().sprite;
+
+                }
+                else
+                {
+                    medalImage.sprite = null;
+                }
+
+                break;
+            case "M":
+                if (recordecaso >= medalTimes[3])
+                {
+                    medalImage.sprite = GameObject.Find("Medalha Ouro").GetComponent<Image>().sprite;
+
+                }
+                else if (recordecaso >= medalTimes[4])
+                {
+                    medalImage.sprite = GameObject.Find("Medalha Prata").GetComponent<Image>().sprite;
+
+                }
+                else if (recordecaso >= medalTimes[5])
+                {
+                    medalImage.sprite = GameObject.Find("Medalha Bronze").GetComponent<Image>().sprite;
+
+                }
+                else
+                {
+                    medalImage.sprite = null;
+
+                }
+                break;
+            case "G":
+                if (recordecaso >= medalTimes[6])
+                {
+                    medalImage.sprite = GameObject.Find("Medalha Ouro").GetComponent<Image>().sprite;
+
+                }
+                else if (recordecaso >= medalTimes[7])
+                {
+                    medalImage.sprite = GameObject.Find("Medalha Prata").GetComponent<Image>().sprite;
+
+                }
+                else if (recordecaso >= medalTimes[8])
+                {
+                    medalImage.sprite = GameObject.Find("Medalha Bronze").GetComponent<Image>().sprite;
+
+                }
+                else
+                {
+                    medalImage.sprite = null;
+
+                }
+                break;
+
+        }
+
+
     }
 
 
