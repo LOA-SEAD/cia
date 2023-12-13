@@ -17,13 +17,14 @@ public class InputFieldController : MonoBehaviour
     public AudioClip rightAnswer;
     private AudioManager audioManager;
     private ObjectivesController objController;
-    private List<bool> checkPositions = new List<bool>();
+    public List<bool> checkPositions = new List<bool>();
     private int ultimoCaso = 2;
     [SerializeField] GameObject grid;
     [SerializeField] GameObject aviso;
+    [SerializeField] GameObject powerUpCanvas;
     [SerializeField] TMP_Text detalhesCaso;
 
-    private int phraseId=0;
+    public int phraseId=0;
 
     // Start is called before the first frame update
     private void Start()
@@ -76,7 +77,7 @@ public class InputFieldController : MonoBehaviour
             checkPositions.Add(false);
         }
 
-        Debug.Log(wordsRead[0]);
+        
     }
 
     void Read()
@@ -92,10 +93,9 @@ public class InputFieldController : MonoBehaviour
 
     public void ValidateWords()
     {
-        if (wordsRead.Contains(input))
+        if (wordsRead[phraseId] == input)
         {
-            Debug.Log(wordsRead[wordsRead.Count-1]);
-            int pos = wordsRead.FindIndex(str => str.Contains(input));
+            int pos = phraseId;
             if (pos == eachPhrase.Length-1 && ultimoCaso == 0) {
                 //audioManager.RightAnswer();
                 aviso.SetActive(false);
@@ -133,18 +133,34 @@ public class InputFieldController : MonoBehaviour
         int i= 0;
         foreach (string phrase in eachPhrase)
         {
-            if (i< eachPhrase.Length -1 && ultimoCaso == 2) {
+            if (i< eachPhrase.Length -1) {
                 detalhesCaso.text = detalhesCaso.text + "\n\n" + phrase;
             }
             i++;
         }
     }
+
+    public void powerUpW()
+    {
+        int i = 0;
+        while (checkPositions[i] == true)
+        {
+            i++;
+        }
+        input = wordsRead[i];
+        phraseId = i;
+        phraseTextBox.text = eachPhrase[phraseId];
+        ValidateWords();
+
+    }
+
     public void LastWord()
     {
         ultimoCaso = 0;
         phraseId = eachPhrase.Length-1;
         phraseTextBox.text = eachPhrase[phraseId];
         grid.SetActive(false);
+        powerUpCanvas.SetActive(false);
         aviso.SetActive(true);
 
     }
