@@ -7,9 +7,12 @@ public class PowerUps : MonoBehaviour
 {
     private int coins=0;
     [SerializeField] private TMP_Text coinDisplay;
+    [SerializeField] private TextAsset _csvFile;
     private Timer timer;
     private WordHunt wh;
     private InputFieldController inpFController;
+    private List<string> eachLine;
+    public string data_string;
 
 
 
@@ -18,6 +21,7 @@ public class PowerUps : MonoBehaviour
         wh = GameObject.Find("WordHunt").GetComponent<WordHunt>();
         inpFController = GameObject.Find("TelaJogo").GetComponent<InputFieldController>();
         timer = timer = GameObject.Find("TelaJogo").GetComponent<Timer>();
+        Read();
     }
 
     // Update is called once per frame
@@ -63,6 +67,16 @@ public class PowerUps : MonoBehaviour
 
     public void FreeHint()
     {
-       
+        Application.OpenURL(eachLine[PlayerPrefs.GetInt("LoadCaseId", 0)]);
+    }
+
+    void Read()
+    {
+
+        data_string = _csvFile.text;
+        eachLine = new List<string>();
+        eachLine.AddRange(data_string.Split("|"[0]));
+        
+
     }
 }
