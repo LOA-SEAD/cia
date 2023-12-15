@@ -453,9 +453,45 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2027549746}
+    - target: {fileID: 4081519481781907362, guid: c1c8b7a423108884eb2a6564f304440e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4081519482049606953, guid: c1c8b7a423108884eb2a6564f304440e, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4081519482049606953, guid: c1c8b7a423108884eb2a6564f304440e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4081519482152408497, guid: c1c8b7a423108884eb2a6564f304440e, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4081519482152408497, guid: c1c8b7a423108884eb2a6564f304440e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4081519482152408497, guid: c1c8b7a423108884eb2a6564f304440e, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4081519482347580528, guid: c1c8b7a423108884eb2a6564f304440e, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4081519482347580528, guid: c1c8b7a423108884eb2a6564f304440e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4081519482424129443, guid: c1c8b7a423108884eb2a6564f304440e, type: 3}
       propertyPath: m_Name
       value: "CanvasConfigura\xE7\xE3o"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4081519482424129443, guid: c1c8b7a423108884eb2a6564f304440e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4081519482424129447, guid: c1c8b7a423108884eb2a6564f304440e, type: 3}
       propertyPath: m_Pivot.x
@@ -545,6 +581,38 @@ PrefabInstance:
       propertyPath: _canvas
       value: 
       objectReference: {fileID: 670799227}
+    - target: {fileID: 4081519482491992144, guid: c1c8b7a423108884eb2a6564f304440e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4081519482890128972, guid: c1c8b7a423108884eb2a6564f304440e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4081519482967324923, guid: c1c8b7a423108884eb2a6564f304440e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4081519483100551869, guid: c1c8b7a423108884eb2a6564f304440e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4081519483385316332, guid: c1c8b7a423108884eb2a6564f304440e, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4081519483385316332, guid: c1c8b7a423108884eb2a6564f304440e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4081519483385316332, guid: c1c8b7a423108884eb2a6564f304440e, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4081519483695731994, guid: c1c8b7a423108884eb2a6564f304440e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1c8b7a423108884eb2a6564f304440e, type: 3}
 --- !u!114 &544460613 stripped
@@ -737,6 +805,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: NoQuitButton
       objectReference: {fileID: 0}
+    - target: {fileID: 6298466198421799935, guid: cf9e4eb6c063f78408e825f7e411c506, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6298466198973022441, guid: cf9e4eb6c063f78408e825f7e411c506, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -832,6 +904,70 @@ PrefabInstance:
     - target: {fileID: 6298466198973022453, guid: cf9e4eb6c063f78408e825f7e411c506, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6298466200218609202, guid: cf9e4eb6c063f78408e825f7e411c506, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 272.8018
+      objectReference: {fileID: 0}
+    - target: {fileID: 6298466200218609202, guid: cf9e4eb6c063f78408e825f7e411c506, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 384.1408
+      objectReference: {fileID: 0}
+    - target: {fileID: 6298466200218609202, guid: cf9e4eb6c063f78408e825f7e411c506, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 149.4583
+      objectReference: {fileID: 0}
+    - target: {fileID: 6298466200218609202, guid: cf9e4eb6c063f78408e825f7e411c506, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -8.870407
+      objectReference: {fileID: 0}
+    - target: {fileID: 6298466200218609203, guid: cf9e4eb6c063f78408e825f7e411c506, type: 3}
+      propertyPath: m_text
+      value: "Desenvolvimento do modelo\n\nTrilha e efeitos sonoros\n\nColaboradores\n\nC\xF3digo
+        original do ca\xE7a-palavras\n\nhttps://github.com/cardosoandre/WordHunt"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6298466200218609203, guid: cf9e4eb6c063f78408e825f7e411c506, type: 3}
+      propertyPath: m_fontSize
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 6298466200218609203, guid: cf9e4eb6c063f78408e825f7e411c506, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 6298466200234177824, guid: cf9e4eb6c063f78408e825f7e411c506, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 258.5653
+      objectReference: {fileID: 0}
+    - target: {fileID: 6298466200234177824, guid: cf9e4eb6c063f78408e825f7e411c506, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 377.6147
+      objectReference: {fileID: 0}
+    - target: {fileID: 6298466200234177824, guid: cf9e4eb6c063f78408e825f7e411c506, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -180.38727
+      objectReference: {fileID: 0}
+    - target: {fileID: 6298466200234177824, guid: cf9e4eb6c063f78408e825f7e411c506, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -5.6074
+      objectReference: {fileID: 0}
+    - target: {fileID: 6298466200234177825, guid: cf9e4eb6c063f78408e825f7e411c506, type: 3}
+      propertyPath: m_text
+      value: "Coordena\xE7\xE3o\nDelano Medeiros Beder\nJoice Lee Otsuka\n\nGame
+        Design e Testes\n\nIlustra\xE7\xE3o e Anima\xE7\xE3o\nCatarine Santana Ohnuma\nLuiz
+        Val\xE9rio Neto\n\nDesenvolvimento do Jogo\nDouglas Ant\xF4nio Martins Barbino\nElyssa
+        Dalva Ribeiro Bueno\nLuiz Val\xE9rio Neto"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6298466200234177825, guid: cf9e4eb6c063f78408e825f7e411c506, type: 3}
+      propertyPath: m_fontSize
+      value: 19.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 6298466200234177825, guid: cf9e4eb6c063f78408e825f7e411c506, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 19.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 6298466200234177825, guid: cf9e4eb6c063f78408e825f7e411c506, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf9e4eb6c063f78408e825f7e411c506, type: 3}

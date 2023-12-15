@@ -13,9 +13,16 @@ public class ObjectivesController : MonoBehaviour
     private int contadorFrases=0;
     private int totalPalavras = 0;
     [SerializeField]private Timer timer;
+    private InputFieldController inputController;
+    [SerializeField] GameObject casoEncerrado;
+    private PowerUps powerUps;
+
+
     void Start()
     {
         timer = GameObject.Find("TelaJogo").GetComponent<Timer>();
+        inputController = GameObject.Find("TelaJogo").GetComponent<InputFieldController>();
+        powerUps = GameObject.Find("PowerUp controller").GetComponent<PowerUps>(); 
     }
 
     // Update is called once per frame
@@ -28,6 +35,7 @@ public class ObjectivesController : MonoBehaviour
     {
         contadorPalavras++;
         palavrasTexto.text = "Encontre as palavras ("+ contadorPalavras +"/" + totalPalavras + ")";
+        powerUps.IncreaseCoins();
         if(contadorPalavras == totalPalavras)
         {
             CheckFinish();
@@ -38,6 +46,7 @@ public class ObjectivesController : MonoBehaviour
     {
         contadorFrases++;
         frasesTexto.text = "Complete as frases (" + contadorFrases+ "/" + totalPalavras + ")";
+        powerUps.IncreaseCoins();
         if (contadorFrases == totalPalavras)
         {
             CheckFinish();
@@ -46,7 +55,7 @@ public class ObjectivesController : MonoBehaviour
 
     public void SetNumberOfWords(int number)
     {
-        totalPalavras = number;
+        totalPalavras = number - 1;
         palavrasTexto.text = "Encontre as palavras (0/" + totalPalavras + ")";
     }
 
@@ -54,12 +63,31 @@ public class ObjectivesController : MonoBehaviour
     {
         if(contadorPalavras == totalPalavras && contadorFrases == totalPalavras)
         {
-            string caseIDString = "RecordeCaso" + PlayerPrefs.GetInt("LoadCaseId", 0);
-            if (timer.timer > PlayerPrefs.GetFloat(caseIDString, 0)){
-                PlayerPrefs.SetFloat(caseIDString, timer.timer);
-            }
-
-            SceneManager.LoadScene("TelaCasos");
+            inputController.LastWord();
         }
+    }
+
+    public void Finish()
+    {
+        casoTexto.text = "Conclusão do caso (1/1)";
+        casoEncerrado.SetActive(true);
+
+        string caseIDString = "RecordeCaso" + PlayerPrefs.GetInt("LoadCaseId", 0) + PlayerPrefs.GetInt("Tempo", 0) +  PlayerPrefs.GetInt("PreçoAjuda", 0) + PlayerPrefs.GetInt("PalavrasInvertidas", 0) +
+        PlayerPrefs.GetInt("PalavrasDiagonais", 0);
+        if (timer.runTimer < PlayerPrefs.GetFloat(caseIDString, 3000))
+        {
+            PlayerPrefs.SetFloat(caseIDString, timer.runTimer);
+        }
+
+        StartCoroutine(StartDelay());
+
+        
+    }
+
+    public IEnumerator StartDelay()
+    {
+        Debug.Log("espera");
+        yield return new WaitForSeconds(0.5f);
+        SceneManager.LoadScene("TelaCasos");
     }
 }

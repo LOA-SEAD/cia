@@ -69,6 +69,15 @@ public class WordHunt : MonoBehaviour {
     public Vector2 dir;
     public bool activated;
 
+    public List<int> matrizDicaX = new List<int>();
+    public List<int> matrizDicaY = new List<int>();
+    private int contDica;
+    public List<bool> checkPaint = new List<bool>();
+    public List<string> wordsCopy = new List<string>();
+
+
+
+
     [HideInInspector]
     public List<Transform> highlightedObjects = new List<Transform>();
 
@@ -144,7 +153,25 @@ public class WordHunt : MonoBehaviour {
     {
         //Pegar lista de palavras
         words = eachLine[PlayerPrefs.GetInt("LoadCaseId", 0)].Split(';').ToList();
+        if(PlayerPrefs.GetInt("PalavrasInvertidas", 0) == 1) //lê das preferências se as palavras invertidas estão habilitadas
+        {
+            invertedWordsAreValid = true;
+        }
+        else
+        {
+            invertedWordsAreValid = false;
+        }
+
+        if (PlayerPrefs.GetInt("PalavrasDiagonais", 0) == 1)
+        {
+            diagonalWordsAreValid = true;
+        }
+        else
+        {
+            diagonalWordsAreValid = false;
+        }
         inpFController.PassWords(words);
+        wordsCopy = new List<string>(words);
         objController.SetNumberOfWords(words.Count);
 
 
@@ -161,22 +188,12 @@ public class WordHunt : MonoBehaviour {
             }
         }
 
-        //Randomizar palavras
-        for (int i = 0; i < words.Count; i++)
-        {
-            string temp = words[i];
-
-            System.Random rn = new System.Random();
-
-            int randomIndex = rn.Next(words.Count());
-            words[i] = words[randomIndex];
-            words[randomIndex] = temp;
-        }
 
         //Filtrar as palavras que cabem na grid
         int maxGridDimension = Mathf.Max((int)gridSize.x, (int)gridSize.y);
 
         //Que palavras da lista cabem no grid
+        words.RemoveAt(words.Count-1);
         words = words.Where(x => x.Length <= maxGridDimension).ToList();
     }
 
@@ -225,9 +242,10 @@ public class WordHunt : MonoBehaviour {
 
     void InsertWordsOnGrid()
     {
-        foreach (string word in words)
+        contDica = 0;
+        for (int i = 0; i < (words.Count); i++)
         {
-
+            word = words[i];
             System.Random rn = new System.Random();
 
             bool inserted = false;
@@ -241,7 +259,7 @@ public class WordHunt : MonoBehaviour {
                 {
                     safetyFlag++;
                     row = rn.Next((int)gridSize.x);
-                } while (row + word.Length > gridSize.x && row - word.Length < 0 && safetyFlag < 30); //garantir que as palavras grandes caibam na horizaontal
+                } while (row + word.Length > gridSize.x && row - word.Length < 0 && safetyFlag < 30); //garantir que as palavras grandes caibam na horizontal
                 
                 int column = rn.Next((int)gridSize.y);
 
@@ -296,6 +314,11 @@ public class WordHunt : MonoBehaviour {
 
         if (!CanInsertWordOnGrid(word, row, column, dirX, dirY))
             return false;
+
+        matrizDicaX.Add(row);
+        matrizDicaY.Add(column);
+        checkPaint.Add(false);
+        contDica++;
 
         for (int i = 0; i < word.Length; i++)
         {
@@ -395,13 +418,10 @@ public class WordHunt : MonoBehaviour {
         }
 
         
-        foreach(string w in insertedWords){
-            print(w);
-        }
 
         if (insertedWords.Contains(word) || insertedWords.Contains(Reverse(word)))
         {
-            print("entrou");
+            
             foreach (Transform h in highlightedObjects)
             {
                 h.GetComponent<Image>().color = new Color32(128, 255, 128, 255);
@@ -415,6 +435,17 @@ public class WordHunt : MonoBehaviour {
             FoundWord(r1, r2);
 
             objController.CountObjective(word);
+            int pos =0;
+            if (wordsCopy.Contains(word))
+            {
+                pos = wordsCopy.FindIndex(str => str.Contains(word));
+            }
+            else
+            {
+                pos = wordsCopy.FindIndex(str => str.Contains(Reverse(word)));
+            }
+            Debug.Log("posição" +pos);
+            checkPaint[pos] = true;
 
             //ScrollViewWords.instance.CheckWord(word);
 
@@ -528,6 +559,21 @@ public class WordHunt : MonoBehaviour {
         char[] charArray = s.ToCharArray();
         Array.Reverse(charArray);
         return new string(charArray);
+    }
+
+    public void DicaLetra()
+    {
+        Color selectColor = new Color32(255, 255, 102, 255);
+        for (int i = 0; i< checkPaint.Count; i++)
+        {
+            Debug.Log(i);
+            if(checkPaint[i] == false)
+            {
+                
+                lettersTransforms[matrizDicaX[i], matrizDicaY[i]].GetComponent<Image>().color = selectColor;
+                return;
+            }
+        }
     }
 
     void Read()

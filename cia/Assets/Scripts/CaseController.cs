@@ -21,16 +21,24 @@ public class CaseController : MonoBehaviour
     public TMP_Text caseText;
     public TMP_Text caseTitle;
     public TMP_Text recordCaseText;
-    public float[] medalTimes = new float[] {240,210,180,210,180,150,180,150,120}; 
+    //private float[] medalTimes = new float[] {240,210,180,210,180,150,180,150,120};
+    private float[] mTimes = new float[] { 60, 90, 120, 90, 120, 150, 120, 150, 180 };
+
     [SerializeField] TMP_Text caseSizeText;
     [SerializeField] TMP_Text goldText;
     [SerializeField] TMP_Text silverText;
     [SerializeField] TMP_Text bronzeText;
+    [SerializeField] Image medalImage;
+    [SerializeField] GameObject casoAberto;
+    [SerializeField] GameObject casoFechado;
+    private PresetsController presets;
+    [SerializeField] GameObject recordBox;
 
 
     // Start is called before the first frame update
     private void Awake()
     {
+        presets = GameObject.Find("CanvasPresets").GetComponent<PresetsController>();
         Read();
 
     }
@@ -38,7 +46,6 @@ public class CaseController : MonoBehaviour
     {
         ShowCase();
         
-
     }
 
 
@@ -72,18 +79,110 @@ public class CaseController : MonoBehaviour
 
     public void ShowRecords(int id)
     {
-        string caseIDString = "RecordeCaso" + id;
-        float recordecaso = PlayerPrefs.GetFloat(caseIDString, 0);
-        Debug.Log(recordecaso);
-        if(recordecaso ==0)
-        {
-            recordCaseText.text = "Sem recordes";
-        }
-        else
-        {
-            recordCaseText.text = SecondsToMinutes(recordecaso);
-        }
         
+        string caseIDString = "RecordeCaso" + id + presets.presetTempo.ToString() + presets.presetPreco.ToString() + presets.presetInvertida.ToString() + presets.presetDiagonal.ToString();
+        float recordecaso = PlayerPrefs.GetFloat(caseIDString, 3000);
+        //Debug.Log(recordecaso);
+        if (presets.presetTempo != 0) {
+            if (recordecaso == 3000)
+            {
+                recordCaseText.text = "Sem recordes";
+                casoFechado.SetActive(false);
+                casoAberto.SetActive(true);
+            }
+            else
+            {
+                recordCaseText.text = SecondsToMinutes(recordecaso);
+                casoFechado.SetActive(true);
+                casoAberto.SetActive(false);
+            }
+            switch (caseSize[id])
+            {
+                case "P":
+                    if (recordecaso <= mTimes[0])
+                    {
+                        medalImage.sprite = GameObject.Find("Medalha Ouro").GetComponent<Image>().sprite;
+
+                    }
+                    else if (recordecaso <= mTimes[1])
+                    {
+                        medalImage.sprite = GameObject.Find("Medalha Prata").GetComponent<Image>().sprite;
+
+                    }
+                    else if (recordecaso <= mTimes[2])
+                    {
+                        medalImage.sprite = GameObject.Find("Medalha Bronze").GetComponent<Image>().sprite;
+
+                    }
+                    else
+                    {
+                        medalImage.sprite = null;
+                    }
+
+                    break;
+                case "M":
+                    if (recordecaso <= mTimes[3])
+                    {
+                        medalImage.sprite = GameObject.Find("Medalha Ouro").GetComponent<Image>().sprite;
+
+                    }
+                    else if (recordecaso <= mTimes[4])
+                    {
+                        medalImage.sprite = GameObject.Find("Medalha Prata").GetComponent<Image>().sprite;
+
+                    }
+                    else if (recordecaso <= mTimes[5])
+                    {
+                        medalImage.sprite = GameObject.Find("Medalha Bronze").GetComponent<Image>().sprite;
+
+                    }
+                    else
+                    {
+                        medalImage.sprite = null;
+
+                    }
+                    break;
+                case "G":
+                    if (recordecaso <= mTimes[6])
+                    {
+                        medalImage.sprite = GameObject.Find("Medalha Ouro").GetComponent<Image>().sprite;
+
+                    }
+                    else if (recordecaso <= mTimes[7])
+                    {
+                        medalImage.sprite = GameObject.Find("Medalha Prata").GetComponent<Image>().sprite;
+
+                    }
+                    else if (recordecaso <= mTimes[8])
+                    {
+                        medalImage.sprite = GameObject.Find("Medalha Bronze").GetComponent<Image>().sprite;
+
+                    }
+                    else
+                    {
+                        medalImage.sprite = null;
+
+                    }
+                    break;
+
+            }
+        }
+        else{
+            if (recordecaso == 0)
+            {
+                recordCaseText.text = "Não concluído";
+                casoFechado.SetActive(false);
+                casoAberto.SetActive(true);
+            }
+            else
+            {
+                recordCaseText.text = "Concluído com sucesso";
+                casoFechado.SetActive(true);
+                casoAberto.SetActive(false);
+            }
+        }
+
+       
     }
 
 
@@ -109,32 +208,42 @@ public class CaseController : MonoBehaviour
 
     void SetTimeObjectives(int id)
     {
-        string gold = "";
-        string silver = "";
-        string bronze = "";
+        
+        if (presets.presetTempo != 0)
+        {
+            recordBox.SetActive(true);
+            string gold = "";
+            string silver = "";
+            string bronze = "";
 
-        switch (caseSize[id]){
-            case "P":
-                gold = SecondsToMinutes(medalTimes[0]);
-                silver = SecondsToMinutes(medalTimes[1]);
-                bronze = SecondsToMinutes(medalTimes[2]);
-                break;
-            case "M":
-                gold = SecondsToMinutes(medalTimes[3]);
-                silver = SecondsToMinutes(medalTimes[4]);
-                bronze = SecondsToMinutes(medalTimes[5]);
-                break;
-            case "G":
-                gold = SecondsToMinutes(medalTimes[6]);
-                silver = SecondsToMinutes(medalTimes[7]);
-                bronze = SecondsToMinutes(medalTimes[8]);
-                break;
+            switch (caseSize[id])
+            {
+                case "P":
+                    gold = SecondsToMinutes(mTimes[0]);
+                    silver = SecondsToMinutes(mTimes[1]);
+                    bronze = SecondsToMinutes(mTimes[2]);
+                    break;
+                case "M":
+                    gold = SecondsToMinutes(mTimes[3]);
+                    silver = SecondsToMinutes(mTimes[4]);
+                    bronze = SecondsToMinutes(mTimes[5]);
+                    break;
+                case "G":
+                    gold = SecondsToMinutes(mTimes[6]);
+                    silver = SecondsToMinutes(mTimes[7]);
+                    bronze = SecondsToMinutes(mTimes[8]);
+                    break;
 
+            }
+
+            goldText.text = gold;
+            silverText.text = silver;
+            bronzeText.text = bronze;
+        }
+        else {
+            recordBox.SetActive(false);
         }
 
-        goldText.text = gold;
-        silverText.text = silver;
-        bronzeText.text = bronze;
     } 
 
     string SecondsToMinutes(float sec)

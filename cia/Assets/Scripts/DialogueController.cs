@@ -37,24 +37,21 @@ public class DialogueController : MonoBehaviour
     void Start()
     {
         sentences = new Queue<string>();
-        //positions = new Queue<RectTransform>();
+       
         
         expressions = new Queue<int>();
         balloons = new Queue<int>();
-        //dialogueText =  dialogueText.GetComponent<TMPro.TextMeshProUGUI>();
+        
 
 
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   
 
     public void StartDialogue(Dialogue dialogue)
     {
-        //Debug.Log(data_values[1]);
+  
         sentences.Clear();
         int i = 0;
         foreach (string sentence in data_sentences)
@@ -82,7 +79,7 @@ public class DialogueController : MonoBehaviour
             return;
         }
         string sentence = sentences.Dequeue();
-        //Transform position = positions.Dequeue();
+        
 
         currentBalloon = balloons.Dequeue();
         currentExpression = expressions.Dequeue();
@@ -90,7 +87,7 @@ public class DialogueController : MonoBehaviour
         expressionsSprites[currentExpression].SetActive(true);
 
 
-        //dialogueText.rectTransform = position;
+       
 
 
         

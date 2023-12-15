@@ -3,23 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
+using System.Linq;
 
 
 public class PresetsController : MonoBehaviour
 {
     // Start is called before the first frame update
-    private int presetTempo = 0;
-    private int presetPreco = 0;
-    private int presetInvertida = 0;
-    private int presetDiagonal = 0;
+    public int presetTempo = 0;
+    public int presetPreco = 0;
+    public int presetInvertida = 0;
+    public int presetDiagonal = 0;
     private int[] salvarpadrao;
     [SerializeField] TMP_Text testePreset;
     [SerializeField] private GameObject _canvas;
+    private CaseController caseController;
+    [SerializeField]private GameObject canvasPersonalizar;
+    ToggleGroup tempoGroup;
+    ToggleGroup ajudaGroup;
+    ToggleGroup invertidasGroup;
+    ToggleGroup diagonalGroup;
+
 
     void Awake()
     {
         //PlayerPrefs.DeleteAll();
-        //Debug.Log("me ajuda");
+      
 
         LoadPreferences();
         //salvarpadrao[0] = presetTempo;
@@ -34,7 +43,11 @@ public class PresetsController : MonoBehaviour
     void Start()
     {
         testePreset.text = presetTempo.ToString() + " " + presetPreco.ToString() + " " + presetInvertida.ToString() + " " + presetDiagonal.ToString();
-
+        caseController = GameObject.Find("CaseController").GetComponent<CaseController>();
+        tempoGroup = GameObject.Find("Tempo").GetComponent<ToggleGroup>();
+        ajudaGroup = GameObject.Find("Preço das ajudas").GetComponent<ToggleGroup>();
+        invertidasGroup = GameObject.Find("Palavras Invertidas").GetComponent<ToggleGroup>();
+        diagonalGroup = GameObject.Find("Palavras Diagonais").GetComponent<ToggleGroup>();
 
     }
 
@@ -45,30 +58,57 @@ public class PresetsController : MonoBehaviour
     }
 
 
-    public void DropdownOption(int index) {
-        string prefName = EventSystem.current.currentSelectedGameObject.name;
-        if(prefName == "Item 0: Tempo normal" || prefName == "Item 1: Tempo estendido" || prefName == "Item 2: Tempo reduzido" || prefName == "Item 3: Desativado")
-        {
-            PlayerPrefs.SetInt("Tempo", index);
-        }
-        else if (prefName == "Item 0: Sem inversão" || prefName == "Item 1: Com inversão")
-        {
-            PlayerPrefs.SetInt("PalavrasInvertidas", index);
-        }
-        else if (prefName == "Item 0: Mais barato" || prefName == "Item 1: Mais caro")
-        {
-            PlayerPrefs.SetInt("PreçoAjuda", index);
-        }
-        else if (prefName == "Item 0: Sem palavras diagonais" || prefName == "Item 1: Com palavras diagonais") { 
-            PlayerPrefs.SetInt("PalavrasDiagonais", index);
-        }
+
+    public void RadioButtonSave()
+    {
+        Toggle toggle1 = tempoGroup.ActiveToggles().FirstOrDefault();
+        Toggle toggle2 = ajudaGroup.ActiveToggles().FirstOrDefault();
+        Toggle toggle3 = invertidasGroup.ActiveToggles().FirstOrDefault();
+        Toggle toggle4 = diagonalGroup.ActiveToggles().FirstOrDefault();
         
-        PlayerPrefs.Save();
-        
-       // PlayerPrefs.SetInt(prefName, index);
-         //       PlayerPrefs.Save();
-        
-        //      Debug.Log(PlayerPrefs.GetInt(prefName, 0));
+        if (toggle1.name == "Sem Tempo")
+        {
+            PlayerPrefs.SetInt("Tempo", 0);
+        }
+        else if (toggle1.name == "Tempo padrão")
+        {
+            PlayerPrefs.SetInt("Tempo", 1);
+        }
+        else if (toggle1.name == "Tempo reduzido")
+        {
+            PlayerPrefs.SetInt("Tempo", 2);
+        }
+
+        if (toggle2.name == "Preço reduzido")
+        {
+            PlayerPrefs.SetInt("PreçoAjuda", 0);
+        }
+        else if (toggle2.name == "Preço padrão")
+        {
+            PlayerPrefs.SetInt("PreçoAjuda", 1);
+        }
+
+        if (toggle3.name == "Desabilitado")
+        {
+            PlayerPrefs.SetInt("PalavrasInvertidas", 0);
+        }
+        else if (toggle3.name == "Habilitado")
+        {
+            PlayerPrefs.SetInt("PalavrasInvertidas", 1);
+        }
+
+        if (toggle4.name == "Desabilitado")
+        {
+            PlayerPrefs.SetInt("PalavrasDiagonais", 0);
+        }
+        else if (toggle4.name == "Habilitado")
+        {
+            PlayerPrefs.SetInt("PalavrasDiagonais", 1);
+        }
+
+        LoadPreferences();
+        this.gameObject.SetActive(false);
+        _canvas.SetActive(true);
     }
 
     public void PresetButton()
@@ -101,27 +141,36 @@ public class PresetsController : MonoBehaviour
 
         }
         PlayerPrefs.Save();
+        LoadPreferences();
         this.gameObject.SetActive(false);
         _canvas.SetActive(true);
+       
+        caseController.ShowCase();
     }
     public void BackButton()
     {
-        //PlayerPrefs.SetInt("Tempo", salvarpadrao[0]);
-        //PlayerPrefs.SetInt("PreçoAjuda", salvarpadrao[1]);
-        //PlayerPrefs.SetInt("PalavrasInvertidas", salvarpadrao[2]);
-        //PlayerPrefs.SetInt("PalavrasDiagonais", salvarpadrao[3]);
+
+        
         this.gameObject.SetActive(false);
         _canvas.SetActive(true);
       
 
     }
 
-    private void  LoadPreferences(){
+    public void  LoadPreferences(){
         presetTempo = PlayerPrefs.GetInt("Tempo", 0);
         presetPreco = PlayerPrefs.GetInt("PreçoAjuda", 0);
         presetInvertida = PlayerPrefs.GetInt("PalavrasInvertidas", 0);
         presetDiagonal = PlayerPrefs.GetInt("PalavrasDiagonais", 0);
         
+    }
+
+    public void SavePresetButton()
+    {
+        LoadPreferences();
+        caseController.ShowCase();
+        canvasPersonalizar.SetActive(false);
+        _canvas.SetActive(true);
     }
 
 }
