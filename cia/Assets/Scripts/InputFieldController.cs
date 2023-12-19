@@ -22,7 +22,15 @@ public class InputFieldController : MonoBehaviour
     [SerializeField] GameObject grid;
     [SerializeField] GameObject aviso;
     [SerializeField] GameObject powerUpCanvas;
+    [SerializeField] GameObject powerUpLButton;
     [SerializeField] TMP_Text detalhesCaso;
+    public int countErrors = 0;
+    public int countErrorsLast = 0;
+    [SerializeField] GameObject avisoFree;
+    [SerializeField] GameObject avisoTutorial;
+    [SerializeField] private GameObject canvas;
+
+    int contpw = 0;
 
     public int phraseId=0;
 
@@ -31,10 +39,25 @@ public class InputFieldController : MonoBehaviour
     {
         // audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
 
-        Read();
+        if (PlayerPrefs.GetInt("LoadCaseId") == 99)
+        {
+            SetTutorial();
+        }
+        else
+        {
+            Read();
+        }
         phraseTextBox.text = eachPhrase[phraseId];
         objController = GameObject.Find("ObjetivosBG").GetComponent<ObjectivesController>();
         updateDetails();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Return)) {
+            Debug.Log("Return key was pressed.");
+            ReadStringInput(); 
+        }
     }
 
     public void ReadStringInput()
@@ -87,44 +110,48 @@ public class InputFieldController : MonoBehaviour
         eachLine = new List<string>();
         eachLine.AddRange(data_string.Split("\n"[0]));
         eachPhrase = eachLine[PlayerPrefs.GetInt("LoadCaseId", 0)].Split(';');
-        //casewords = eachLine[PlayerPrefs.GetInt("LoadCaseId", 0)].Split(';');
 
     }
 
     public void ValidateWords()
     {
-        if (wordsRead[phraseId] == input)
+        if (wordsRead[phraseId] == input) //verifica se a palavra está certa
         {
             int pos = phraseId;
-            if (pos == eachPhrase.Length-1 && ultimoCaso == 0) {
+            if (pos == eachPhrase.Length - 1 && ultimoCaso == 0)
+            {
                 //audioManager.RightAnswer();
                 aviso.SetActive(false);
                 objController.Finish();
             }
-            else if (checkPositions[pos] == false && pos != eachPhrase.Length-1)
+            else if (checkPositions[pos] == false && pos != eachPhrase.Length - 1)
             {
                 //wordsRead[pos] = "e5ef1a3s2de87rf0SCwfBTHYwefedse578899";
-                objController.CountObjectivePhrase();
+
                 string[] updateString = eachPhrase[pos].Split('@');
                 eachPhrase[pos] = updateString[0] + input + updateString[1];
                 phraseTextBox.text = eachPhrase[phraseId];
                 checkPositions[pos] = true;
                 //audioManager.RightAnswer();
                 int i = 0;
-                while(checkPositions[i] == true && i< wordsRead.Count - 2)
+                while (checkPositions[i] == true && i < wordsRead.Count - 2)
                 {
                     i++;
                 }
                 phraseId = i;
                 phraseTextBox.text = eachPhrase[phraseId];
-
+                objController.CountObjectivePhrase();
                 updateDetails();
             }
 
 
-            
+
         }
-        audioManager.WrongAnswer();
+        else
+        {
+            CheckErrors();
+            audioManager.WrongAnswer();
+        }
     }
 
     private void updateDetails()
@@ -154,13 +181,55 @@ public class InputFieldController : MonoBehaviour
 
     }
 
+    public void powerUpL()
+    {
+        string[] updateString = eachPhrase[eachPhrase.Length - 1].Split('@');
+        eachPhrase[eachPhrase.Length - 1] = updateString[0] + wordsRead[eachPhrase.Length - 1][contpw] + "@" + updateString[1];
+        phraseTextBox.text = eachPhrase[phraseId];
+        contpw++;
+
+    }
+
+
+    void CheckErrors()
+    {
+        if ((PlayerPrefs.GetInt("PreçoAjuda") == 0))
+        {
+            if (phraseId == eachPhrase.Length - 1)
+            {
+                countErrorsLast++;
+
+            }
+            else
+            {
+                countErrors++;
+            }
+
+            if (countErrors == 10 || countErrorsLast == 10 )
+            {
+                avisoFree.SetActive(true);
+                canvas.SetActive(false);
+            }
+        }
+    }
+
+    void SetTutorial()
+    {
+        canvas.SetActive(false);
+        avisoTutorial.SetActive(true);
+        string s = "1 - A mulher achava que era a única sobrevivente de um acidente @.; 2 - Ela vagou feito alma penada por um ano por toa a @; 3 - No auge na sua depressão, ela decidiu se @; 4 - Ela então sobe no topo de um @; 5 - Ao se jogar, ela descobre não ser a única sobrevivente, pois ouve um @; Sem dúvida havia outro @";
+        eachPhrase = s.Split(';');
+
+    }
     public void LastWord()
     {
         ultimoCaso = 0;
-        phraseId = eachPhrase.Length-1;
-        phraseTextBox.text = eachPhrase[phraseId];
+        //phraseId = eachPhrase.Length-1;
+        phraseTextBox.text = eachPhrase[eachPhrase.Length - 1];
         grid.SetActive(false);
         powerUpCanvas.SetActive(false);
+        powerUpLButton.SetActive(true);
+
         aviso.SetActive(true);
 
     }

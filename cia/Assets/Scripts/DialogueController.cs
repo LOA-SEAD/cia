@@ -36,9 +36,7 @@ public class DialogueController : MonoBehaviour
     }
     void Start()
     {
-        sentences = new Queue<string>();
-       
-        
+        sentences = new Queue<string>(); 
         expressions = new Queue<int>();
         balloons = new Queue<int>();
         
@@ -87,10 +85,6 @@ public class DialogueController : MonoBehaviour
         expressionsSprites[currentExpression].SetActive(true);
 
 
-       
-
-
-        
         dialogueText[currentBalloon].text = sentence;
 
     }

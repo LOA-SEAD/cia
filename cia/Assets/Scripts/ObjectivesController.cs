@@ -15,6 +15,7 @@ public class ObjectivesController : MonoBehaviour
     [SerializeField]private Timer timer;
     private InputFieldController inputController;
     [SerializeField] GameObject casoEncerrado;
+    [SerializeField] GameObject avisoFimTutorial;
     private PowerUps powerUps;
 
 
@@ -31,7 +32,7 @@ public class ObjectivesController : MonoBehaviour
         
     }
 
-    public void CountObjective(string foundword)
+    public void CountObjective(string foundword) //atualiza o número de palavras encontradas no caça
     {
         contadorPalavras++;
         palavrasTexto.text = "Encontre as palavras ("+ contadorPalavras +"/" + totalPalavras + ")";
@@ -42,7 +43,7 @@ public class ObjectivesController : MonoBehaviour
         }
     }
 
-    public void CountObjectivePhrase()
+    public void CountObjectivePhrase() //atualiza o número de palavras encontradas na frase
     {
         contadorFrases++;
         frasesTexto.text = "Complete as frases (" + contadorFrases+ "/" + totalPalavras + ")";
@@ -70,17 +71,24 @@ public class ObjectivesController : MonoBehaviour
     public void Finish()
     {
         casoTexto.text = "Conclusão do caso (1/1)";
-        casoEncerrado.SetActive(true);
 
-        string caseIDString = "RecordeCaso" + PlayerPrefs.GetInt("LoadCaseId", 0) + PlayerPrefs.GetInt("Tempo", 0) +  PlayerPrefs.GetInt("PreçoAjuda", 0) + PlayerPrefs.GetInt("PalavrasInvertidas", 0) +
-        PlayerPrefs.GetInt("PalavrasDiagonais", 0);
-        if (timer.runTimer < PlayerPrefs.GetFloat(caseIDString, 3000))
+        if (PlayerPrefs.GetInt("LoadCaseId") == 99)
         {
-            PlayerPrefs.SetFloat(caseIDString, timer.runTimer);
+            avisoFimTutorial.SetActive(true);
         }
+        else
+        {
+            casoEncerrado.SetActive(true);
 
-        StartCoroutine(StartDelay());
+            string caseIDString = "RecordeCaso" + PlayerPrefs.GetInt("LoadCaseId", 0) + PlayerPrefs.GetInt("Tempo", 0) + PlayerPrefs.GetInt("PreçoAjuda", 0) + PlayerPrefs.GetInt("PalavrasInvertidas", 0) +
+            PlayerPrefs.GetInt("PalavrasDiagonais", 0);
+            if (timer.runTimer < PlayerPrefs.GetFloat(caseIDString, 3000))
+            {
+                PlayerPrefs.SetFloat(caseIDString, timer.runTimer);
+            }
 
+            StartCoroutine(StartDelay());
+        }
         
     }
 

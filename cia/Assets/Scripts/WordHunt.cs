@@ -74,6 +74,9 @@ public class WordHunt : MonoBehaviour {
     private int contDica;
     public List<bool> checkPaint = new List<bool>();
     public List<string> wordsCopy = new List<string>();
+    public int countErrors=0;
+    [SerializeField] GameObject avisoFree;
+    [SerializeField] private GameObject canvasPrincipal;
 
 
 
@@ -85,7 +88,8 @@ public class WordHunt : MonoBehaviour {
     {
         Time.timeScale = 1;
         objController = GameObject.Find("ObjetivosBG").GetComponent<ObjectivesController>();
-        inpFController = GameObject.Find("TelaJogo").GetComponent<InputFieldController>(); 
+        inpFController = GameObject.Find("TelaJogo").GetComponent<InputFieldController>();
+        
         // audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>(); descomentar
         //wordsSource = theme;
         Setup();
@@ -99,9 +103,14 @@ public class WordHunt : MonoBehaviour {
     }
 
     public void Setup(){
-
-        Read();
-
+        if (PlayerPrefs.GetInt("LoadCaseId") == 99)
+        {
+            SetTutorial();
+        }
+        else
+        {
+            Read(); 
+        }
         GetGridSize();
 
         PrepareWords();
@@ -152,7 +161,7 @@ public class WordHunt : MonoBehaviour {
     private void PrepareWords()
     {
         //Pegar lista de palavras
-        words = eachLine[PlayerPrefs.GetInt("LoadCaseId", 0)].Split(';').ToList();
+        
         if(PlayerPrefs.GetInt("PalavrasInvertidas", 0) == 1) //lê das preferências se as palavras invertidas estão habilitadas
         {
             invertedWordsAreValid = true;
@@ -428,12 +437,11 @@ public class WordHunt : MonoBehaviour {
                 h.transform.DOPunchScale(-Vector3.one, 0.2f, 10, 1);
                 h.GetComponent<LetterObjectScript>().hasPainted = true;
             }
-
             //Visual Event
-            RectTransform r1 = highlightedObjects[0].GetComponent<RectTransform>();
-            RectTransform r2 = highlightedObjects[highlightedObjects.Count() - 1].GetComponent<RectTransform>();
-            FoundWord(r1, r2);
-
+            //RectTransform r1 = highlightedObjects[0].GetComponent<RectTransform>();
+            //RectTransform r2 = highlightedObjects[highlightedObjects.Count() - 1].GetComponent<RectTransform>();
+            //FoundWord(r1, r2);
+         
             objController.CountObjective(word);
             int pos =0;
             if (wordsCopy.Contains(word))
@@ -460,6 +468,7 @@ public class WordHunt : MonoBehaviour {
         }
         else {
             ClearWordSelection();
+            CheckErrors();
             audioManager.WrongAnswer();
         }
     }
@@ -576,12 +585,33 @@ public class WordHunt : MonoBehaviour {
         }
     }
 
+    void CheckErrors()
+    {
+        countErrors++;
+        if((PlayerPrefs.GetInt("PreçoAjuda") == 0))
+        {
+            if (countErrors == 10)
+            {
+                avisoFree.SetActive(true);
+                canvasPrincipal.SetActive(false);
+            }
+        }
+    }
+    void SetTutorial()
+    {
+        string s = "nuclear;cidade;matar;prédio;telefone;sobrevivente";
+        words =  s.Split(';').ToList(); 
+        
+    }
+
+
     void Read()
     {
 
         data_string = _csvFile.text;
         eachLine = new List<string>();
         eachLine.AddRange(data_string.Split("|"[0]));
+        words = eachLine[PlayerPrefs.GetInt("LoadCaseId", 0)].Split(';').ToList();
         //casewords = eachLine[PlayerPrefs.GetInt("LoadCaseId", 0)].Split(';');
 
     }
