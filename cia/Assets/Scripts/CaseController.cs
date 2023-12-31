@@ -13,10 +13,11 @@ public class CaseController : MonoBehaviour
     [SerializeField] private GameObject backButton;
     [SerializeField] private TextAsset _csvFile;
     [SerializeField] private TextAsset _csvFile2;
+    [SerializeField] private TextAsset _csvFile3;
     public List<string> caseDetails;
     public List<string> caseSize;
     public string data_string;
-    public int caseID=0;
+    public int caseID = 0;
     //public string  caseSize;
     public TMP_Text caseText;
     public TMP_Text caseTitle;
@@ -33,6 +34,8 @@ public class CaseController : MonoBehaviour
     [SerializeField] GameObject casoFechado;
     private PresetsController presets;
     [SerializeField] GameObject recordBox;
+    private int countMainCases = 0;
+    private int mainCasesNumber;
 
 
     // Start is called before the first frame update
@@ -44,20 +47,22 @@ public class CaseController : MonoBehaviour
     }
     void Start()
     {
+        CheckNarrative();
         ShowCase();
-        
+
+
     }
 
 
     public void ShowCase()
     {
-        //Debug.Log(data_values[1]);
+
         if (caseID == 0)
         {
             backButton.SetActive(false);
             nextButton.SetActive(true);
         }
-        else if (caseID == caseDetails.Count-1)
+        else if (caseID == caseDetails.Count - 1)
         {
             nextButton.SetActive(false);
             backButton.SetActive(true);
@@ -67,11 +72,11 @@ public class CaseController : MonoBehaviour
             backButton.SetActive(true);
             nextButton.SetActive(true);
         }
-  
+
         caseText.text = "";
         caseText.text = caseDetails[caseID];
-        caseSizeText.text = "Tamanho do tabuleiro: " +  caseSize[caseID];
-        caseTitle.text = "Caso " + (caseID+1);
+        caseSizeText.text = "Tamanho do tabuleiro: " + caseSize[caseID];
+        caseTitle.text = "Caso " + (caseID + 1);
         SetTimeObjectives(caseID);
         ShowRecords(caseID);
 
@@ -79,11 +84,12 @@ public class CaseController : MonoBehaviour
 
     public void ShowRecords(int id)
     {
-        
+
         string caseIDString = "RecordeCaso" + id + presets.presetTempo.ToString() + presets.presetPreco.ToString() + presets.presetInvertida.ToString() + presets.presetDiagonal.ToString();
         float recordecaso = PlayerPrefs.GetFloat(caseIDString, 3000);
         //Debug.Log(recordecaso);
-        if (presets.presetTempo != 0) {
+        if (presets.presetTempo != 0)
+        {
             if (recordecaso == 3000)
             {
                 recordCaseText.text = "Sem recordes";
@@ -167,7 +173,8 @@ public class CaseController : MonoBehaviour
 
             }
         }
-        else{
+        else
+        {
             if (recordecaso == 0)
             {
                 recordCaseText.text = "Não concluído";
@@ -182,7 +189,7 @@ public class CaseController : MonoBehaviour
             }
         }
 
-       
+
     }
 
 
@@ -190,7 +197,7 @@ public class CaseController : MonoBehaviour
     {
         caseID++;
         ShowCase();
-        
+
     }
     public void BackId()
     {
@@ -208,7 +215,7 @@ public class CaseController : MonoBehaviour
 
     void SetTimeObjectives(int id)
     {
-        
+
         if (presets.presetTempo != 0)
         {
             recordBox.SetActive(true);
@@ -240,11 +247,12 @@ public class CaseController : MonoBehaviour
             silverText.text = silver;
             bronzeText.text = bronze;
         }
-        else {
+        else
+        {
             recordBox.SetActive(false);
         }
 
-    } 
+    }
 
     string SecondsToMinutes(float sec)
     {
@@ -263,9 +271,35 @@ public class CaseController : MonoBehaviour
         return time;
     }
 
+    void CheckNarrative()
+    {
+        presets.LoadPreferences();
+        for (int i = 0; i < mainCasesNumber; i++)
+        {
+            string caseIDString = "RecordeCaso" + i + presets.presetTempo.ToString() + presets.presetPreco.ToString() + presets.presetInvertida.ToString() + presets.presetDiagonal.ToString();
+            float recordecaso = PlayerPrefs.GetFloat(caseIDString, 3000);
+            if (recordecaso != 3000)
+            {
+                countMainCases++;
+            }
+          
+        }
+        Debug.Log("narrativa id " + PlayerPrefs.GetInt("NarrativaId", 0));
+        if (countMainCases >= (mainCasesNumber) / 2 && PlayerPrefs.GetInt("NarrativaId", 0) == 0) //checa quando entram o segundo e terceiro dialogo; Checagem muda se aumentar número de diálogos
+        {
+            PlayerPrefs.SetInt("NarrativaId", 1);
+            SceneManager.LoadScene("Narrativa");
+        }
+        else if (countMainCases >= (mainCasesNumber) && PlayerPrefs.GetInt("NarrativaId", 0) == 1)
+        {
+            PlayerPrefs.SetInt("NarrativaId", 2);
+            SceneManager.LoadScene("Narrativa");
+        }
+    }
+
     void Read()
     {
-        
+
         data_string = _csvFile.text;
         caseDetails = new List<string>();
         caseDetails.AddRange(data_string.Split("\n"[0]));
@@ -273,6 +307,9 @@ public class CaseController : MonoBehaviour
         data_string = _csvFile2.text;
         caseSize = new List<string>();
         caseSize.AddRange(data_string.Split(";"[0]));
+
+        mainCasesNumber = int.Parse(_csvFile3.text);
+
 
 
     }

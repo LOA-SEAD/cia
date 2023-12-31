@@ -55,7 +55,6 @@ public class InputFieldController : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Return)) {
-            Debug.Log("Return key was pressed.");
             ReadStringInput(); 
         }
     }

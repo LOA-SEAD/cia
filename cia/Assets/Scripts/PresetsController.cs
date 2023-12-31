@@ -30,7 +30,7 @@ public class PresetsController : MonoBehaviour
         //PlayerPrefs.DeleteAll();
       
 
-        LoadPreferences();
+        //LoadPreferences();
         //salvarpadrao[0] = presetTempo;
         //salvarpadrao[1] = presetPreco;
         //salvarpadrao[2] = presetInvertida;

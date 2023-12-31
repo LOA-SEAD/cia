@@ -1204,6 +1204,7 @@ MonoBehaviour:
   backButton: {fileID: 220899770}
   _csvFile: {fileID: 4900000, guid: f3bf56346c9c16b4faa0432d044e9768, type: 3}
   _csvFile2: {fileID: 4900000, guid: 5c5e1528c66e9904c977889c9fe98987, type: 3}
+  _csvFile3: {fileID: 4900000, guid: 4582659417eaad84bbd427eebcd46cbf, type: 3}
   caseDetails: []
   caseSize: []
   data_string: 
@@ -1211,16 +1212,6 @@ MonoBehaviour:
   caseText: {fileID: 1699195328}
   caseTitle: {fileID: 1859486128}
   recordCaseText: {fileID: 45441442}
-  medalTimes:
-  - 240
-  - 210
-  - 180
-  - 210
-  - 180
-  - 150
-  - 180
-  - 150
-  - 120
   caseSizeText: {fileID: 321216180}
   goldText: {fileID: 2087700653}
   silverText: {fileID: 1527602737}

@@ -24,18 +24,23 @@ public class DialogueController : MonoBehaviour
     int currentBalloon = 0;
     int currentExpression=0;
     private AudioManager audioManager;
-    public AudioClip music;  
+    public AudioClip music;
+    //public Animator fade;
+    public GameObject levelChanger;
+    //public GameObject fadeIn;
 
     // Start is called before the first frame update
     private void Awake()
     {
         Read();
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        //fade = GameObject.Find("LevelChanger").GetComponent<Animator>();
         audioManager.PlayBGSong(music);
 
     }
     void Start()
     {
+        //fade.SetTrigger("FadeIn");
         sentences = new Queue<string>(); 
         expressions = new Queue<int>();
         balloons = new Queue<int>();
@@ -92,12 +97,24 @@ public class DialogueController : MonoBehaviour
     public void EndDialogue()
     {
         expressionsSprites[0].SetActive(true);
+        levelChanger.SetActive(true);
+        StartCoroutine(StartDelay());
+
+        
+    }
+
+    public IEnumerator StartDelay()
+    {
+
+        yield return new WaitForSeconds(1.0f);
         SceneManager.LoadScene("TelaCasos");
     }
+
 
     void Read()
     {
         int id = PlayerPrefs.GetInt("NarrativaId", 0);
+        id = id * 3;
 
         data_string = _csvFile.text;
         eachLine = new List<string>();

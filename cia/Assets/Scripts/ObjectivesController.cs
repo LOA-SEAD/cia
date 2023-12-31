@@ -17,13 +17,16 @@ public class ObjectivesController : MonoBehaviour
     [SerializeField] GameObject casoEncerrado;
     [SerializeField] GameObject avisoFimTutorial;
     private PowerUps powerUps;
+    public GameObject levelChanger;
+    private Animator fade;
 
 
     void Start()
     {
         timer = GameObject.Find("TelaJogo").GetComponent<Timer>();
         inputController = GameObject.Find("TelaJogo").GetComponent<InputFieldController>();
-        powerUps = GameObject.Find("PowerUp controller").GetComponent<PowerUps>(); 
+        powerUps = GameObject.Find("PowerUp controller").GetComponent<PowerUps>();
+        fade = GameObject.Find("LevelChanger").GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -86,7 +89,8 @@ public class ObjectivesController : MonoBehaviour
             {
                 PlayerPrefs.SetFloat(caseIDString, timer.runTimer);
             }
-
+            levelChanger.SetActive(true);
+            
             StartCoroutine(StartDelay());
         }
         
@@ -94,8 +98,8 @@ public class ObjectivesController : MonoBehaviour
 
     public IEnumerator StartDelay()
     {
-        Debug.Log("espera");
-        yield return new WaitForSeconds(0.5f);
+        //fade.SetTrigger("FadeOut");
+        yield return new WaitForSeconds(1.0f);
         SceneManager.LoadScene("TelaCasos");
     }
 }

@@ -7,10 +7,11 @@ public class DialogueTrigger : MonoBehaviour
     public Dialogue dialogue;
     //public GameObject[] expressionsSprites;
     public DialogueController dialoguecontroller;
+    public GameObject fadeIn;
     private void Start()
     {
         dialoguecontroller = GameObject.Find("DialogueController").GetComponent<DialogueController>();
-           TriggerDialogue();
+        StartCoroutine(StartDelay());
     }
 
     private void Update()
@@ -20,6 +21,15 @@ public class DialogueTrigger : MonoBehaviour
           
         }
     }
+
+    public IEnumerator StartDelay()
+    {
+
+        yield return new WaitForSeconds(1.0f);
+        fadeIn.SetActive(false);
+        TriggerDialogue();
+    }
+
 
     public void TriggerDialogue()
     {
