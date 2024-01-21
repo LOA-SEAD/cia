@@ -90,7 +90,8 @@ public class WordHunt : MonoBehaviour {
         objController = GameObject.Find("ObjetivosBG").GetComponent<ObjectivesController>();
         inpFController = GameObject.Find("TelaJogo").GetComponent<InputFieldController>();
         
-        // audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>(); descomentar
+        // 
+        GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>(); 
         //wordsSource = theme;
         Setup();
 
@@ -131,28 +132,28 @@ public class WordHunt : MonoBehaviour {
         switch (PlayerPrefs.GetString("LoadCaseSize"))
         {
             case "P":
-                gridSize.x = 9;
-                gridSize.y = 6;
-                cellSize.x = 30;
-                cellSize.y = 30;
-                cellSpacing.x = 10;
-                cellSpacing.y = 10;
-                break;
-            case "M":
                 gridSize.x = 11;
                 gridSize.y = 7;
                 cellSize.x = 27;
                 cellSize.y = 27;
-                cellSpacing.x = 10;
+                cellSpacing.x = 7;
                 cellSpacing.y = 7;
                 break;
-            case "G":
+            case "M":
                 gridSize.x = 14;
                 gridSize.y = 8;
-                cellSize.x = 25;
-                cellSize.y = 25;
-                cellSpacing.x = 4;
-                cellSpacing.y = 4;
+                cellSize.x = 24;
+                cellSize.y = 24;
+                cellSpacing.x = 5;
+                cellSpacing.y = 5;
+                break;
+            case "G":
+                gridSize.x = 16;
+                gridSize.y = 9;
+                cellSize.x = 23;
+                cellSize.y = 23;
+                cellSpacing.x = 3;
+                cellSpacing.y = 3;
                 break;
 
         }
@@ -263,12 +264,13 @@ public class WordHunt : MonoBehaviour {
             do
             {
                 int row;
-                int safetyFlag = 0;
-                do
-                {
-                    safetyFlag++;
-                    row = rn.Next((int)gridSize.x);
-                } while (row + word.Length > gridSize.x && row - word.Length < 0 && safetyFlag < 30); //garantir que as palavras grandes caibam na horizontal
+                //int safetyFlag = 0;
+                row = rn.Next((int)gridSize.x);
+               // do
+                //{
+                  //  safetyFlag++;
+                   // row = rn.Next((int)gridSize.x);
+                //} while (row + word.Length > gridSize.x && row - word.Length < 0 && safetyFlag < 50); //garantir que as palavras grandes caibam na horizontal
                 
                 int column = rn.Next((int)gridSize.y);
 
@@ -303,6 +305,10 @@ public class WordHunt : MonoBehaviour {
                     if (word.Length > gridSize.y)
                     {
                         dirY = 0;
+                        if(dirX == 0)
+                        {
+                            dirX = 1;
+                        }
                     }
                 }
 
@@ -310,6 +316,21 @@ public class WordHunt : MonoBehaviour {
                 tryAmount++;
 
             } while (!inserted && tryAmount < 100);
+
+
+            int countLine = 0;
+            while(tryAmount == 100 && countLine < gridSize.y)
+            {
+                inserted = InsertWord(word, countLine, 0, 1, 0);
+                countLine++;
+            }
+            int countColumn = 0;
+            while (tryAmount == 100 && countColumn < gridSize.y)
+            {
+                inserted = InsertWord(word, 0, countColumn, 1, 0);
+                countColumn++;               
+            }
+
 
             if (inserted) { 
                 insertedWords.Add(word);

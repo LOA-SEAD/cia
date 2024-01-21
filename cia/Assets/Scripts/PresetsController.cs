@@ -15,7 +15,7 @@ public class PresetsController : MonoBehaviour
     public int presetInvertida = 0;
     public int presetDiagonal = 0;
     private int[] salvarpadrao;
-    [SerializeField] TMP_Text testePreset;
+    
     [SerializeField] private GameObject _canvas;
     private CaseController caseController;
     [SerializeField]private GameObject canvasPersonalizar;
@@ -27,22 +27,13 @@ public class PresetsController : MonoBehaviour
 
     void Awake()
     {
-        //PlayerPrefs.DeleteAll();
-      
-
-        //LoadPreferences();
-        //salvarpadrao[0] = presetTempo;
-        //salvarpadrao[1] = presetPreco;
-        //salvarpadrao[2] = presetInvertida;
-        //salvarpadrao[3] = presetDiagonal;
-        
 
 
     }
 
     void Start()
     {
-        testePreset.text = presetTempo.ToString() + " " + presetPreco.ToString() + " " + presetInvertida.ToString() + " " + presetDiagonal.ToString();
+        
         caseController = GameObject.Find("CaseController").GetComponent<CaseController>();
         tempoGroup = GameObject.Find("Tempo").GetComponent<ToggleGroup>();
         ajudaGroup = GameObject.Find("Preço das ajudas").GetComponent<ToggleGroup>();

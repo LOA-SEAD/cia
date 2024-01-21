@@ -32,10 +32,12 @@ public class CaseController : MonoBehaviour
     [SerializeField] Image medalImage;
     [SerializeField] GameObject casoAberto;
     [SerializeField] GameObject casoFechado;
+    [SerializeField] GameObject filtro;
     private PresetsController presets;
     [SerializeField] GameObject recordBox;
     private int countMainCases = 0;
     private int mainCasesNumber;
+
 
 
     // Start is called before the first frame update
@@ -72,11 +74,38 @@ public class CaseController : MonoBehaviour
             backButton.SetActive(true);
             nextButton.SetActive(true);
         }
+        
 
         caseText.text = "";
         caseText.text = caseDetails[caseID];
-        caseSizeText.text = "Tamanho do tabuleiro: " + caseSize[caseID];
-        caseTitle.text = "Caso " + (caseID + 1);
+       
+        switch (caseSize[caseID])
+        {
+            case "P":
+                caseSizeText.text = "Tamanho do tabuleiro: Pequeno";
+                break;
+            case "M":
+                caseSizeText.text = "Tamanho do tabuleiro: Médio";
+                break;
+            case "G":
+                caseSizeText.text = "Tamanho do tabuleiro: Grande";
+                break;
+
+        }
+
+        //caseSizeText.text = "Tamanho do tabuleiro: " + caseSize[caseID];
+        //caseTitle.text = "Caso " + (caseID + 1);
+        if (caseID >= mainCasesNumber)
+        {
+            filtro.SetActive(true);
+            caseTitle.text = "Caso extra " + (caseID + 1 - mainCasesNumber);
+        }
+        else
+        {
+            filtro.SetActive(false);
+            caseTitle.text = "Caso principal " + (caseID + 1);
+        }
+
         SetTimeObjectives(caseID);
         ShowRecords(caseID);
 

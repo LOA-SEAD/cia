@@ -37,7 +37,7 @@ public class InputFieldController : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        // audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
 
         if (PlayerPrefs.GetInt("LoadCaseId") == 99)
         {
@@ -117,9 +117,9 @@ public class InputFieldController : MonoBehaviour
         if (wordsRead[phraseId] == input) //verifica se a palavra está certa
         {
             int pos = phraseId;
-            if (pos == eachPhrase.Length - 1 && ultimoCaso == 0)
+            if (pos == eachPhrase.Length - 1 && ultimoCaso == 1)
             {
-                //audioManager.RightAnswer();
+                audioManager.RightAnswer();
                 aviso.SetActive(false);
                 objController.Finish();
             }
@@ -127,11 +127,11 @@ public class InputFieldController : MonoBehaviour
             {
                 //wordsRead[pos] = "e5ef1a3s2de87rf0SCwfBTHYwefedse578899";
 
-                string[] updateString = eachPhrase[pos].Split('@');
+                string[] updateString = eachPhrase[pos].Split('_');
                 eachPhrase[pos] = updateString[0] + input + updateString[1];
                 phraseTextBox.text = eachPhrase[phraseId];
                 checkPositions[pos] = true;
-                //audioManager.RightAnswer();
+                audioManager.RightAnswer();
                 int i = 0;
                 while (checkPositions[i] == true && i < wordsRead.Count - 2)
                 {
@@ -222,8 +222,8 @@ public class InputFieldController : MonoBehaviour
     }
     public void LastWord()
     {
-        ultimoCaso = 0;
-        //phraseId = eachPhrase.Length-1;
+        ultimoCaso = 1;
+        phraseId = eachPhrase.Length-1;
         phraseTextBox.text = eachPhrase[eachPhrase.Length - 1];
         grid.SetActive(false);
         powerUpCanvas.SetActive(false);
