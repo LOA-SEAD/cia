@@ -102,7 +102,7 @@ public class PowerUps : MonoBehaviour
     {
         TMP_Text a;
         float b;
-        if (cheaperPW == 1)
+        if (PlayerPrefs.GetInt("Tempo", 0) == 1)
         {
             a = powerUpButton[0].GetComponentInChildren<TMP_Text>();
             b = 50 * cheaperPW;

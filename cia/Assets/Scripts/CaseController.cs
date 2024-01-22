@@ -58,6 +58,7 @@ public class CaseController : MonoBehaviour
 
     public void ShowCase()
     {
+        presets.LoadPreferences();
 
         if (caseID == 0)
         {

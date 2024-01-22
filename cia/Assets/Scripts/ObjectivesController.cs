@@ -38,7 +38,7 @@ public class ObjectivesController : MonoBehaviour
     public void CountObjective(string foundword) //atualiza o número de palavras encontradas no caça
     {
         contadorPalavras++;
-        palavrasTexto.text = "Encontre as palavras ("+ contadorPalavras +"/" + totalPalavras + ")";
+        palavrasTexto.text = "Ache as palavras ("+ contadorPalavras +"/" + totalPalavras + ")";
         powerUps.IncreaseCoins();
         if(contadorPalavras == totalPalavras)
         {
@@ -60,7 +60,7 @@ public class ObjectivesController : MonoBehaviour
     public void SetNumberOfWords(int number)
     {
         totalPalavras = number - 1;
-        palavrasTexto.text = "Encontre as palavras (0/" + totalPalavras + ")";
+        palavrasTexto.text = "Ache as palavras (0/" + totalPalavras + ")";
     }
 
     private void CheckFinish()
