@@ -43,7 +43,7 @@ public class CaseController : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
-        presets = GameObject.Find("CanvasPresets").GetComponent<PresetsController>();
+        presets = GameObject.Find("PresetsController").GetComponent<PresetsController>();
         Read();
 
     }

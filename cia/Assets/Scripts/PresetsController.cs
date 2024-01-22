@@ -19,10 +19,11 @@ public class PresetsController : MonoBehaviour
     [SerializeField] private GameObject _canvas;
     private CaseController caseController;
     [SerializeField]private GameObject canvasPersonalizar;
-    ToggleGroup tempoGroup;
-    ToggleGroup ajudaGroup;
-    ToggleGroup invertidasGroup;
-    ToggleGroup diagonalGroup;
+    [SerializeField] private GameObject canvasPreset;
+    public ToggleGroup tempoGroup;
+    public ToggleGroup ajudaGroup;
+    public ToggleGroup invertidasGroup;
+    public ToggleGroup diagonalGroup;
 
 
     void Awake()
@@ -35,10 +36,7 @@ public class PresetsController : MonoBehaviour
     {
         
         caseController = GameObject.Find("CaseController").GetComponent<CaseController>();
-        tempoGroup = GameObject.Find("Tempo").GetComponent<ToggleGroup>();
-        ajudaGroup = GameObject.Find("Preço das ajudas").GetComponent<ToggleGroup>();
-        invertidasGroup = GameObject.Find("Palavras Invertidas").GetComponent<ToggleGroup>();
-        diagonalGroup = GameObject.Find("Palavras Diagonais").GetComponent<ToggleGroup>();
+       
 
     }
 
@@ -97,9 +95,7 @@ public class PresetsController : MonoBehaviour
             PlayerPrefs.SetInt("PalavrasDiagonais", 1);
         }
 
-        LoadPreferences();
-        this.gameObject.SetActive(false);
-        _canvas.SetActive(true);
+        SavePresetButton();
     }
 
     public void PresetButton()
@@ -133,7 +129,7 @@ public class PresetsController : MonoBehaviour
         }
         PlayerPrefs.Save();
         LoadPreferences();
-        this.gameObject.SetActive(false);
+       canvasPreset.SetActive(false);
         _canvas.SetActive(true);
        
         caseController.ShowCase();
@@ -164,6 +160,16 @@ public class PresetsController : MonoBehaviour
         caseController.ShowCase();
         canvasPersonalizar.SetActive(false);
         _canvas.SetActive(true);
+    }
+
+    void OpenCustomization()
+    {
+        canvasPreset.SetActive(false);
+        canvasPersonalizar.SetActive(true);
+        tempoGroup = GetComponent<ToggleGroup>();
+        ajudaGroup = GetComponent<ToggleGroup>();
+        invertidasGroup = GetComponent<ToggleGroup>();
+        diagonalGroup = GetComponent<ToggleGroup>();
     }
 
 }

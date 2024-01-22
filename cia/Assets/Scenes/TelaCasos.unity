@@ -426,24 +426,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6953063311771672623, guid: 16111318331536d4ca49ce7446026fa9, type: 3}
   m_PrefabInstance: {fileID: 431221155}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &105693090
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 105693084}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d69c4e25181ce704fb4e96de7a7aa3fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  presetTempo: 0
-  presetPreco: 0
-  presetInvertida: 0
-  presetDiagonal: 0
-  _canvas: {fileID: 1579132529}
-  canvasPersonalizar: {fileID: 1635504818}
 --- !u!114 &105693091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2060,7 +2042,7 @@ PrefabInstance:
     - target: {fileID: 6953063311611113117, guid: 16111318331536d4ca49ce7446026fa9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 105693090}
+      objectReference: {fileID: 1798006027}
     - target: {fileID: 6953063311611113117, guid: 16111318331536d4ca49ce7446026fa9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: PresetButton
@@ -2112,7 +2094,7 @@ PrefabInstance:
     - target: {fileID: 6953063311669097831, guid: 16111318331536d4ca49ce7446026fa9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 105693090}
+      objectReference: {fileID: 1798006027}
     - target: {fileID: 6953063311669097831, guid: 16111318331536d4ca49ce7446026fa9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: PresetButton
@@ -2355,7 +2337,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6953063312277491881, guid: 16111318331536d4ca49ce7446026fa9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6953063312277491881, guid: 16111318331536d4ca49ce7446026fa9, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -2380,7 +2362,7 @@ PrefabInstance:
     - target: {fileID: 6953063312277491882, guid: 16111318331536d4ca49ce7446026fa9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 105693090}
+      objectReference: {fileID: 1798006027}
     - target: {fileID: 6953063312277491882, guid: 16111318331536d4ca49ce7446026fa9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: PresetButton
@@ -4350,7 +4332,7 @@ PrefabInstance:
     - target: {fileID: 9126479464906984830, guid: c70f4417ce93d4344b33ab87e037db26, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 806353363}
+      objectReference: {fileID: 1798006027}
     - target: {fileID: 9126479464906984830, guid: c70f4417ce93d4344b33ab87e037db26, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: RadioButtonSave
@@ -4466,6 +4448,10 @@ PrefabInstance:
     - target: {fileID: 9126479465869212313, guid: c70f4417ce93d4344b33ab87e037db26, type: 3}
       propertyPath: m_Color.r
       value: 0.8235294
+      objectReference: {fileID: 0}
+    - target: {fileID: 9126479465869212316, guid: c70f4417ce93d4344b33ab87e037db26, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9126479465869212318, guid: c70f4417ce93d4344b33ab87e037db26, type: 3}
       propertyPath: m_Colors.m_HighlightedColor.b
@@ -4660,6 +4646,7 @@ PrefabInstance:
     - {fileID: 9126479464865054460, guid: c70f4417ce93d4344b33ab87e037db26, type: 3}
     - {fileID: 9126479465921262651, guid: c70f4417ce93d4344b33ab87e037db26, type: 3}
     - {fileID: 9126479464613094155, guid: c70f4417ce93d4344b33ab87e037db26, type: 3}
+    - {fileID: 770416631, guid: c70f4417ce93d4344b33ab87e037db26, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c70f4417ce93d4344b33ab87e037db26, type: 3}
 --- !u!1 &719534896 stripped
 GameObject:
@@ -4854,17 +4841,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b110ccf846665a24a98b859e5cafd691, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &806353363 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 770416631, guid: c70f4417ce93d4344b33ab87e037db26, type: 3}
-  m_PrefabInstance: {fileID: 719534895}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1635504818}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d69c4e25181ce704fb4e96de7a7aa3fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &818324566
@@ -8849,6 +8825,61 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1794904169}
   m_CullTransparentMesh: 1
+--- !u!1 &1798006026
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1798006028}
+  - component: {fileID: 1798006027}
+  m_Layer: 0
+  m_Name: PresetsController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1798006027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1798006026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d69c4e25181ce704fb4e96de7a7aa3fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  presetTempo: 0
+  presetPreco: 0
+  presetInvertida: 0
+  presetDiagonal: 0
+  _canvas: {fileID: 1579132529}
+  canvasPersonalizar: {fileID: 1635504818}
+  canvasPreset: {fileID: 105693084}
+  tempoGroup: {fileID: 969563879}
+  ajudaGroup: {fileID: 936354289}
+  invertidasGroup: {fileID: 1402602265}
+  diagonalGroup: {fileID: 236603549}
+--- !u!4 &1798006028
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1798006026}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -261.92752, y: 286.4561, z: -4.803639}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1802690598
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10046,7 +10077,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -5}
+  m_AnchoredPosition: {x: 0, y: -3}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2009929613
