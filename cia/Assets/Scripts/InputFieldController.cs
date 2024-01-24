@@ -216,7 +216,7 @@ public class InputFieldController : MonoBehaviour
     {
         canvas.SetActive(false);
         avisoTutorial.SetActive(true);
-        string s = "1 - A mulher achava que era a única sobrevivente de um acidente @.; 2 - Ela vagou feito alma penada por um ano por toa a @; 3 - No auge na sua depressão, ela decidiu se @; 4 - Ela então sobe no topo de um @; 5 - Ao se jogar, ela descobre não ser a única sobrevivente, pois ouve um @; Sem dúvida havia outro @";
+        string s = "1 - A mulher achava que era a única sobrevivente de um acidente _.; 2 - Ela vagou feito alma penada por um ano por toa a _; 3 - No auge na sua depressão, ela decidiu se _; 4 - Ela então sobe no topo de um _; 5 - Ao se jogar, ela descobre não ser a única sobrevivente, pois ouve um _; Sem dúvida havia outro _";
         eachPhrase = s.Split(';');
 
     }
