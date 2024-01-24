@@ -205,7 +205,7 @@ public class CaseController : MonoBehaviour
         }
         else
         {
-            if (recordecaso == 0)
+            if (recordecaso == 3000)
             {
                 recordCaseText.text = "Não concluído";
                 casoFechado.SetActive(false);
