@@ -114,7 +114,7 @@ public class InputFieldController : MonoBehaviour
 
     public void ValidateWords()
     {
-        if (wordsRead[phraseId] == input) //verifica se a palavra está certa
+        if (wordsRead[phraseId] == input) //verifica se a palavra est  certa
         {
             int pos = phraseId;
             if (pos == eachPhrase.Length - 1 && ultimoCaso == 1)
@@ -182,8 +182,8 @@ public class InputFieldController : MonoBehaviour
 
     public void powerUpL()
     {
-        string[] updateString = eachPhrase[eachPhrase.Length - 1].Split('@');
-        eachPhrase[eachPhrase.Length - 1] = updateString[0] + wordsRead[eachPhrase.Length - 1][contpw] + "@" + updateString[1];
+        string[] updateString = eachPhrase[eachPhrase.Length - 1].Split('_');
+        eachPhrase[eachPhrase.Length - 1] = updateString[0] + wordsRead[eachPhrase.Length - 1][contpw] + "_" + updateString[1];
         phraseTextBox.text = eachPhrase[phraseId];
         contpw++;
 
@@ -192,7 +192,7 @@ public class InputFieldController : MonoBehaviour
 
     void CheckErrors()
     {
-        if ((PlayerPrefs.GetInt("PreçoAjuda") == 0))
+        if ((PlayerPrefs.GetInt("Pre oAjuda") == 0))
         {
             if (phraseId == eachPhrase.Length - 1)
             {
@@ -216,7 +216,7 @@ public class InputFieldController : MonoBehaviour
     {
         canvas.SetActive(false);
         avisoTutorial.SetActive(true);
-        string s = "1 - A mulher achava que era a única sobrevivente de um acidente _.; 2 - Ela vagou feito alma penada por um ano por toa a _; 3 - No auge na sua depressão, ela decidiu se _; 4 - Ela então sobe no topo de um _; 5 - Ao se jogar, ela descobre não ser a única sobrevivente, pois ouve um _; Sem dúvida havia outro _";
+        string s = "1 - A mulher achava que era a  nica sobrevivente de um acidente _.; 2 - Ela vagou feito alma penada por um ano por toa a _; 3 - No auge na sua depress o, ela decidiu se _; 4 - Ela ent o sobe no topo de um _; 5 - Ao se jogar, ela descobre n o ser a  nica sobrevivente, pois ouve um _; Sem d vida havia outro _";
         eachPhrase = s.Split(';');
 
     }
