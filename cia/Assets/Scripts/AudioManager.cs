@@ -17,14 +17,14 @@ public class AudioManager : MonoBehaviour
     public AudioClip wronganswer;
     public AudioClip mouseOver;
     public AudioClip mouseClick;
-    [SerializeField] GameObject configurações;
+    [SerializeField] GameObject config;
     
 
     private VolumeSettings volSettings;
 
     private void Awake()
     {
-        volSettings = configurações.GetComponent<VolumeSettings>();
+        volSettings = config.GetComponent<VolumeSettings>();
     }
     private void Start()
     {
@@ -41,9 +41,12 @@ public class AudioManager : MonoBehaviour
             volSettings.SetMusicVolume();
           
         }
-        configurações.SetActive(false);
+        config.SetActive(false);
 
         DontDestroyOnLoad(this.gameObject);
+
+        //Para não perguntar preset todos os rounds
+        PlayerPrefs.SetInt("Tempo", 10);
     }
 
     public void ButtonMouseOver()

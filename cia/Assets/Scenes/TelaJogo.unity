@@ -1642,7 +1642,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.53832173, g: 0.8584906, b: 0.1652189, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0, g: 0, b: 0, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -2493,7 +2493,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.08515483, g: 0.6283802, b: 0.8679245, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0, g: 0, b: 0, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -3253,7 +3253,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.77869743, g: 0.42830187, b: 1, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0, g: 0, b: 0, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -6062,6 +6062,7 @@ MonoBehaviour:
   changePhraseSound: {fileID: 8300000, guid: 95df4289179a3424a8ed3ccfddce98e8, type: 3}
   rightAnswer: {fileID: 8300000, guid: da747e0913d75684dba3e8884afd7030, type: 3}
   checkPositions: 
+  ultimoCaso: 2
   grid: {fileID: 1481749439}
   aviso: {fileID: 2119728821}
   powerUpCanvas: {fileID: 662249067}
@@ -6881,6 +6882,8 @@ MonoBehaviour:
   palavrasTexto: {fileID: 810216972}
   frasesTexto: {fileID: 484345365}
   casoTexto: {fileID: 925615622}
+  contadorPalavras: 0
+  totalPalavras: 0
   timer: {fileID: 0}
   casoEncerrado: {fileID: 1905821972}
   avisoFimTutorial: {fileID: 138383076}
@@ -7380,7 +7383,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -7.458}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 85.79999, y: -9.500015}
+  m_AnchoredPosition: {x: 85.79999, y: -9.5}
   m_SizeDelta: {x: 180.3055, y: 80.553}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &935621013
@@ -8442,8 +8445,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Estamos quase resolvendo o caso Cherl\xF3qui! Revise todas as pistas e
-    escreva a solu\xE7\xE3o na caixa de texto."
+  m_text: "Estamos quase resolvendo o caso Cherl\xF3qui! Escreva a solu\xE7\xE3o
+    na caixa de texto. \xC9 poss\xEDvel revisar todas as pistas e nos \"Detalhes
+    do caso\"."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 10eed7706834c1e49a15cc0e103fe2a9, type: 2}
   m_sharedMaterial: {fileID: 2205697138647577353, guid: 10eed7706834c1e49a15cc0e103fe2a9, type: 2}
@@ -8470,8 +8474,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 23.09
+  m_fontSizeBase: 23.09
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -18377,7 +18381,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.5372549, g: 0.85882354, b: 0.16470589, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0, g: 0, b: 0, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -20543,7 +20547,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2.9, y: -63.1}
+  m_AnchoredPosition: {x: 8.63, y: -63.1}
   m_SizeDelta: {x: 417.6803, y: 151.984}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2119728823

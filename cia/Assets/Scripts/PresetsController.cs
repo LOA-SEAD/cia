@@ -36,7 +36,7 @@ public class PresetsController : MonoBehaviour
     {
         
         caseController = GameObject.Find("CaseController").GetComponent<CaseController>();
-       
+       checkPresetChoice();
 
     }
 
@@ -63,18 +63,15 @@ public class PresetsController : MonoBehaviour
         {
             PlayerPrefs.SetInt("Tempo", 1);
         }
-        else if (toggle1.name == "Tempo reduzido")
-        {
-            PlayerPrefs.SetInt("Tempo", 2);
-        }
+        
 
         if (toggle2.name == "Preço reduzido")
         {
-            PlayerPrefs.SetInt("PreçoAjuda", 0);
+            PlayerPrefs.SetInt("PrecoAjuda", 0);
         }
         else if (toggle2.name == "Preço padrão")
         {
-            PlayerPrefs.SetInt("PreçoAjuda", 1);
+            PlayerPrefs.SetInt("PrecoAjuda", 1);
         }
 
         if (toggle3.name == "Desabilitado")
@@ -105,14 +102,14 @@ public class PresetsController : MonoBehaviour
         {
             case "Preset1":
                 PlayerPrefs.SetInt("Tempo", 0);
-                PlayerPrefs.SetInt("PreçoAjuda", 0);
+                PlayerPrefs.SetInt("PrecoAjuda", 0);
                 PlayerPrefs.SetInt("PalavrasInvertidas", 0);
                 PlayerPrefs.SetInt("PalavrasDiagonais", 0);
                 break;
 
             case "Preset2":
                 PlayerPrefs.SetInt("Tempo", 1);
-                PlayerPrefs.SetInt("PreçoAjuda", 1);
+                PlayerPrefs.SetInt("PrecoAjuda", 1);
                 PlayerPrefs.SetInt("PalavrasInvertidas", 0);
                 PlayerPrefs.SetInt("PalavrasDiagonais", 0);
                
@@ -121,7 +118,7 @@ public class PresetsController : MonoBehaviour
 
             case "Preset3":
                 PlayerPrefs.SetInt("Tempo", 1);
-                PlayerPrefs.SetInt("PreçoAjuda", 1);
+                PlayerPrefs.SetInt("PrecoAjuda", 1);
                 PlayerPrefs.SetInt("PalavrasInvertidas", 1);
                 PlayerPrefs.SetInt("PalavrasDiagonais", 1);
                 break;
@@ -146,7 +143,7 @@ public class PresetsController : MonoBehaviour
 
     public void  LoadPreferences(){
         presetTempo = PlayerPrefs.GetInt("Tempo", 0);
-        presetPreco = PlayerPrefs.GetInt("PreçoAjuda", 0);
+        presetPreco = PlayerPrefs.GetInt("PrecoAjuda", 0);
         presetInvertida = PlayerPrefs.GetInt("PalavrasInvertidas", 0);
         presetDiagonal = PlayerPrefs.GetInt("PalavrasDiagonais", 0);
         
@@ -170,6 +167,15 @@ public class PresetsController : MonoBehaviour
         ajudaGroup = GetComponent<ToggleGroup>();
         invertidasGroup = GetComponent<ToggleGroup>();
         diagonalGroup = GetComponent<ToggleGroup>();
+    }
+
+    void checkPresetChoice()
+    {
+        if (PlayerPrefs.GetInt("Tempo", 10) ==10)
+        {
+            _canvas.SetActive(false);
+            canvasPreset.SetActive(true);
+        }
     }
 
 }

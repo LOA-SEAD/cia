@@ -182,6 +182,11 @@ public class WordHunt : MonoBehaviour {
         }
         inpFController.PassWords(words);
         wordsCopy = new List<string>(words);
+        for (int i=0; i< wordsCopy.Count; i++)
+        {
+            wordsCopy[i] = Changecharacters(wordsCopy[i]);
+           
+        }
         objController.SetNumberOfWords(words.Count);
 
 
@@ -253,8 +258,10 @@ public class WordHunt : MonoBehaviour {
     void InsertWordsOnGrid()
     {
         contDica = 0;
+        
         for (int i = 0; i < (words.Count); i++)
         {
+            
             word = words[i];
             System.Random rn = new System.Random();
 
@@ -333,7 +340,7 @@ public class WordHunt : MonoBehaviour {
 
 
             if (inserted) { 
-                insertedWords.Add(word);
+                insertedWords.Add(Changecharacters(word));
           
             }
         }
@@ -349,12 +356,13 @@ public class WordHunt : MonoBehaviour {
         matrizDicaY.Add(column);
         checkPaint.Add(false);
         contDica++;
+        string cleanWord = Changecharacters(word);
 
         for (int i = 0; i < word.Length; i++)
         {
-            lettersGrid[(i * dirX) + row, (i * dirY) + column] = word[i].ToString();
+            lettersGrid[(i * dirX) + row, (i * dirY) + column] = cleanWord[i].ToString();
             Transform t = lettersTransforms[(i * dirX) + row, (i * dirY) + column];
-            t.GetComponentInChildren<Text>().text = word[i].ToString().ToUpper();
+            t.GetComponentInChildren<Text>().text = cleanWord[i].ToString().ToUpper();
             //t.GetComponent<Image>().color = Color.grey;
         }
 
@@ -465,6 +473,7 @@ public class WordHunt : MonoBehaviour {
          
             objController.CountObjective(word);
             int pos =0;
+
             if (wordsCopy.Contains(word))
             {
                 pos = wordsCopy.FindIndex(str => str.Contains(word));
@@ -473,7 +482,12 @@ public class WordHunt : MonoBehaviour {
             {
                 pos = wordsCopy.FindIndex(str => str.Contains(Reverse(word)));
             }
-            Debug.Log("posição" +pos);
+            Debug.Log(word);
+            foreach (string str in wordsCopy)
+            {
+
+                Debug.Log("copy" +str);
+            }
             checkPaint[pos] = true;
 
             //ScrollViewWords.instance.CheckWord(word);
@@ -609,7 +623,7 @@ public class WordHunt : MonoBehaviour {
     void CheckErrors()
     {
         countErrors++;
-        if((PlayerPrefs.GetInt("PreçoAjuda") == 0))
+        if((PlayerPrefs.GetInt("PrecoAjuda") == 0))
         {
             if (countErrors == 10)
             {
@@ -623,6 +637,19 @@ public class WordHunt : MonoBehaviour {
         string s = "nuclear;cidade;matar;prédio;telefone;sobrevivente";
         words =  s.Split(';').ToList(); 
         
+    }
+
+    string Changecharacters(string texto)
+    {
+        string comAcentos = "ÄÅÁÂÀÃäáâàãÉÊËÈéêëèÍÎÏÌíîïìÖÓÔÒÕöóôòõÜÚÛüúûùÇç";
+        string semAcentos = "AAAAAAaaaaaEEEEeeeeIIIIiiiiOOOOOoooooUUUuuuuCc";
+
+        for (int i = 0; i < comAcentos.Length; i++)
+        {
+            texto = texto.Replace(comAcentos[i].ToString(), semAcentos[i].ToString());
+        }
+        return texto;
+
     }
 
 

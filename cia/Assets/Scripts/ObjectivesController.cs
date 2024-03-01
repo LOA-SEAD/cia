@@ -9,16 +9,16 @@ public class ObjectivesController : MonoBehaviour
     [SerializeField] private TMP_Text palavrasTexto;
     [SerializeField] private TMP_Text frasesTexto;
     [SerializeField] private TMP_Text casoTexto;
-    private int contadorPalavras=0;
+    public int contadorPalavras=0;
     private int contadorFrases=0;
-    private int totalPalavras = 0;
+    public int totalPalavras = 0;
     [SerializeField]private Timer timer;
     private InputFieldController inputController;
     [SerializeField] GameObject casoEncerrado;
     [SerializeField] GameObject avisoFimTutorial;
     private PowerUps powerUps;
     public GameObject levelChanger;
-    private Animator fade;
+    
 
 
     void Start()
@@ -26,7 +26,7 @@ public class ObjectivesController : MonoBehaviour
         timer = GameObject.Find("TelaJogo").GetComponent<Timer>();
         inputController = GameObject.Find("TelaJogo").GetComponent<InputFieldController>();
         powerUps = GameObject.Find("PowerUp controller").GetComponent<PowerUps>();
-        fade = GameObject.Find("LevelChanger").GetComponent<Animator>();
+        //fade = GameObject.Find("LevelChanger").GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -83,7 +83,7 @@ public class ObjectivesController : MonoBehaviour
         {
             casoEncerrado.SetActive(true);
 
-            string caseIDString = "RecordeCaso" + PlayerPrefs.GetInt("LoadCaseId", 0) + PlayerPrefs.GetInt("Tempo", 0) + PlayerPrefs.GetInt("PreçoAjuda", 0) + PlayerPrefs.GetInt("PalavrasInvertidas", 0) +
+            string caseIDString = "RecordeCaso" + PlayerPrefs.GetInt("LoadCaseId", 0) + PlayerPrefs.GetInt("Tempo", 0) + PlayerPrefs.GetInt("PrecoAjuda", 0) + PlayerPrefs.GetInt("PalavrasInvertidas", 0) +
             PlayerPrefs.GetInt("PalavrasDiagonais", 0);
             if (timer.runTimer < PlayerPrefs.GetFloat(caseIDString, 3000))
             {

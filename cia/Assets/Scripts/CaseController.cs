@@ -37,7 +37,8 @@ public class CaseController : MonoBehaviour
     [SerializeField] GameObject recordBox;
     private int countMainCases = 0;
     private int mainCasesNumber;
-
+    public GameObject recordShow;
+    public GameObject medalInfo;
 
 
     // Start is called before the first frame update
@@ -120,6 +121,8 @@ public class CaseController : MonoBehaviour
         //Debug.Log(recordecaso);
         if (presets.presetTempo != 0)
         {
+            recordShow.SetActive(true);
+            medalInfo.SetActive(true);
             if (recordecaso == 3000)
             {
                 recordCaseText.text = "Sem recordes";
@@ -152,8 +155,9 @@ public class CaseController : MonoBehaviour
                     }
                     else
                     {
-                        medalImage.sprite = null;
+                        medalImage.sprite = GameObject.Find("Transparente").GetComponent<Image>().sprite;
                     }
+                   
 
                     break;
                 case "M":
@@ -174,9 +178,9 @@ public class CaseController : MonoBehaviour
                     }
                     else
                     {
-                        medalImage.sprite = null;
-
+                        medalImage.sprite = GameObject.Find("Transparente").GetComponent<Image>().sprite;
                     }
+
                     break;
                 case "G":
                     if (recordecaso <= mTimes[6])
@@ -196,23 +200,27 @@ public class CaseController : MonoBehaviour
                     }
                     else
                     {
-                        medalImage.sprite = null;
-
+                        medalImage.sprite = GameObject.Find("Transparente").GetComponent<Image>().sprite;
                     }
+
                     break;
 
             }
         }
         else
         {
+            recordShow.SetActive(false);
+            medalInfo.SetActive(false);
             if (recordecaso == 3000)
             {
+                
                 recordCaseText.text = "Não concluído";
                 casoFechado.SetActive(false);
                 casoAberto.SetActive(true);
             }
             else
             {
+
                 recordCaseText.text = "Concluído com sucesso";
                 casoFechado.SetActive(true);
                 casoAberto.SetActive(false);

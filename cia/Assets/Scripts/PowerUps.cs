@@ -11,6 +11,7 @@ public class PowerUps : MonoBehaviour
     [SerializeField] private TextAsset _csvFile;
     private Timer timer;
     private WordHunt wh;
+    private ObjectivesController objContr;
     private InputFieldController inpFController;
     private List<string> eachLine;
     public string data_string;
@@ -26,9 +27,10 @@ public class PowerUps : MonoBehaviour
     {
         wh = GameObject.Find("WordHunt").GetComponent<WordHunt>();
         inpFController = GameObject.Find("TelaJogo").GetComponent<InputFieldController>();
+        objContr = GameObject.Find("ObjetivosBG").GetComponent<ObjectivesController>();
         timer = timer = GameObject.Find("TelaJogo").GetComponent<Timer>();
         Read();
-        if (PlayerPrefs.GetInt("PreçoAjuda") == 0)
+        if (PlayerPrefs.GetInt("PrecoAjuda") == 0)
         {
             cheaperPW = 0.5f;
         }
@@ -139,8 +141,9 @@ public class PowerUps : MonoBehaviour
             powerUpButton[0].interactable = false;
         }
 
-        if (coins >= 100 * cheaperPW)
+        if (coins >= 100 * cheaperPW && objContr.contadorPalavras != objContr.totalPalavras)
         {
+            //Debug.Log(objContr.allwordsfound);
             powerUpButton[1].interactable = true;
 
         }
@@ -159,7 +162,7 @@ public class PowerUps : MonoBehaviour
             powerUpButton[2].interactable = false;
         }
 
-        if (coins >= 250 * cheaperPW)
+        if (coins >= 250 * cheaperPW )
         {
             powerUpButton[3].interactable = true;
 

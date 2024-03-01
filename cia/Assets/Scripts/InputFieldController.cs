@@ -50,6 +50,8 @@ public class InputFieldController : MonoBehaviour
         phraseTextBox.text = eachPhrase[phraseId];
         objController = GameObject.Find("ObjetivosBG").GetComponent<ObjectivesController>();
         updateDetails();
+        
+        //Para perguntar o presert nos inicios de gada jogo
     }
 
     private void Update()
@@ -192,7 +194,7 @@ public class InputFieldController : MonoBehaviour
 
     void CheckErrors()
     {
-        if ((PlayerPrefs.GetInt("Pre oAjuda") == 0))
+        if ((PlayerPrefs.GetInt("PrecoAjuda") == 0))
         {
             if (phraseId == eachPhrase.Length - 1)
             {
@@ -216,7 +218,7 @@ public class InputFieldController : MonoBehaviour
     {
         canvas.SetActive(false);
         avisoTutorial.SetActive(true);
-        string s = "1 - A mulher achava que era a  nica sobrevivente de um acidente _.; 2 - Ela vagou feito alma penada por um ano por toa a _; 3 - No auge na sua depress o, ela decidiu se _; 4 - Ela ent o sobe no topo de um _; 5 - Ao se jogar, ela descobre n o ser a  nica sobrevivente, pois ouve um _; Sem d vida havia outro _";
+        string s = "1 - A mulher achava que era a única sobrevivente de um acidente _.; 2 - Ela vagou feito alma penada por um ano por toda a _; 3 - No auge na sua depressão, ela decidiu se _; 4 - Ela então sobe no topo de um _; 5 - Ao se jogar, ela descobre não ser a única sobrevivente, pois ouve um _; Sem dúvida havia outro _";
         eachPhrase = s.Split(';');
 
     }

@@ -10,7 +10,7 @@ public class StartTutorial : MonoBehaviour
     public void StartTutorialCase()
     {
         PlayerPrefs.SetInt("Tempo", 0);
-        PlayerPrefs.SetInt("PreçoAjuda", 1);
+        PlayerPrefs.SetInt("PrecoAjuda", 1);
         PlayerPrefs.SetInt("PalavrasInvertidas", 1);
         PlayerPrefs.SetInt("PalavrasDiagonais", 1);
         PlayerPrefs.SetInt("LoadCaseId", 99);
