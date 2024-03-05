@@ -20,6 +20,8 @@ public class PowerUps : MonoBehaviour
     [SerializeField] GameObject avisoFree;
     private bool[] ajudasUsadas = new bool[] {false, false, false};
     [SerializeField] private GameObject canvas;
+    [SerializeField] private GameObject canvasConsulta;
+    [SerializeField] private TMP_Text consultaText;
 
 
 
@@ -97,7 +99,18 @@ public class PowerUps : MonoBehaviour
 
     public void FreeHint()
     {
-        Application.OpenURL(eachLine[PlayerPrefs.GetInt("LoadCaseId", 0)]);
+        int id = PlayerPrefs.GetInt("LoadCaseId", 0);
+        if (id == 99)
+        {
+            consultaText.text = "Não precisa ter vergonha de usar vantagens disponíveis a seu favor. Consultar materiais extras pode ser útil para solucionar casos. Por exmplo, como saberia sem esta consulta que a suposta mulher não era a única na cidade após o incidente?";
+        }
+        else
+        {
+            consultaText.text = eachLine[id];
+            
+        }
+        canvasConsulta.SetActive(true);
+        //Application.OpenURL(eachLine[PlayerPrefs.GetInt("LoadCaseId", 0)]);
     }
 
     public void initButtons()
