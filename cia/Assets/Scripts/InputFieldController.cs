@@ -57,7 +57,13 @@ public class InputFieldController : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Return)) {
-            ReadStringInput(); 
+            ReadStringInput();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+
+            inputField.Select();
         }
     }
 
@@ -65,7 +71,9 @@ public class InputFieldController : MonoBehaviour
     {
         input = inputField.text;
         inputField.text = "";
+        inputField.Select();
         ValidateWords();
+        
     }
 
     public void NextCase(){

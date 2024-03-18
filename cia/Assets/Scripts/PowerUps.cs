@@ -22,6 +22,8 @@ public class PowerUps : MonoBehaviour
     [SerializeField] private GameObject canvas;
     [SerializeField] private GameObject canvasConsulta;
     [SerializeField] private TMP_Text consultaText;
+    [SerializeField] private Sprite[] moedas;
+    [SerializeField] private SpriteRenderer moedasDisplay;
 
 
 
@@ -30,14 +32,15 @@ public class PowerUps : MonoBehaviour
         wh = GameObject.Find("WordHunt").GetComponent<WordHunt>();
         inpFController = GameObject.Find("TelaJogo").GetComponent<InputFieldController>();
         objContr = GameObject.Find("ObjetivosBG").GetComponent<ObjectivesController>();
-        timer = timer = GameObject.Find("TelaJogo").GetComponent<Timer>();
+        timer = GameObject.Find("TelaJogo").GetComponent<Timer>();
+        moedasDisplay = GameObject.Find("moedas1").GetComponent<SpriteRenderer>();
         Read();
         if (PlayerPrefs.GetInt("PrecoAjuda") == 0)
         {
             cheaperPW = 0.5f;
         }
-        checkCoins();
-        initButtons();
+        CheckCoins();
+        InitButtons();
     }
 
     // Update is called once per frame
@@ -50,7 +53,7 @@ public class PowerUps : MonoBehaviour
 
         coins = coins + 40;
         coinDisplay.text = coins.ToString();
-        checkCoins();
+        CheckCoins();
     }
 
     public void PowerUpTime()
@@ -59,7 +62,7 @@ public class PowerUps : MonoBehaviour
             coins = coins - 50 * cheaperPW;
             timer.timer += 60;
             coinDisplay.text = coins.ToString();
-            checkCoins();
+            CheckCoins();
 
         }
     }
@@ -70,7 +73,7 @@ public class PowerUps : MonoBehaviour
             coins = coins - 100 * cheaperPW;
             wh.DicaLetra();
             coinDisplay.text = coins.ToString();
-            checkCoins();
+            CheckCoins();
 
         }
     }
@@ -82,7 +85,7 @@ public class PowerUps : MonoBehaviour
             coins = coins - 150 * cheaperPW;
             coinDisplay.text = coins.ToString();
             inpFController.powerUpW();
-            checkCoins();
+            CheckCoins();
         }
     }
 
@@ -93,7 +96,7 @@ public class PowerUps : MonoBehaviour
             coins = coins - 250 * cheaperPW;
             coinDisplay.text = coins.ToString();
             inpFController.powerUpL();
-            checkCoins();
+            CheckCoins();
         }
     }
 
@@ -113,7 +116,7 @@ public class PowerUps : MonoBehaviour
         //Application.OpenURL(eachLine[PlayerPrefs.GetInt("LoadCaseId", 0)]);
     }
 
-    public void initButtons()
+    public void InitButtons()
     {
         TMP_Text a;
         float b;
@@ -143,11 +146,21 @@ public class PowerUps : MonoBehaviour
 
     }
 
-    private void checkCoins()
+    private void CheckCoins()
     {
+        if(coins > 0)
+        {
+            moedasDisplay.sprite = moedas[1];
+        }
+        else
+        {
+            moedasDisplay.sprite = moedas[0];
+        }
+
         if(coins >= 50 * cheaperPW && cheaperPW == 1)
         {
             powerUpButton[0].interactable = true;
+            moedasDisplay.sprite = moedas[2];
         }
         else
         {
@@ -158,6 +171,7 @@ public class PowerUps : MonoBehaviour
         {
             //Debug.Log(objContr.allwordsfound);
             powerUpButton[1].interactable = true;
+            moedasDisplay.sprite = moedas[3];
 
         }
         else
@@ -168,6 +182,7 @@ public class PowerUps : MonoBehaviour
         if (coins >= 150 * cheaperPW)
         {
             powerUpButton[2].interactable = true;
+            moedasDisplay.sprite = moedas[4];
 
         }
         else
