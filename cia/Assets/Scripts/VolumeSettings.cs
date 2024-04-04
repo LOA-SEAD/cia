@@ -9,6 +9,7 @@ public class VolumeSettings : MonoBehaviour
     [SerializeField] private AudioMixer Mixer;
     [SerializeField] private Slider musicSlider;
     [SerializeField] private Slider sfxSlider;
+    [SerializeField] private Slider voiceSlider;
     [SerializeField] private AudioClip testSFX;
     private AudioManager audiomanager;
 
@@ -34,6 +35,14 @@ public class VolumeSettings : MonoBehaviour
         
     }
 
+    public void SetVoiceVolume()
+    {
+        float voicevolume = voiceSlider.value;
+        Mixer.SetFloat("voice", Mathf.Log10(voicevolume) * 20);
+        PlayerPrefs.SetFloat("voiceVolume", voicevolume);
+
+    }
+
     public void SoundFeedback()
     {
         audiomanager.PlaySFX(testSFX);
@@ -42,9 +51,11 @@ public class VolumeSettings : MonoBehaviour
 
     public void LoadVolume()
     {
-        musicSlider.value = PlayerPrefs.GetFloat("musicVolume");
+        musicSlider.value = PlayerPrefs.GetFloat("musicVolume",0.5f);
         SetMusicVolume();
-        sfxSlider.value = PlayerPrefs.GetFloat("sfxVolume");
+        sfxSlider.value = PlayerPrefs.GetFloat("sfxVolume", 0.5f);
         SetSfxVolume();
+        voiceSlider.value = PlayerPrefs.GetFloat("voiceVolume", 0.5f);
+        SetVoiceVolume();
     }
 }

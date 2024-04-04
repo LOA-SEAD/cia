@@ -84,7 +84,7 @@ public class PowerUps : MonoBehaviour
         {
             coins = coins - 150 * cheaperPW;
             coinDisplay.text = coins.ToString();
-            inpFController.powerUpW();
+            inpFController.PowerUpW();
             CheckCoins();
         }
     }
@@ -95,7 +95,7 @@ public class PowerUps : MonoBehaviour
         {
             coins = coins - 250 * cheaperPW;
             coinDisplay.text = coins.ToString();
-            inpFController.powerUpL();
+            inpFController.PowerUpL();
             CheckCoins();
         }
     }

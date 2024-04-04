@@ -7,6 +7,7 @@ public class AudioManager : MonoBehaviour
 {
     [SerializeField] AudioSource music;
     [SerializeField] AudioSource sfx;
+    [SerializeField] AudioSource voice;
 
     public AudioClip background;
     public AudioClip coffee;
@@ -24,6 +25,7 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
+        //PlayerPrefs.DeleteAll();
         volSettings = config.GetComponent<VolumeSettings>();
     }
     private void Start()
@@ -103,6 +105,11 @@ public class AudioManager : MonoBehaviour
     {
         music.clip = clip;
         music.Play();
+    }
+
+    public void PlayVoice(AudioClip clip)
+    {
+        voice.PlayOneShot(clip);
     }
 
     public void PlaySFX(AudioClip clip)

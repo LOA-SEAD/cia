@@ -405,6 +405,21 @@ MonoBehaviour:
   - {fileID: 650938343}
   - {fileID: 1228312239}
   music: {fileID: 8300000, guid: 378d8b2a2a34a4745af5a90aaf662f1a, type: 3}
+  voices:
+  - {fileID: 8300000, guid: b2df3e1292a13044e87bedbcdee056db, type: 3}
+  - {fileID: 8300000, guid: a8b55fb1a811e604eb7f8217bd5ef7ab, type: 3}
+  - {fileID: 8300000, guid: 4d305376ec3743c4faac66151b9d1d4c, type: 3}
+  - {fileID: 8300000, guid: fdb1fd6975e725047b751c0d58235c81, type: 3}
+  - {fileID: 8300000, guid: a0e83e3613000604e94f8534512d94b3, type: 3}
+  - {fileID: 8300000, guid: 9ed70b2dc67cb664a8a07c6a98309906, type: 3}
+  - {fileID: 8300000, guid: f29ceee202f3f44479cf4aea514f99aa, type: 3}
+  - {fileID: 8300000, guid: fe0d86b24ba05314cb1a0f6c6bee354a, type: 3}
+  - {fileID: 8300000, guid: 0dea2f5a396cba44b9874aff024445fa, type: 3}
+  - {fileID: 8300000, guid: 60f173a0982547e4cb776bf9086e5eca, type: 3}
+  - {fileID: 8300000, guid: c7f1b3e5d51e0244195c30e40102ab1c, type: 3}
+  - {fileID: 8300000, guid: 82b04fef9c4652148b073d6e7507d8d6, type: 3}
+  - {fileID: 8300000, guid: 75a5d827fda85284cac8e5156a7aa23a, type: 3}
+  - {fileID: 8300000, guid: 054cfd0822fbd0f4e90f923fb1c9a152, type: 3}
   levelChanger: {fileID: 4426334}
 --- !u!1 &411513053
 GameObject:
@@ -2482,7 +2497,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1482498746}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.993, y: -1.27, z: -2}
+  m_LocalPosition: {x: 2.83, y: -1.28, z: -2}
   m_LocalScale: {x: 1.6506, y: 1.56016, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3174,6 +3189,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: TelaCasos
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 351049769}
+        m_TargetAssemblyTypeName: DialogueController, Assembly-CSharp
+        m_MethodName: VoiceStop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1706982554

@@ -24,6 +24,7 @@ public class CaseController : MonoBehaviour
     public TMP_Text recordCaseText;
     //private float[] medalTimes = new float[] {240,210,180,210,180,150,180,150,120};
     private float[] mTimes = new float[] { 60, 90, 120, 90, 120, 150, 120, 150, 180 };
+    private float[] mTimesExtra = new float[] { 40, 60, 90, 60, 90, 120, 90, 120, 150 };
 
     [SerializeField] TMP_Text caseSizeText;
     [SerializeField] TMP_Text goldText;
@@ -39,6 +40,8 @@ public class CaseController : MonoBehaviour
     private int mainCasesNumber;
     public GameObject recordShow;
     public GameObject medalInfo;
+    public GameObject avisoCasoExtra;
+    public GameObject playButton;
 
 
     // Start is called before the first frame update
@@ -46,13 +49,13 @@ public class CaseController : MonoBehaviour
     {
         presets = GameObject.Find("PresetsController").GetComponent<PresetsController>();
         Read();
-
+        
     }
     void Start()
     {
-        CheckNarrative();
+        
         ShowCase();
-
+        CheckNarrative();
 
     }
 
@@ -73,8 +76,10 @@ public class CaseController : MonoBehaviour
         }
         else
         {
-            backButton.SetActive(true);
-            nextButton.SetActive(true);
+
+                backButton.SetActive(true);
+                nextButton.SetActive(true);
+            
         }
         
 
@@ -101,13 +106,27 @@ public class CaseController : MonoBehaviour
         {
             filtro.SetActive(true);
             caseTitle.text = "Caso extra " + (caseID + 1 - mainCasesNumber);
+            if(countMainCases < mainCasesNumber)
+            {
+                avisoCasoExtra.SetActive(true);
+                playButton.SetActive(false);
+            }
+            else
+            {
+                avisoCasoExtra.SetActive(false);
+                playButton.SetActive(true);
+            }
+
         }
         else
         {
+            avisoCasoExtra.SetActive(false);
+            playButton.SetActive(true);
             filtro.SetActive(false);
             caseTitle.text = "Caso principal " + (caseID + 1);
         }
 
+        Debug.Log("PPPPPPPPPPPPPPPPPPPPP " + countMainCases);
         SetTimeObjectives(caseID);
         ShowRecords(caseID);
 
@@ -135,76 +154,151 @@ public class CaseController : MonoBehaviour
                 casoFechado.SetActive(true);
                 casoAberto.SetActive(false);
             }
-            switch (caseSize[id])
+            if(id < mainCasesNumber){
+                switch (caseSize[id])
+                {
+                    case "P":
+                        if (recordecaso <= mTimes[0])
+                        {
+                            medalImage.sprite = GameObject.Find("Medalha Ouro").GetComponent<Image>().sprite;
+
+                        }
+                        else if (recordecaso <= mTimes[1])
+                        {
+                            medalImage.sprite = GameObject.Find("Medalha Prata").GetComponent<Image>().sprite;
+
+                        }
+                        else if (recordecaso <= mTimes[2])
+                        {
+                            medalImage.sprite = GameObject.Find("Medalha Bronze").GetComponent<Image>().sprite;
+
+                        }
+                        else
+                        {
+                            medalImage.sprite = GameObject.Find("Transparente").GetComponent<Image>().sprite;
+                        }
+
+
+                        break;
+                    case "M":
+                        if (recordecaso <= mTimes[3])
+                        {
+                            medalImage.sprite = GameObject.Find("Medalha Ouro").GetComponent<Image>().sprite;
+
+                        }
+                        else if (recordecaso <= mTimes[4])
+                        {
+                            medalImage.sprite = GameObject.Find("Medalha Prata").GetComponent<Image>().sprite;
+
+                        }
+                        else if (recordecaso <= mTimes[5])
+                        {
+                            medalImage.sprite = GameObject.Find("Medalha Bronze").GetComponent<Image>().sprite;
+
+                        }
+                        else
+                        {
+                            medalImage.sprite = GameObject.Find("Transparente").GetComponent<Image>().sprite;
+                        }
+
+                        break;
+                    case "G":
+                        if (recordecaso <= mTimes[6])
+                        {
+                            medalImage.sprite = GameObject.Find("Medalha Ouro").GetComponent<Image>().sprite;
+
+                        }
+                        else if (recordecaso <= mTimes[7])
+                        {
+                            medalImage.sprite = GameObject.Find("Medalha Prata").GetComponent<Image>().sprite;
+
+                        }
+                        else if (recordecaso <= mTimes[8])
+                        {
+                            medalImage.sprite = GameObject.Find("Medalha Bronze").GetComponent<Image>().sprite;
+
+                        }
+                        else
+                        {
+                            medalImage.sprite = GameObject.Find("Transparente").GetComponent<Image>().sprite;
+                        }
+
+                        break;
+                }
+
+            }
+            else
             {
-                case "P":
-                    if (recordecaso <= mTimes[0])
-                    {
-                        medalImage.sprite = GameObject.Find("Medalha Ouro").GetComponent<Image>().sprite;
+                switch (caseSize[id])
+                {
+                    case "P":
+                        if (recordecaso <= mTimesExtra[0])
+                        {
+                            medalImage.sprite = GameObject.Find("Medalha Ouro").GetComponent<Image>().sprite;
 
-                    }
-                    else if (recordecaso <= mTimes[1])
-                    {
-                        medalImage.sprite = GameObject.Find("Medalha Prata").GetComponent<Image>().sprite;
+                        }
+                        else if (recordecaso <= mTimesExtra[1])
+                        {
+                            medalImage.sprite = GameObject.Find("Medalha Prata").GetComponent<Image>().sprite;
 
-                    }
-                    else if (recordecaso <= mTimes[2])
-                    {
-                        medalImage.sprite = GameObject.Find("Medalha Bronze").GetComponent<Image>().sprite;
+                        }
+                        else if (recordecaso <= mTimesExtra[2])
+                        {
+                            medalImage.sprite = GameObject.Find("Medalha Bronze").GetComponent<Image>().sprite;
 
-                    }
-                    else
-                    {
-                        medalImage.sprite = GameObject.Find("Transparente").GetComponent<Image>().sprite;
-                    }
-                   
+                        }
+                        else
+                        {
+                            medalImage.sprite = GameObject.Find("Transparente").GetComponent<Image>().sprite;
+                        }
 
-                    break;
-                case "M":
-                    if (recordecaso <= mTimes[3])
-                    {
-                        medalImage.sprite = GameObject.Find("Medalha Ouro").GetComponent<Image>().sprite;
 
-                    }
-                    else if (recordecaso <= mTimes[4])
-                    {
-                        medalImage.sprite = GameObject.Find("Medalha Prata").GetComponent<Image>().sprite;
+                        break;
+                    case "M":
+                        if (recordecaso <= mTimesExtra[3])
+                        {
+                            medalImage.sprite = GameObject.Find("Medalha Ouro").GetComponent<Image>().sprite;
 
-                    }
-                    else if (recordecaso <= mTimes[5])
-                    {
-                        medalImage.sprite = GameObject.Find("Medalha Bronze").GetComponent<Image>().sprite;
+                        }
+                        else if (recordecaso <= mTimesExtra[4])
+                        {
+                            medalImage.sprite = GameObject.Find("Medalha Prata").GetComponent<Image>().sprite;
 
-                    }
-                    else
-                    {
-                        medalImage.sprite = GameObject.Find("Transparente").GetComponent<Image>().sprite;
-                    }
+                        }
+                        else if (recordecaso <= mTimesExtra[5])
+                        {
+                            medalImage.sprite = GameObject.Find("Medalha Bronze").GetComponent<Image>().sprite;
 
-                    break;
-                case "G":
-                    if (recordecaso <= mTimes[6])
-                    {
-                        medalImage.sprite = GameObject.Find("Medalha Ouro").GetComponent<Image>().sprite;
+                        }
+                        else
+                        {
+                            medalImage.sprite = GameObject.Find("Transparente").GetComponent<Image>().sprite;
+                        }
 
-                    }
-                    else if (recordecaso <= mTimes[7])
-                    {
-                        medalImage.sprite = GameObject.Find("Medalha Prata").GetComponent<Image>().sprite;
+                        break;
+                    case "G":
+                        if (recordecaso <= mTimesExtra[6])
+                        {
+                            medalImage.sprite = GameObject.Find("Medalha Ouro").GetComponent<Image>().sprite;
 
-                    }
-                    else if (recordecaso <= mTimes[8])
-                    {
-                        medalImage.sprite = GameObject.Find("Medalha Bronze").GetComponent<Image>().sprite;
+                        }
+                        else if (recordecaso <= mTimesExtra[7])
+                        {
+                            medalImage.sprite = GameObject.Find("Medalha Prata").GetComponent<Image>().sprite;
 
-                    }
-                    else
-                    {
-                        medalImage.sprite = GameObject.Find("Transparente").GetComponent<Image>().sprite;
-                    }
+                        }
+                        else if (recordecaso <= mTimesExtra[8])
+                        {
+                            medalImage.sprite = GameObject.Find("Medalha Bronze").GetComponent<Image>().sprite;
 
-                    break;
+                        }
+                        else
+                        {
+                            medalImage.sprite = GameObject.Find("Transparente").GetComponent<Image>().sprite;
+                        }
 
+                        break;
+                }
             }
         }
         else
@@ -261,24 +355,50 @@ public class CaseController : MonoBehaviour
             string silver = "";
             string bronze = "";
 
-            switch (caseSize[id])
+            if (id < mainCasesNumber)
             {
-                case "P":
-                    gold = SecondsToMinutes(mTimes[0]);
-                    silver = SecondsToMinutes(mTimes[1]);
-                    bronze = SecondsToMinutes(mTimes[2]);
-                    break;
-                case "M":
-                    gold = SecondsToMinutes(mTimes[3]);
-                    silver = SecondsToMinutes(mTimes[4]);
-                    bronze = SecondsToMinutes(mTimes[5]);
-                    break;
-                case "G":
-                    gold = SecondsToMinutes(mTimes[6]);
-                    silver = SecondsToMinutes(mTimes[7]);
-                    bronze = SecondsToMinutes(mTimes[8]);
-                    break;
 
+                switch (caseSize[id])
+                {
+                    case "P":
+                        gold = SecondsToMinutes(mTimes[0]);
+                        silver = SecondsToMinutes(mTimes[1]);
+                        bronze = SecondsToMinutes(mTimes[2]);
+                        break;
+                    case "M":
+                        gold = SecondsToMinutes(mTimes[3]);
+                        silver = SecondsToMinutes(mTimes[4]);
+                        bronze = SecondsToMinutes(mTimes[5]);
+                        break;
+                    case "G":
+                        gold = SecondsToMinutes(mTimes[6]);
+                        silver = SecondsToMinutes(mTimes[7]);
+                        bronze = SecondsToMinutes(mTimes[8]);
+                        break;
+
+                }
+            }
+            else
+            {
+                switch (caseSize[id])
+                {
+                    case "P":
+                        gold = SecondsToMinutes(mTimesExtra[0]);
+                        silver = SecondsToMinutes(mTimesExtra[1]);
+                        bronze = SecondsToMinutes(mTimesExtra[2]);
+                        break;
+                    case "M":
+                        gold = SecondsToMinutes(mTimesExtra[3]);
+                        silver = SecondsToMinutes(mTimesExtra[4]);
+                        bronze = SecondsToMinutes(mTimesExtra[5]);
+                        break;
+                    case "G":
+                        gold = SecondsToMinutes(mTimesExtra[6]);
+                        silver = SecondsToMinutes(mTimesExtra[7]);
+                        bronze = SecondsToMinutes(mTimesExtra[8]);
+                        break;
+
+                }
             }
 
             goldText.text = gold;
@@ -309,8 +429,9 @@ public class CaseController : MonoBehaviour
         return time;
     }
 
-    void CheckNarrative()
+    public void CheckNarrative()
     {
+        countMainCases = 0;
         presets.LoadPreferences();
         for (int i = 0; i < mainCasesNumber; i++)
         {
@@ -319,6 +440,7 @@ public class CaseController : MonoBehaviour
             if (recordecaso != 3000)
             {
                 countMainCases++;
+                
             }
           
         }
@@ -333,6 +455,7 @@ public class CaseController : MonoBehaviour
             PlayerPrefs.SetInt("NarrativaId", 2);
             SceneManager.LoadScene("Narrativa");
         }
+        Debug.Log("QQQQQQQQQQQQQQQQQQQQQQ " + countMainCases);
     }
 
     void Read()

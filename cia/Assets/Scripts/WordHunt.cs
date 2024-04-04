@@ -91,7 +91,7 @@ public class WordHunt : MonoBehaviour {
         inpFController = GameObject.Find("TelaJogo").GetComponent<InputFieldController>();
         
         // 
-        GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>(); 
+        audioManager =  GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>(); 
         //wordsSource = theme;
         Setup();
 
@@ -482,16 +482,11 @@ public class WordHunt : MonoBehaviour {
             {
                 pos = wordsCopy.FindIndex(str => str.Contains(Reverse(word)));
             }
-            Debug.Log(word);
-            foreach (string str in wordsCopy)
-            {
-
-                Debug.Log("copy" +str);
-            }
+            
             checkPaint[pos] = true;
 
             //ScrollViewWords.instance.CheckWord(word);
-
+            audioManager.RightAnswer();
             insertedWords.Remove(word);
             insertedWords.Remove(Reverse(word));
 
@@ -499,7 +494,7 @@ public class WordHunt : MonoBehaviour {
             {
                 Finish();
             }
-            audioManager.RightAnswer();
+            
         }
         else {
             ClearWordSelection();

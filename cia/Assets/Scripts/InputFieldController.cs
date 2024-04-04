@@ -47,11 +47,12 @@ public class InputFieldController : MonoBehaviour
         {
             Read();
         }
-        phraseTextBox.text = eachPhrase[phraseId];
+        //phraseTextBox.text = eachPhrase[phraseId];
+        ReplaceUnderline();
         objController = GameObject.Find("ObjetivosBG").GetComponent<ObjectivesController>();
-        updateDetails();
+        UpdateDetails();
         
-        //Para perguntar o presert nos inicios de gada jogo
+        
     }
 
     private void Update()
@@ -79,7 +80,8 @@ public class InputFieldController : MonoBehaviour
     public void NextCase(){
         phraseId++;
         if (phraseId <= eachPhrase.Length - ultimoCaso) {
-            phraseTextBox.text = eachPhrase[phraseId];
+            ReplaceUnderline();
+            //phraseTextBox.text = eachPhrase[phraseId];
             audioManager.PlaySFX(changePhraseSound);
         }
         else
@@ -91,8 +93,9 @@ public class InputFieldController : MonoBehaviour
     public void BackCase()
     {
         phraseId--;
-        if (phraseId >= 0) { 
-            phraseTextBox.text = eachPhrase[phraseId];
+        if (phraseId >= 0) {
+            //phraseTextBox.text = eachPhrase[phraseId];
+            ReplaceUnderline();
             audioManager.PlaySFX(changePhraseSound);
         }
         else
@@ -139,7 +142,8 @@ public class InputFieldController : MonoBehaviour
 
                 string[] updateString = eachPhrase[pos].Split('_');
                 eachPhrase[pos] = updateString[0] + input + updateString[1];
-                phraseTextBox.text = eachPhrase[phraseId];
+                //phraseTextBox.text = eachPhrase[phraseId];
+                ReplaceUnderline();
                 checkPositions[pos] = true;
                 audioManager.RightAnswer();
                 int i = 0;
@@ -148,9 +152,10 @@ public class InputFieldController : MonoBehaviour
                     i++;
                 }
                 phraseId = i;
-                phraseTextBox.text = eachPhrase[phraseId];
+                //phraseTextBox.text = eachPhrase[phraseId];
+                ReplaceUnderline();
                 objController.CountObjectivePhrase();
-                updateDetails();
+                UpdateDetails();
             }
 
 
@@ -163,20 +168,20 @@ public class InputFieldController : MonoBehaviour
         }
     }
 
-    private void updateDetails()
+    private void UpdateDetails()
     {
         detalhesCaso.text = "";
         int i= 0;
         foreach (string phrase in eachPhrase)
         {
             if (i< eachPhrase.Length -1) {
-                detalhesCaso.text = detalhesCaso.text + "\n\n" + phrase;
+                detalhesCaso.text = detalhesCaso.text + "\n\n" + phrase.Replace("_", "_____");
             }
             i++;
         }
     }
 
-    public void powerUpW()
+    public void PowerUpW()
     {
         int i = 0;
         while (checkPositions[i] == true)
@@ -185,16 +190,18 @@ public class InputFieldController : MonoBehaviour
         }
         input = wordsRead[i];
         phraseId = i;
-        phraseTextBox.text = eachPhrase[phraseId];
+        ReplaceUnderline();
+        //phraseTextBox.text = eachPhrase[phraseId];
         ValidateWords();
 
     }
 
-    public void powerUpL()
+    public void PowerUpL()
     {
         string[] updateString = eachPhrase[eachPhrase.Length - 1].Split('_');
         eachPhrase[eachPhrase.Length - 1] = updateString[0] + wordsRead[eachPhrase.Length - 1][contpw] + "_" + updateString[1];
-        phraseTextBox.text = eachPhrase[phraseId];
+        //phraseTextBox.text = eachPhrase[phraseId];
+        ReplaceUnderline();
         contpw++;
 
     }
@@ -234,12 +241,18 @@ public class InputFieldController : MonoBehaviour
     {
         ultimoCaso = 1;
         phraseId = eachPhrase.Length-1;
-        phraseTextBox.text = eachPhrase[eachPhrase.Length - 1];
+        //phraseTextBox.text = eachPhrase[eachPhrase.Length - 1];
+        ReplaceUnderline();
         grid.SetActive(false);
         powerUpCanvas.SetActive(false);
         powerUpLButton.SetActive(true);
 
         aviso.SetActive(true);
 
+    }
+
+    public void ReplaceUnderline()
+    {
+        phraseTextBox.text = eachPhrase[phraseId].Replace("_", "_____");
     }
 }

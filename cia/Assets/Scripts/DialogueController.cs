@@ -25,8 +25,14 @@ public class DialogueController : MonoBehaviour
     int currentExpression=0;
     private AudioManager audioManager;
     public AudioClip music;
+    public AudioClip[] voices;
     //public Animator fade;
     public GameObject levelChanger;
+    private int curVoice = 0;
+    private int[] voiceCut = {0,7,9 };
+    int id;
+    AudioSource voiceAudioSource;
+
     //public GameObject fadeIn;
 
     // Start is called before the first frame update
@@ -34,6 +40,7 @@ public class DialogueController : MonoBehaviour
     {
         Read();
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        voiceAudioSource = GameObject.FindGameObjectWithTag("VASource").GetComponent<AudioSource>();
         //fade = GameObject.Find("LevelChanger").GetComponent<Animator>();
         audioManager.PlayBGSong(music);
 
@@ -69,6 +76,7 @@ public class DialogueController : MonoBehaviour
             i++;
             
         }
+        curVoice = voiceCut[id/3];
         DisplayNextSentence();
     }
 
@@ -90,8 +98,10 @@ public class DialogueController : MonoBehaviour
         expressionsSprites[currentExpression].SetActive(true);
 
 
+        VoiceStop();
+        audioManager.PlayVoice(voices[curVoice]);
         dialogueText[currentBalloon].text = sentence;
-
+        curVoice++;
     }
 
     public void EndDialogue()
@@ -105,15 +115,23 @@ public class DialogueController : MonoBehaviour
 
     public IEnumerator StartDelay()
     {
-
+        VoiceStop();
         yield return new WaitForSeconds(1.0f);
         SceneManager.LoadScene("TelaCasos");
+    }
+
+    public void VoiceStop()
+    {
+        if (voiceAudioSource.isPlaying)
+        {
+            voiceAudioSource.Stop();
+        }
     }
 
 
     void Read()
     {
-        int id = PlayerPrefs.GetInt("NarrativaId", 0);
+        id = PlayerPrefs.GetInt("NarrativaId", 0);
         id = id * 3;
 
         data_string = _csvFile.text;

@@ -128,7 +128,7 @@ public class PresetsController : MonoBehaviour
         LoadPreferences();
        canvasPreset.SetActive(false);
         _canvas.SetActive(true);
-       
+        caseController.CheckNarrative();       
         caseController.ShowCase();
     }
     public void BackButton()
@@ -155,6 +155,7 @@ public class PresetsController : MonoBehaviour
     {
         LoadPreferences();
         caseController.ShowCase();
+        caseController.CheckNarrative();
         canvasPersonalizar.SetActive(false);
         _canvas.SetActive(true);
     }
