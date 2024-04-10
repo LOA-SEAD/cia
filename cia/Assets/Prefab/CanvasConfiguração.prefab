@@ -146,6 +146,7 @@ GameObject:
   - component: {fileID: 4081519481688986092}
   - component: {fileID: 4081519481688986094}
   - component: {fileID: 4081519481688986095}
+  - component: {fileID: 830759126}
   m_Layer: 5
   m_Name: "Narra\xE7\xE3o"
   m_TagString: Untagged
@@ -255,6 +256,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slider: {fileID: 4081519481688986094}
   sliderText: {fileID: 4081519482948353925}
+--- !u!114 &830759126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4081519481688986093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1668920956}
+          m_TargetAssemblyTypeName: VolumeSettings, Assembly-CSharp
+          m_MethodName: VoiceFeedback
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 8300000, guid: c7f1b3e5d51e0244195c30e40102ab1c, type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &4081519481702399954
 GameObject:
   m_ObjectHideFlags: 0
@@ -829,7 +859,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4081519482025020480
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1520,10 +1550,10 @@ MonoBehaviour:
         - m_Target: {fileID: 1668920956}
           m_TargetAssemblyTypeName: VolumeSettings, Assembly-CSharp
           m_MethodName: SoundFeedback
-          m_Mode: 1
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 8300000, guid: 6daf2defddbddd6449013cf3bc114efc, type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -1907,7 +1937,7 @@ MonoBehaviour:
   musicSlider: {fileID: 4081519482973328414}
   sfxSlider: {fileID: 4081519482271682529}
   voiceSlider: {fileID: 4081519481688986094}
-  testSFX: {fileID: 8300000, guid: cbf51695a20d26c43bdf23edd0c29833, type: 3}
+  voiceAudioSource: {fileID: 0}
 --- !u!114 &1668920950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1954,7 +1984,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2524,7 +2554,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0.274, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 5.651993, y: -0.31399918}
   m_SizeDelta: {x: 34.678, y: -16.091}
   m_Pivot: {x: 0.5, y: 0.5}

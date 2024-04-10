@@ -125,8 +125,6 @@ public class CaseController : MonoBehaviour
             filtro.SetActive(false);
             caseTitle.text = "Caso principal " + (caseID + 1);
         }
-
-        Debug.Log("PPPPPPPPPPPPPPPPPPPPP " + countMainCases);
         SetTimeObjectives(caseID);
         ShowRecords(caseID);
 
@@ -137,7 +135,6 @@ public class CaseController : MonoBehaviour
 
         string caseIDString = "RecordeCaso" + id + presets.presetTempo.ToString() + presets.presetPreco.ToString() + presets.presetInvertida.ToString() + presets.presetDiagonal.ToString();
         float recordecaso = PlayerPrefs.GetFloat(caseIDString, 3000);
-        //Debug.Log(recordecaso);
         if (presets.presetTempo != 0)
         {
             recordShow.SetActive(true);
@@ -444,7 +441,7 @@ public class CaseController : MonoBehaviour
             }
           
         }
-        Debug.Log("narrativa id " + PlayerPrefs.GetInt("NarrativaId", 0));
+
         if (countMainCases >= (mainCasesNumber) / 2 && PlayerPrefs.GetInt("NarrativaId", 0) == 0) //checa quando entram o segundo e terceiro dialogo; Checagem muda se aumentar número de diálogos
         {
             PlayerPrefs.SetInt("NarrativaId", 1);
@@ -455,7 +452,7 @@ public class CaseController : MonoBehaviour
             PlayerPrefs.SetInt("NarrativaId", 2);
             SceneManager.LoadScene("Narrativa");
         }
-        Debug.Log("QQQQQQQQQQQQQQQQQQQQQQ " + countMainCases);
+     
     }
 
     void Read()

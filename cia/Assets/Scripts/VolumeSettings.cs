@@ -10,13 +10,13 @@ public class VolumeSettings : MonoBehaviour
     [SerializeField] private Slider musicSlider;
     [SerializeField] private Slider sfxSlider;
     [SerializeField] private Slider voiceSlider;
-    [SerializeField] private AudioClip testSFX;
     private AudioManager audiomanager;
+    AudioSource voiceAudioSource;
 
     private void Start()
     {
       audiomanager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
-
+      voiceAudioSource = GameObject.FindGameObjectWithTag("VASource").GetComponent<AudioSource>();
 
     }
 
@@ -43,11 +43,22 @@ public class VolumeSettings : MonoBehaviour
 
     }
 
-    public void SoundFeedback()
+    public void SoundFeedback( AudioClip clip)
     {
-        audiomanager.PlaySFX(testSFX);
+        audiomanager.PlaySFX(clip);
         
     }
+
+    public void VoiceFeedback(AudioClip clip)
+    {
+        if (voiceAudioSource.isPlaying)
+        {
+            voiceAudioSource.Stop();
+        }
+        audiomanager.PlayVoice(clip);
+
+    }
+
 
     public void LoadVolume()
     {

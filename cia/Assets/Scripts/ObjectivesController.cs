@@ -19,6 +19,7 @@ public class ObjectivesController : MonoBehaviour
     private PowerUps powerUps;
     public GameObject levelChanger;
     
+    
 
 
     void Start()
@@ -27,6 +28,8 @@ public class ObjectivesController : MonoBehaviour
         inputController = GameObject.Find("TelaJogo").GetComponent<InputFieldController>();
         powerUps = GameObject.Find("PowerUp controller").GetComponent<PowerUps>();
         //fade = GameObject.Find("LevelChanger").GetComponent<Animator>();
+        palavrasTexto.text = "Ache as palavras (" + contadorPalavras + "/" + totalPalavras + ")";
+        frasesTexto.text = "Complete as frases (" + contadorFrases + "/" + totalPalavras + ")";
     }
 
     // Update is called once per frame

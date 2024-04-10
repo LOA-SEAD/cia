@@ -17,6 +17,7 @@ public class SlideValueText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        sliderText.text = slider.value.ToString();
+        float newValue = slider.value * 100;
+        sliderText.text = newValue.ToString("0");
     }
 }
