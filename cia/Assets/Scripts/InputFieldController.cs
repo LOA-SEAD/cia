@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.EventSystems;
 
 public class InputFieldController : MonoBehaviour
 {
@@ -70,11 +71,13 @@ public class InputFieldController : MonoBehaviour
 
     public void ReadStringInput()
     {
+        inputField.Select();
         input = inputField.text;
         inputField.text = "";
-        inputField.Select();
-        ValidateWords();
         
+        ValidateWords();
+        EventSystem.current.SetSelectedGameObject(null);
+
     }
 
     public void NextCase(){
