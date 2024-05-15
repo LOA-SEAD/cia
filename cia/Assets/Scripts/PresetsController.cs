@@ -35,7 +35,7 @@ public class PresetsController : MonoBehaviour
     void Start()
     {
         
-        caseController = GameObject.Find("CaseController").GetComponent<CaseController>();
+       caseController = GameObject.Find("CaseController").GetComponent<CaseController>();
        checkPresetChoice();
 
     }
