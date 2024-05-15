@@ -105,7 +105,7 @@ public class PowerUps : MonoBehaviour
         int id = PlayerPrefs.GetInt("LoadCaseId", 0);
         if (id == 99)
         {
-            consultaText.text = "Não precisa ter vergonha de usar vantagens disponíveis a seu favor. Consultar materiais extras pode ser útil para solucionar casos. Por exmplo, como saberia sem esta consulta que a suposta mulher não era a única na cidade após o incidente?";
+            consultaText.text = "Não precisa ter vergonha de usar vantagens disponíveis a seu favor. Consultar materiais extras pode ser útil para solucionar casos. Por exemplo, como saberia sem esta consulta que o sobrenome desse detetive londrino tem 5 letras?";
         }
         else
         {

@@ -629,7 +629,7 @@ public class WordHunt : MonoBehaviour {
     }
     void SetTutorial()
     {
-        string s = "nuclear;cidade;matar;prédio;telefone;sobrevivente";
+        string s = "watson;londres;moriarty;dedução;doyle;holmes";
         words =  s.Split(';').ToList(); 
         
     }

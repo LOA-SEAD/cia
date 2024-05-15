@@ -130,7 +130,7 @@ public class InputFieldController : MonoBehaviour
 
     public void ValidateWords()
     {
-        if (wordsRead[phraseId] == input) //verifica se a palavra est  certa
+        if (wordsRead[phraseId] == input.ToLower()) //verifica se a palavra est  certa
         {
             int pos = phraseId;
             if (pos == eachPhrase.Length - 1 && ultimoCaso == 1)
@@ -236,7 +236,7 @@ public class InputFieldController : MonoBehaviour
     {
         canvas.SetActive(false);
         avisoTutorial.SetActive(true);
-        string s = "1 - A mulher achava que era a única sobrevivente de um acidente _.; 2 - Ela vagou feito alma penada por um ano por toda a _; 3 - No auge na sua depressão, ela decidiu se _; 4 - Ela então sobe no topo de um _; 5 - Ao se jogar, ela descobre não ser a única sobrevivente, pois ouve um _; Sem dúvida havia outro _";
+        string s = "1 - Ele é acompanhado por um ajudante chamado _.; 2 - Um detetive famoso nas ruas de _; 3 - Seu maior inimigo é  _; 4 - Dizem que ele é um mestre da _; 5 - Seus livros foram escritos por Arthur Conan _; Sem dúvida, meu rival só pode ser Sherlock _";
         eachPhrase = s.Split(';');
 
     }

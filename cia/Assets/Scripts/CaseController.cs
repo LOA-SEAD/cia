@@ -30,6 +30,7 @@ public class CaseController : MonoBehaviour
     [SerializeField] TMP_Text goldText;
     [SerializeField] TMP_Text silverText;
     [SerializeField] TMP_Text bronzeText;
+    [SerializeField] TMP_Text showMode;
     [SerializeField] Image medalImage;
     [SerializeField] GameObject casoAberto;
     [SerializeField] GameObject casoFechado;
@@ -42,6 +43,7 @@ public class CaseController : MonoBehaviour
     public GameObject medalInfo;
     public GameObject avisoCasoExtra;
     public GameObject playButton;
+
 
 
     // Start is called before the first frame update
@@ -63,6 +65,21 @@ public class CaseController : MonoBehaviour
     public void ShowCase()
     {
         presets.LoadPreferences();
+        if (presets.presetTempo == 0 && presets.presetPreco == 0 && presets.presetDiagonal == 0 && presets.presetInvertida ==0)
+        {
+            showMode.text = "Modo selecionado: Livre";
+        }
+        else if (presets.presetTempo == 1 && presets.presetPreco == 1 && presets.presetDiagonal == 0 && presets.presetInvertida == 0)
+        {
+            showMode.text = "Modo selecionado: Padrão";
+        }
+        else if (presets.presetTempo == 1 && presets.presetPreco == 1 && presets.presetDiagonal == 1 && presets.presetInvertida == 1)
+        {
+            showMode.text = "Modo selecionado: Desafiador";
+        }
+        else {
+            showMode.text = "Modo selecionado: Personalizado";
+        }
 
         if (caseID == 0)
         {
@@ -450,6 +467,7 @@ public class CaseController : MonoBehaviour
         else if (countMainCases >= (mainCasesNumber) && PlayerPrefs.GetInt("NarrativaId", 0) == 1)
         {
             PlayerPrefs.SetInt("NarrativaId", 2);
+            PlayerPrefs.SetInt ("Final", 0);
             SceneManager.LoadScene("Narrativa");
         }
      

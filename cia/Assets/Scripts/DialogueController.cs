@@ -32,6 +32,7 @@ public class DialogueController : MonoBehaviour
     private int[] voiceCut = {0,7,9 };
     int id;
     AudioSource voiceAudioSource;
+    [SerializeField] private GameObject credits;
 
     //public GameObject fadeIn;
 
@@ -107,10 +108,22 @@ public class DialogueController : MonoBehaviour
     public void EndDialogue()
     {
         expressionsSprites[0].SetActive(true);
-        levelChanger.SetActive(true);
-        StartCoroutine(StartDelay());
-
+        if (PlayerPrefs.GetInt("Final", 123) == 0)
+        {
+            credits.SetActive(true);
+        }
+        else
+        {
+            ChangeSceneCounter();
+        }
         
+    }
+
+    public void ChangeSceneCounter()
+    {
+        levelChanger.SetActive(true);
+        VoiceStop();
+        StartCoroutine(StartDelay());
     }
 
     public IEnumerator StartDelay()
