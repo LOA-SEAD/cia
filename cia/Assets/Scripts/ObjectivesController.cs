@@ -10,7 +10,7 @@ public class ObjectivesController : MonoBehaviour
     [SerializeField] private TMP_Text frasesTexto;
     [SerializeField] private TMP_Text casoTexto;
     public int contadorPalavras=0;
-    private int contadorFrases=0;
+    public int contadorFrases=0;
     public int totalPalavras = 0;
     [SerializeField]private Timer timer;
     private InputFieldController inputController;

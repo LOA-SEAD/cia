@@ -14,7 +14,7 @@ public class StartTutorial : MonoBehaviour
         PlayerPrefs.SetInt("PalavrasInvertidas", 1);
         PlayerPrefs.SetInt("PalavrasDiagonais", 1);
         PlayerPrefs.SetInt("LoadCaseId", 99);
-        PlayerPrefs.SetString("LoadCaseSize", "G");
+        PlayerPrefs.SetString("LoadCaseSize", "M");
         SceneManager.LoadScene("TelaJogo");
 
     }

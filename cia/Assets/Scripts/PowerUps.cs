@@ -136,13 +136,24 @@ public class PowerUps : MonoBehaviour
         b = 100 * cheaperPW;
         a.text = b.ToString() + " - Revela uma letra";
 
-        a = powerUpButton[2].GetComponentInChildren<TMP_Text>();
-        b = 150 * cheaperPW;
-        a.text = b.ToString() + " - Completa uma pista";
+        if (objContr.contadorFrases == objContr.totalPalavras)
+        {
+            a = powerUpButton[2].GetComponentInChildren<TMP_Text>();
+            a.text = "Power up indisponível";
 
+
+        }
+        else
+        {
+            a = powerUpButton[2].GetComponentInChildren<TMP_Text>();
+            b = 150 * cheaperPW;
+            a.text = b.ToString() + " - Completa uma pista";
+        }
+        
         a = powerUpButton[3].GetComponentInChildren<TMP_Text>();
         b = 250 * cheaperPW;
         a.text = b.ToString() + " - Revela uma letra da palavra final";
+        
 
     }
 
@@ -157,7 +168,7 @@ public class PowerUps : MonoBehaviour
             moedasDisplay.sprite = moedas[0];
         }
 
-        if(coins >= 50 * cheaperPW && cheaperPW == 1)
+        if(coins >= 50 * cheaperPW && PlayerPrefs.GetInt("Tempo", 0) == 1)
         {
             powerUpButton[0].interactable = true;
             moedasDisplay.sprite = moedas[2];
@@ -179,7 +190,7 @@ public class PowerUps : MonoBehaviour
             powerUpButton[1].interactable = false;
         }
 
-        if (coins >= 150 * cheaperPW)
+        if (coins >= 150 * cheaperPW && objContr.contadorFrases != objContr.totalPalavras)
         {
             powerUpButton[2].interactable = true;
             moedasDisplay.sprite = moedas[4];
@@ -188,9 +199,10 @@ public class PowerUps : MonoBehaviour
         else
         {
             powerUpButton[2].interactable = false;
+            InitButtons();
         }
 
-        if (coins >= 250 * cheaperPW )
+        if (coins >= 250 * cheaperPW)
         {
             powerUpButton[3].interactable = true;
 
