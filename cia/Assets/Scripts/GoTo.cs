@@ -8,9 +8,14 @@ public class GoTo : MonoBehaviour
   
     
     public void LoadCena(string cena){
-        if (PlayerPrefs.GetInt("LoadCaseId") == 99 && cena=="TelaCasos")
+        if (PlayerPrefs.GetInt("LoadCaseId") == 99 && cena== "TelaCasos" && PlayerPrefs.GetInt("PrimeiroTutorial") == 1)
         {
             cena = "MenuPrincipal";
+            PlayerPrefs.SetInt("LoadCaseId", 100);
+        }
+        else if (PlayerPrefs.GetInt("LoadCaseId") == 99 && cena == "TelaCasos" && PlayerPrefs.GetInt("PrimeiroTutorial") == 3)
+        {
+            cena = "Narrativa";
             PlayerPrefs.SetInt("LoadCaseId", 100);
         }
 

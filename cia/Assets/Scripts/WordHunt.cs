@@ -31,8 +31,9 @@ public class WordHunt : MonoBehaviour {
     private Transform[,] lettersTransforms;
     private string alphabet = "abcdefghijklmnopqrstuvwxyz";
     private InputFieldController inpFController;
+    StartTutorial startTut;
 
-    
+
 
     [Header("Settings")]
     public bool invertedWordsAreValid;
@@ -77,6 +78,8 @@ public class WordHunt : MonoBehaviour {
     public int countErrors=0;
     [SerializeField] GameObject avisoFree;
     [SerializeField] private GameObject canvasPrincipal;
+    [SerializeField] private GameObject molduraLetra;
+    private TutorialController TutControl;
 
 
 
@@ -89,9 +92,12 @@ public class WordHunt : MonoBehaviour {
         Time.timeScale = 1;
         objController = GameObject.Find("ObjetivosBG").GetComponent<ObjectivesController>();
         inpFController = GameObject.Find("TelaJogo").GetComponent<InputFieldController>();
-        
+        TutControl = GameObject.Find("Camadas tutorial").GetComponent<TutorialController>();
+
         // 
         audioManager =  GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>(); 
+        TutControl.nextStepTutorial();
+        
         //wordsSource = theme;
         Setup();
 
@@ -106,7 +112,10 @@ public class WordHunt : MonoBehaviour {
     public void Setup(){
         if (PlayerPrefs.GetInt("LoadCaseId") == 99)
         {
-            SetTutorial();
+            startTut = GameObject.Find("Start Tutorial").GetComponent<StartTutorial>();
+            
+            words = startTut.tutorialWords.Split(';').ToList();
+            
         }
         else
         {
@@ -121,6 +130,12 @@ public class WordHunt : MonoBehaviour {
         InsertWordsOnGrid();
 
         RandomizeEmptyCells();
+
+        if (TutControl.tutId == 0)
+        {
+            DicaLetra();
+        }
+
 
         //DisplaySelectedWords();
 
@@ -465,6 +480,7 @@ public class WordHunt : MonoBehaviour {
                 h.GetComponent<Image>().color = new Color32(128, 255, 128, 255);
                 h.transform.DOPunchScale(-Vector3.one, 0.2f, 10, 1);
                 h.GetComponent<LetterObjectScript>().hasPainted = true;
+                molduraLetra.SetActive(false);
             }
             //Visual Event
             //RectTransform r1 = highlightedObjects[0].GetComponent<RectTransform>();
@@ -489,8 +505,12 @@ public class WordHunt : MonoBehaviour {
             audioManager.RightAnswer();
             insertedWords.Remove(word);
             insertedWords.Remove(Reverse(word));
+            if (TutControl.tutId == 0)
+            {
+                TutControl.nextStepTutorial();
+            }
 
-            if(insertedWords.Count <= 0)
+            if (insertedWords.Count <= 0)
             {
                 Finish();
             }
@@ -605,14 +625,34 @@ public class WordHunt : MonoBehaviour {
         Color selectColor = new Color32(255, 255, 102, 255);
         for (int i = 0; i< checkPaint.Count; i++)
         {
-            Debug.Log(i);
+            
             if(checkPaint[i] == false)
             {
                 
                 lettersTransforms[matrizDicaX[i], matrizDicaY[i]].GetComponent<Image>().color = selectColor;
+                molduraLetra.SetActive(true);
+                Debug.Log("Antes");
+                if (PlayerPrefs.GetInt("LoadCaseId") == 99 && TutControl.tutId == 0)
+                {
+                    StartCoroutine(StartDelay(i));
+                }
+                else
+                {
+                    molduraLetra.transform.position = new Vector3(lettersTransforms[matrizDicaX[i], matrizDicaY[i]].position.x, lettersTransforms[matrizDicaX[i], matrizDicaY[i]].position.y, 0);
+                    
+                }
                 return;
             }
         }
+    }
+
+    public IEnumerator StartDelay(int i)
+    {
+        yield return new WaitForSeconds(0.005f);
+        molduraLetra.transform.position = new Vector3(lettersTransforms[matrizDicaX[i], matrizDicaY[i]].position.x, lettersTransforms[matrizDicaX[i], matrizDicaY[i]].position.y, 0);
+        Debug.Log(lettersTransforms[matrizDicaX[i], matrizDicaY[i]].position.x + " " + lettersTransforms[matrizDicaX[i], matrizDicaY[i]].position.y);
+
+
     }
 
     void CheckErrors()
@@ -627,12 +667,7 @@ public class WordHunt : MonoBehaviour {
             }
         }
     }
-    void SetTutorial()
-    {
-        string s = "watson;londres;moriarty;dedução;doyle;holmes";
-        words =  s.Split(';').ToList(); 
-        
-    }
+    
 
     string Changecharacters(string texto)
     {
@@ -646,7 +681,6 @@ public class WordHunt : MonoBehaviour {
         return texto;
 
     }
-
 
     void Read()
     {

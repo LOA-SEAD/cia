@@ -50,6 +50,7 @@ public class CaseController : MonoBehaviour
     private void Awake()
     {
         presets = GameObject.Find("PresetsController").GetComponent<PresetsController>();
+       
         Read();
         
     }
@@ -58,6 +59,7 @@ public class CaseController : MonoBehaviour
         
         ShowCase();
         CheckNarrative();
+
 
     }
 

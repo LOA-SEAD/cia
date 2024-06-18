@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class InputFieldController : MonoBehaviour
 {
@@ -28,55 +29,77 @@ public class InputFieldController : MonoBehaviour
     public int countErrors = 0;
     public int countErrorsLast = 0;
     [SerializeField] GameObject avisoFree;
-    [SerializeField] GameObject avisoTutorial;
     [SerializeField] private GameObject canvas;
+    [SerializeField] private GameObject lupinAviso;
+    private Animator lupinAnimacao;
+    public GameObject erroTela;
+    public GameObject acertoTela;
+    private TutorialController TutControl;
+    StartTutorial startTut;
 
     int contpw = 0;
 
     public int phraseId=0;
 
     // Start is called before the first frame update
-    private void Start()
+    private void Awake()
     {
-         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        lupinAnimacao = GameObject.Find("Informação Lupin").GetComponent<Animator>();
+        TutControl = GameObject.Find("Camadas tutorial").GetComponent<TutorialController>();
 
         if (PlayerPrefs.GetInt("LoadCaseId") == 99)
         {
-            SetTutorial();
+            startTut = GameObject.Find("Start Tutorial").GetComponent<StartTutorial>();
+            string s = startTut.SetTutorial();
+            eachPhrase = s.Split(';');
         }
         else
         {
             Read();
         }
+    }
+
+    private void Start()
+    {
+        
         //phraseTextBox.text = eachPhrase[phraseId];
         ReplaceUnderline();
         objController = GameObject.Find("ObjetivosBG").GetComponent<ObjectivesController>();
         UpdateDetails();
-        
-        
+        //inputField.Select();
+
+
     }
+
 
     private void Update()
     {
+        //inputField.Select();
         if (Input.GetKeyDown(KeyCode.Return)) {
             ReadStringInput();
+            EventSystem.current.SetSelectedGameObject(null);
+            //inputField.Select();
         }
+       // AnimatorStateInfo animSI = lupinAnimacao.GetCurrentAnimatorStateInfo(0); //checa se a animação acabou
+        //if (animSI.normalizedTime > 1.0f)
+       // {
+         //   lupinAnimacao.ResetTrigger("Vai");
+           // lupinAnimacao.SetTrigger("Para");
+            
+        //}
 
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
+        inputField.Select();
 
-            inputField.Select();
-        }
     }
 
     public void ReadStringInput()
     {
-        inputField.Select();
         input = inputField.text;
         inputField.text = "";
-        
         ValidateWords();
-        EventSystem.current.SetSelectedGameObject(null);
+        //EventSystem.current.SetSelectedGameObject(null);
+       
 
     }
 
@@ -91,6 +114,11 @@ public class InputFieldController : MonoBehaviour
         {
             phraseId--;
         }
+        if (TutControl.tutId == 2)
+        {
+            TutControl.nextStepTutorial();
+        }
+
     }
 
     public void BackCase()
@@ -104,6 +132,10 @@ public class InputFieldController : MonoBehaviour
         else
         {
             phraseId++;
+        }
+        if (TutControl.tutId == 2)
+        {
+            TutControl.nextStepTutorial();
         }
     }
 
@@ -137,7 +169,10 @@ public class InputFieldController : MonoBehaviour
             {
                 audioManager.RightAnswer();
                 aviso.SetActive(false);
+                TutControl.ObjectiveTut();
                 objController.Finish();
+
+                
             }
             else if (checkPositions[pos] == false && pos != eachPhrase.Length - 1)
             {
@@ -149,16 +184,21 @@ public class InputFieldController : MonoBehaviour
                 ReplaceUnderline();
                 checkPositions[pos] = true;
                 audioManager.RightAnswer();
-                int i = 0;
-                while (checkPositions[i] == true && i < wordsRead.Count - 2)
+                if (TutControl.tutId == 1)
                 {
-                    i++;
+                    TutControl.nextStepTutorial();
                 }
-                phraseId = i;
+                StartCoroutine(StartDelay(acertoTela));
+                //int i = 0;
+                //while (checkPositions[i] == true && i < wordsRead.Count - 2)
+                //{
+                  //  i++;
+                //}
+                //phraseId = i;
                 //phraseTextBox.text = eachPhrase[phraseId];
-                ReplaceUnderline();
-                objController.CountObjectivePhrase();
-                UpdateDetails();
+                //ReplaceUnderline();
+                //objController.CountObjectivePhrase();
+                //UpdateDetails();
             }
 
 
@@ -168,6 +208,16 @@ public class InputFieldController : MonoBehaviour
         {
             CheckErrors();
             audioManager.WrongAnswer();
+            StartCoroutine(StartDelay(erroTela));
+
+            if (input.ToLower() == Changecharacters(wordsRead[phraseId]))
+            {
+                lupinAnimacao.ResetTrigger("Vai");
+                lupinAnimacao.SetTrigger("Vai");
+
+                lupinAnimacao.ResetTrigger("Para");
+                lupinAnimacao.SetTrigger("Para");
+            }
         }
     }
 
@@ -232,14 +282,8 @@ public class InputFieldController : MonoBehaviour
         }
     }
 
-    void SetTutorial()
-    {
-        canvas.SetActive(false);
-        avisoTutorial.SetActive(true);
-        string s = "1 - Ele é acompanhado por um ajudante chamado _.; 2 - Um detetive famoso nas ruas de _; 3 - Seu maior inimigo é  _; 4 - Dizem que ele é um mestre da _; 5 - Seus livros foram escritos por Arthur Conan _; Sem dúvida, meu rival só pode ser Sherlock _";
-        eachPhrase = s.Split(';');
 
-    }
+
     public void LastWord()
     {
         ultimoCaso = 1;
@@ -251,7 +295,41 @@ public class InputFieldController : MonoBehaviour
         powerUpLButton.SetActive(true);
 
         aviso.SetActive(true);
+        TutControl.nextStepTutorial();
 
+    }
+
+    string Changecharacters(string texto)
+    {
+        string comAcentos = "ÄÅÁÂÀÃäáâàãÉÊËÈéêëèÍÎÏÌíîïìÖÓÔÒÕöóôòõÜÚÛüúûùÇç";
+        string semAcentos = "AAAAAAaaaaaEEEEeeeeIIIIiiiiOOOOOoooooUUUuuuuCc";
+
+        for (int i = 0; i < comAcentos.Length; i++)
+        {
+            texto = texto.Replace(comAcentos[i].ToString(), semAcentos[i].ToString());
+        }
+        return texto;
+
+    }
+    public IEnumerator StartDelay(GameObject feedback)
+    {
+        feedback.SetActive(true);
+        yield return new WaitForSeconds(1.0f);
+        feedback.SetActive(false);
+        Debug.Log(feedback.name);
+        if(feedback.name == "Acerto")
+        {
+            int i = 0;
+            while (checkPositions[i] == true && i < wordsRead.Count - 2)
+            {
+                i++;
+            }
+            phraseId = i;
+            //phraseTextBox.text = eachPhrase[phraseId];
+            ReplaceUnderline();
+            objController.CountObjectivePhrase();
+            UpdateDetails();
+        }
     }
 
     public void ReplaceUnderline()

@@ -2438,7 +2438,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6953063310905567321, guid: 16111318331536d4ca49ce7446026fa9, type: 3}
       propertyPath: m_text
-      value: "Para as pessoas que querem resolver as tarefas no seu pr\xF3prio tempo"
+      value: "Para as pessoas que querem resolver as tarefas no seu pr\xF3prio tempo.
+        N\xE3o cont\xE9m palavras invertidas ou na diagonal."
       objectReference: {fileID: 0}
     - target: {fileID: 6953063310905567321, guid: 16111318331536d4ca49ce7446026fa9, type: 3}
       propertyPath: m_fontSize
@@ -2451,7 +2452,8 @@ PrefabInstance:
     - target: {fileID: 6953063310929731325, guid: 16111318331536d4ca49ce7446026fa9, type: 3}
       propertyPath: m_text
       value: "Para pessoas que querem a experi\xEAncia equilibrada entre conforto
-        e desafio"
+        e desafio. N\xE3o cont\xE9m palavras invertidas ou na diagonal, mas fique
+        de olho no rel\xF3gio."
       objectReference: {fileID: 0}
     - target: {fileID: 6953063310929731325, guid: 16111318331536d4ca49ce7446026fa9, type: 3}
       propertyPath: m_fontSize
@@ -2539,7 +2541,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6953063311588289191, guid: 16111318331536d4ca49ce7446026fa9, type: 3}
       propertyPath: m_text
-      value: Para as pessoas que gostam do maior desafio
+      value: Para as pessoas que gostam do maior desafio. Corra contra o tempo e
+        se desafie com palavras invertidas e em diagonal.
       objectReference: {fileID: 0}
     - target: {fileID: 6953063311588289191, guid: 16111318331536d4ca49ce7446026fa9, type: 3}
       propertyPath: m_fontSize
@@ -2651,7 +2654,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6953063311771672623, guid: 16111318331536d4ca49ce7446026fa9, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6953063311771672625, guid: 16111318331536d4ca49ce7446026fa9, type: 3}
       propertyPath: m_UiScaleMode

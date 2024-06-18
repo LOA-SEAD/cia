@@ -21,19 +21,23 @@ public class PowerUps : MonoBehaviour
     private bool[] ajudasUsadas = new bool[] {false, false, false};
     [SerializeField] private GameObject canvas;
     [SerializeField] private GameObject canvasConsulta;
+    [SerializeField] private GameObject canvasDetalhes;
     [SerializeField] private TMP_Text consultaText;
     [SerializeField] private Sprite[] moedas;
     [SerializeField] private SpriteRenderer moedasDisplay;
+    private TutorialController TutControl;
+    StartTutorial startTut;
 
 
 
-    void Start()
+    void Awake()
     {
         wh = GameObject.Find("WordHunt").GetComponent<WordHunt>();
         inpFController = GameObject.Find("TelaJogo").GetComponent<InputFieldController>();
         objContr = GameObject.Find("ObjetivosBG").GetComponent<ObjectivesController>();
         timer = GameObject.Find("TelaJogo").GetComponent<Timer>();
         moedasDisplay = GameObject.Find("moedas1").GetComponent<SpriteRenderer>();
+        TutControl = GameObject.Find("Camadas tutorial").GetComponent<TutorialController>();
         Read();
         if (PlayerPrefs.GetInt("PrecoAjuda") == 0)
         {
@@ -74,6 +78,11 @@ public class PowerUps : MonoBehaviour
             wh.DicaLetra();
             coinDisplay.text = coins.ToString();
             CheckCoins();
+            if (TutControl.tutId == 3)
+            {
+                TutControl.nextStepTutorial();
+            }
+
 
         }
     }
@@ -86,6 +95,10 @@ public class PowerUps : MonoBehaviour
             coinDisplay.text = coins.ToString();
             inpFController.PowerUpW();
             CheckCoins();
+            if (TutControl.tutId == 3)
+            {
+                TutControl.nextStepTutorial();
+            }
         }
     }
 
@@ -103,9 +116,14 @@ public class PowerUps : MonoBehaviour
     public void FreeHint()
     {
         int id = PlayerPrefs.GetInt("LoadCaseId", 0);
+        if (TutControl.tutId == 4)
+        {
+            TutControl.nextStepTutorial();
+        }
         if (id == 99)
         {
-            consultaText.text = "Não precisa ter vergonha de usar vantagens disponíveis a seu favor. Consultar materiais extras pode ser útil para solucionar casos. Por exemplo, como saberia sem esta consulta que o sobrenome desse detetive londrino tem 5 letras?";
+            startTut = GameObject.Find("Start Tutorial").GetComponent<StartTutorial>();
+            consultaText.text = startTut.tutorialFreeHint;
         }
         else
         {
@@ -114,6 +132,15 @@ public class PowerUps : MonoBehaviour
         }
         canvasConsulta.SetActive(true);
         //Application.OpenURL(eachLine[PlayerPrefs.GetInt("LoadCaseId", 0)]);
+    }
+
+    public void MostrarDetalhes()
+    {
+        canvasDetalhes.SetActive(true);
+        if (TutControl.tutId == 5)
+        {
+            TutControl.nextStepTutorial();
+        }
     }
 
     public void InitButtons()
@@ -219,19 +246,19 @@ public class PowerUps : MonoBehaviour
         {
 
             ajudasUsadas[0] = true;
-            coins = 50;
+            coins += 50;
             PowerUpLetter();
         }
         else if (inpFController.countErrors == 10 && ajudasUsadas[1] == false)
         {
             ajudasUsadas[1] = true;
-            coins = 75;
+            coins += 75;
             PowerUpWord();
         }
         else if (inpFController.countErrorsLast == 10 && ajudasUsadas[2] == false)
         {
             ajudasUsadas[2] = true;
-            coins = 125;
+            coins += 125;
             PowerUpLast();
         }
         canvas.SetActive(true);

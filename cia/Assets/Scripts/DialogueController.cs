@@ -33,6 +33,7 @@ public class DialogueController : MonoBehaviour
     int id;
     AudioSource voiceAudioSource;
     [SerializeField] private GameObject credits;
+    StartTutorial startTut;
 
     //public GameObject fadeIn;
 
@@ -42,8 +43,17 @@ public class DialogueController : MonoBehaviour
         Read();
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         voiceAudioSource = GameObject.FindGameObjectWithTag("VASource").GetComponent<AudioSource>();
+        
         //fade = GameObject.Find("LevelChanger").GetComponent<Animator>();
         audioManager.PlayBGSong(music);
+        if(PlayerPrefs.GetInt("PrimeiroTutorial",0) == 0)
+        {
+            startTut = GameObject.Find("Start Tutorial").GetComponent<StartTutorial>();
+           
+            PlayerPrefs.SetInt("PrimeiroTutorial", 2);
+            startTut.StartTutorialCase();
+            
+        }
 
     }
     void Start()
