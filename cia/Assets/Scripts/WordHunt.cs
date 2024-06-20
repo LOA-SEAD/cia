@@ -517,11 +517,26 @@ public class WordHunt : MonoBehaviour {
             
         }
         else {
-            ClearWordSelection();
-            CheckErrors();
+            foreach (Transform h in highlightedObjects)
+            {
+                h.GetComponent<Image>().color = new Color32(255, 128, 128, 255);
+
+            }
             audioManager.WrongAnswer();
+            StartCoroutine(ColorDelay());
+            
         }
     }
+
+    public IEnumerator ColorDelay()
+    {
+        yield return new WaitForSeconds(0.5f);
+        ClearWordSelection();
+        CheckErrors();
+
+
+    }
+
 
     public void LetterHover(int x, int y)
     {
@@ -586,6 +601,7 @@ public class WordHunt : MonoBehaviour {
 
     private void ClearWordSelection()
     {
+
         foreach (Transform  h in highlightedObjects)
         {
 

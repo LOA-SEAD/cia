@@ -104,9 +104,9 @@ public class PowerUps : MonoBehaviour
 
     public void PowerUpLast()
     {
-        if (coins >= 250 * cheaperPW)
+        if (coins >= 200 * cheaperPW)
         {
-            coins = coins - 250 * cheaperPW;
+            coins = coins - 200 * cheaperPW;
             coinDisplay.text = coins.ToString();
             inpFController.PowerUpL();
             CheckCoins();
@@ -178,7 +178,7 @@ public class PowerUps : MonoBehaviour
         }
         
         a = powerUpButton[3].GetComponentInChildren<TMP_Text>();
-        b = 250 * cheaperPW;
+        b = 200 * cheaperPW;
         a.text = b.ToString() + " - Revela uma letra da palavra final";
         
 
@@ -229,7 +229,7 @@ public class PowerUps : MonoBehaviour
             InitButtons();
         }
 
-        if (coins >= 250 * cheaperPW)
+        if (coins >= 200 * cheaperPW)
         {
             powerUpButton[3].interactable = true;
 

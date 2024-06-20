@@ -157,6 +157,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ca040e5e4b58af4e83da1c1a34ffab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvas: {fileID: 0}
+  avisoTutorial: {fileID: 0}
+  tutorialWords: "watson;londres;moriarty;dedu\xE7\xE3o;doyle;holmes"
+  tutorialPhrases: "1 - Ele \xE9 acompanhado por um ajudante chamado _.; 2 - Um detetive
+    famoso nas ruas de _; 3 - Seu maior inimigo \xE9  _; 4 - Dizem que ele \xE9 um
+    mestre da _; 5 - Seus livros foram escritos por Arthur Conan _; Sem d\xFAvida,
+    meu rival s\xF3 pode ser Sherlock _"
+  tutorialFreeHint: "N\xE3o precisa ter vergonha de usar vantagens dispon\xEDveis
+    a seu favor. Consultar materiais extras pode ser \xFAtil para solucionar casos.
+    Por exemplo, como saberia sem esta consulta que o sobrenome desse detetive londrino
+    tem 6 letras?"
 --- !u!4 &63648392
 Transform:
   m_ObjectHideFlags: 0
@@ -3486,10 +3497,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 701576541}
-        m_TargetAssemblyTypeName: GoTo, Assembly-CSharp
-        m_MethodName: LoadCena
-        m_Mode: 5
+      - m_Target: {fileID: 351049769}
+        m_TargetAssemblyTypeName: DialogueController, Assembly-CSharp
+        m_MethodName: ChangeSceneCounter
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

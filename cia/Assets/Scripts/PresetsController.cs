@@ -126,9 +126,10 @@ public class PresetsController : MonoBehaviour
         }
         PlayerPrefs.Save();
         LoadPreferences();
-       canvasPreset.SetActive(false);
+        canvasPreset.SetActive(false);
         _canvas.SetActive(true);
-        caseController.CheckNarrative();       
+        caseController.CheckNarrative();
+        caseController.SearchForUnfinished();
         caseController.ShowCase();
     }
     public void BackButton()

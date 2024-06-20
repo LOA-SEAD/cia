@@ -2660,6 +2660,10 @@ PrefabInstance:
       propertyPath: m_UiScaleMode
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6953063311771672626, guid: 16111318331536d4ca49ce7446026fa9, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6953063311771672627, guid: 16111318331536d4ca49ce7446026fa9, type: 3}
       propertyPath: m_Pivot.x
       value: 0

@@ -179,7 +179,7 @@ public class InputFieldController : MonoBehaviour
                 //wordsRead[pos] = "e5ef1a3s2de87rf0SCwfBTHYwefedse578899";
 
                 string[] updateString = eachPhrase[pos].Split('_');
-                eachPhrase[pos] = updateString[0] + input + updateString[1];
+                eachPhrase[pos] = updateString[0] + input.ToUpper() + updateString[1];
                 //phraseTextBox.text = eachPhrase[phraseId];
                 ReplaceUnderline();
                 checkPositions[pos] = true;

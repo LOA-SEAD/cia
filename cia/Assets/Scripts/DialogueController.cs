@@ -46,14 +46,7 @@ public class DialogueController : MonoBehaviour
         
         //fade = GameObject.Find("LevelChanger").GetComponent<Animator>();
         audioManager.PlayBGSong(music);
-        if(PlayerPrefs.GetInt("PrimeiroTutorial",0) == 0)
-        {
-            startTut = GameObject.Find("Start Tutorial").GetComponent<StartTutorial>();
-           
-            PlayerPrefs.SetInt("PrimeiroTutorial", 2);
-            startTut.StartTutorialCase();
-            
-        }
+        
 
     }
     void Start()
@@ -140,13 +133,25 @@ public class DialogueController : MonoBehaviour
     {
         VoiceStop();
         yield return new WaitForSeconds(1.0f);
-        SceneManager.LoadScene("TelaCasos");
+        if (PlayerPrefs.GetInt("PrimeiroTutorial", 0) == 0)
+        {
+            startTut = GameObject.Find("Start Tutorial").GetComponent<StartTutorial>();
+
+            PlayerPrefs.SetInt("PrimeiroTutorial", 2);
+            startTut.StartTutorialCase();
+
+        }
+        else
+        {
+            SceneManager.LoadScene("TelaCasos");
+        }
     }
 
     public void VoiceStop()
     {
         if (voiceAudioSource.isPlaying)
         {
+            Debug.Log("Passei shiuuu");
             voiceAudioSource.Stop();
         }
     }

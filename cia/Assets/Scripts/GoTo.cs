@@ -15,7 +15,7 @@ public class GoTo : MonoBehaviour
         }
         else if (PlayerPrefs.GetInt("LoadCaseId") == 99 && cena == "TelaCasos" && PlayerPrefs.GetInt("PrimeiroTutorial") == 3)
         {
-            cena = "Narrativa";
+            cena = "TelaCasos";
             PlayerPrefs.SetInt("LoadCaseId", 100);
         }
 

@@ -58,7 +58,9 @@ public class CaseController : MonoBehaviour
     {
         
         ShowCase();
+        SearchForUnfinished();
         CheckNarrative();
+
 
 
     }
@@ -154,6 +156,7 @@ public class CaseController : MonoBehaviour
 
         string caseIDString = "RecordeCaso" + id + presets.presetTempo.ToString() + presets.presetPreco.ToString() + presets.presetInvertida.ToString() + presets.presetDiagonal.ToString();
         float recordecaso = PlayerPrefs.GetFloat(caseIDString, 3000);
+        Debug.Log("o record funcionando" + recordecaso);
         if (presets.presetTempo != 0)
         {
             recordShow.SetActive(true);
@@ -473,6 +476,25 @@ public class CaseController : MonoBehaviour
             SceneManager.LoadScene("Narrativa");
         }
      
+    }
+
+    public void SearchForUnfinished()
+    {
+        int id = 0;
+        float checarResolvido;
+        presets.LoadPreferences();
+        do
+        {
+            string caseIDString = "RecordeCaso" + id + presets.presetTempo.ToString() + presets.presetPreco.ToString() + presets.presetInvertida.ToString() + presets.presetDiagonal.ToString();
+            checarResolvido = PlayerPrefs.GetFloat(caseIDString, 3000);
+            caseID = id;
+            id++;
+            Debug.Log(caseIDString);
+            Debug.Log("CASE ID" + caseID);
+            Debug.Log("ID" + id);
+            Debug.Log(checarResolvido);
+
+        } while (checarResolvido != 3000 && caseID != caseDetails.Count - 1);
     }
 
     void Read()

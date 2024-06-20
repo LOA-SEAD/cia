@@ -29,7 +29,10 @@ public class TutorialController : MonoBehaviour
 
     public void ObjectiveTut()
     {
-        tutorialLupin[tutId].SetActive(false);
+        if (PlayerPrefs.GetInt("LoadCaseId") == 99)
+        {
+            tutorialLupin[tutId].SetActive(false);
+        }
     }
 
 }
