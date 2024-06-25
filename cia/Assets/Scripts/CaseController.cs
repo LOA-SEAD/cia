@@ -495,6 +495,7 @@ public class CaseController : MonoBehaviour
             Debug.Log(checarResolvido);
 
         } while (checarResolvido != 3000 && caseID != caseDetails.Count - 1);
+        ShowCase();
     }
 
     void Read()

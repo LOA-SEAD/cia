@@ -37,6 +37,7 @@ public class PresetsController : MonoBehaviour
         
        caseController = GameObject.Find("CaseController").GetComponent<CaseController>();
        checkPresetChoice();
+        caseController.SearchForUnfinished();
 
     }
 

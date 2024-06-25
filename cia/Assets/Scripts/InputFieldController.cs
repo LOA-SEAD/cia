@@ -165,6 +165,9 @@ public class InputFieldController : MonoBehaviour
         if (wordsRead[phraseId] == input.ToLower()) //verifica se a palavra est  certa
         {
             int pos = phraseId;
+            string[] updateString = eachPhrase[pos].Split('_');
+            eachPhrase[pos] = updateString[0] + input.ToUpper() + updateString[1];
+            ReplaceUnderline();
             if (pos == eachPhrase.Length - 1 && ultimoCaso == 1)
             {
                 audioManager.RightAnswer();
@@ -178,10 +181,9 @@ public class InputFieldController : MonoBehaviour
             {
                 //wordsRead[pos] = "e5ef1a3s2de87rf0SCwfBTHYwefedse578899";
 
-                string[] updateString = eachPhrase[pos].Split('_');
-                eachPhrase[pos] = updateString[0] + input.ToUpper() + updateString[1];
+                
                 //phraseTextBox.text = eachPhrase[phraseId];
-                ReplaceUnderline();
+                
                 checkPositions[pos] = true;
                 audioManager.RightAnswer();
                 if (TutControl.tutId == 1)
@@ -316,7 +318,6 @@ public class InputFieldController : MonoBehaviour
         feedback.SetActive(true);
         yield return new WaitForSeconds(1.0f);
         feedback.SetActive(false);
-        Debug.Log(feedback.name);
         if(feedback.name == "Acerto")
         {
             int i = 0;

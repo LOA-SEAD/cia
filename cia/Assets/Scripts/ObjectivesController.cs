@@ -84,6 +84,7 @@ public class ObjectivesController : MonoBehaviour
         }
         else
         {
+            StartCoroutine(inputController.StartDelay(inputController.acertoTela));
             casoEncerrado.SetActive(true);
 
             string caseIDString = "RecordeCaso" + PlayerPrefs.GetInt("LoadCaseId", 0) + PlayerPrefs.GetInt("Tempo", 0) + PlayerPrefs.GetInt("PrecoAjuda", 0) + PlayerPrefs.GetInt("PalavrasInvertidas", 0) +
