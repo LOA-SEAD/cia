@@ -26,6 +26,7 @@ public class InputFieldController : MonoBehaviour
     [SerializeField] GameObject powerUpCanvas;
     [SerializeField] GameObject powerUpLButton;
     [SerializeField] TMP_Text detalhesCaso;
+    [SerializeField] TMP_Text detalhesCasoFinal;
     public int countErrors = 0;
     public int countErrorsLast = 0;
     [SerializeField] GameObject avisoFree;
@@ -36,6 +37,7 @@ public class InputFieldController : MonoBehaviour
     public GameObject acertoTela;
     private TutorialController TutControl;
     StartTutorial startTut;
+    string newPhrase;
 
     int contpw = 0;
 
@@ -64,9 +66,10 @@ public class InputFieldController : MonoBehaviour
     {
         
         //phraseTextBox.text = eachPhrase[phraseId];
-        ReplaceUnderline();
+        ReplaceUnderline(eachPhrase[phraseId]);
         objController = GameObject.Find("ObjetivosBG").GetComponent<ObjectivesController>();
         UpdateDetails();
+        detalhesCasoFinal.text = "<b>Resolução do caso: ???</b> ";
         //inputField.Select();
 
 
@@ -106,7 +109,7 @@ public class InputFieldController : MonoBehaviour
     public void NextCase(){
         phraseId++;
         if (phraseId <= eachPhrase.Length - ultimoCaso) {
-            ReplaceUnderline();
+            ReplaceUnderline(eachPhrase[phraseId]);
             //phraseTextBox.text = eachPhrase[phraseId];
             audioManager.PlaySFX(changePhraseSound);
         }
@@ -126,7 +129,7 @@ public class InputFieldController : MonoBehaviour
         phraseId--;
         if (phraseId >= 0) {
             //phraseTextBox.text = eachPhrase[phraseId];
-            ReplaceUnderline();
+            ReplaceUnderline(eachPhrase[phraseId]);
             audioManager.PlaySFX(changePhraseSound);
         }
         else
@@ -167,7 +170,7 @@ public class InputFieldController : MonoBehaviour
             int pos = phraseId;
             string[] updateString = eachPhrase[pos].Split('_');
             eachPhrase[pos] = updateString[0] + input.ToUpper() + updateString[1];
-            ReplaceUnderline();
+            ReplaceUnderline(eachPhrase[phraseId]);
             if (pos == eachPhrase.Length - 1 && ultimoCaso == 1)
             {
                 audioManager.RightAnswer();
@@ -245,7 +248,7 @@ public class InputFieldController : MonoBehaviour
         }
         input = wordsRead[i];
         phraseId = i;
-        ReplaceUnderline();
+        ReplaceUnderline(eachPhrase[phraseId]);
         //phraseTextBox.text = eachPhrase[phraseId];
         ValidateWords();
 
@@ -254,9 +257,14 @@ public class InputFieldController : MonoBehaviour
     public void PowerUpL()
     {
         string[] updateString = eachPhrase[eachPhrase.Length - 1].Split('_');
-        eachPhrase[eachPhrase.Length - 1] = updateString[0] + wordsRead[eachPhrase.Length - 1][contpw] + "_" + updateString[1];
+        newPhrase = updateString[0];
+        for (int i = 0; i <= contpw; i++)
+        {
+            newPhrase = newPhrase + wordsRead[eachPhrase.Length - 1].ToUpper()[i] ;
+        }
+        newPhrase = newPhrase +"_" + updateString[1];
         //phraseTextBox.text = eachPhrase[phraseId];
-        ReplaceUnderline();
+        ReplaceUnderline(newPhrase);
         contpw++;
 
     }
@@ -291,11 +299,11 @@ public class InputFieldController : MonoBehaviour
         ultimoCaso = 1;
         phraseId = eachPhrase.Length-1;
         //phraseTextBox.text = eachPhrase[eachPhrase.Length - 1];
-        ReplaceUnderline();
+        ReplaceUnderline(eachPhrase[phraseId]);
         grid.SetActive(false);
         powerUpCanvas.SetActive(false);
         powerUpLButton.SetActive(true);
-
+        detalhesCasoFinal.text = "<b>Resolução do caso:</b> " + eachPhrase[eachPhrase.Length - 1].Replace("_", "_____");
         aviso.SetActive(true);
         TutControl.nextStepTutorial();
 
@@ -327,14 +335,15 @@ public class InputFieldController : MonoBehaviour
             }
             phraseId = i;
             //phraseTextBox.text = eachPhrase[phraseId];
-            ReplaceUnderline();
+            ReplaceUnderline(eachPhrase[phraseId]);
             objController.CountObjectivePhrase();
             UpdateDetails();
         }
     }
 
-    public void ReplaceUnderline()
+    public void ReplaceUnderline(string phrase)
     {
-        phraseTextBox.text = eachPhrase[phraseId].Replace("_", "_____");
+        
+        phraseTextBox.text = phrase.Replace("_", "_____");
     }
 }
