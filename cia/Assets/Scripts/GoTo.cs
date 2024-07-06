@@ -11,7 +11,7 @@ public class GoTo : MonoBehaviour
         if (PlayerPrefs.GetInt("LoadCaseId") == 99 && cena== "TelaCasos" && PlayerPrefs.GetInt("PrimeiroTutorial") == 1)
         {
             cena = "MenuPrincipal";
-            PlayerPrefs.SetInt("LoadCaseId", 100);
+            PlayerPrefs.SetInt("LoadCaseId", 100); //evitar loop da narrativa 
         }
         else if (PlayerPrefs.GetInt("LoadCaseId") == 99 && cena == "TelaCasos" && PlayerPrefs.GetInt("PrimeiroTutorial") == 3)
         {

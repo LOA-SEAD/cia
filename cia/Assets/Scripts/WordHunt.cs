@@ -79,6 +79,7 @@ public class WordHunt : MonoBehaviour {
     [SerializeField] GameObject avisoFree;
     [SerializeField] private GameObject canvasPrincipal;
     [SerializeField] private GameObject molduraLetra;
+    [SerializeField] private GameObject pularTutorial;
     private TutorialController TutControl;
 
 
@@ -113,6 +114,7 @@ public class WordHunt : MonoBehaviour {
         if (PlayerPrefs.GetInt("LoadCaseId") == 99)
         {
             startTut = GameObject.Find("Start Tutorial").GetComponent<StartTutorial>();
+            pularTutorial.SetActive(true);
             
             words = startTut.tutorialWords.Split(';').ToList();
             

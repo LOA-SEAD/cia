@@ -19,6 +19,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip mouseOver;
     public AudioClip mouseClick;
     [SerializeField] GameObject config;
+    static AudioManager instance = null;
     
 
     private VolumeSettings volSettings;
@@ -27,7 +28,17 @@ public class AudioManager : MonoBehaviour
     {
         //PlayerPrefs.DeleteAll();
         volSettings = config.GetComponent<VolumeSettings>();
+        
+        if (instance != null)
+            Destroy(gameObject);
+        else
+        {
+            instance = this;
+            GameObject.DontDestroyOnLoad(gameObject);
+        }
+        
     }
+
     private void Start()
     {
         PlayBGSong(background);
@@ -45,7 +56,7 @@ public class AudioManager : MonoBehaviour
         }
         config.SetActive(false);
 
-        DontDestroyOnLoad(this.gameObject);
+        //DontDestroyOnLoad(this.gameObject);
 
         //Para não perguntar preset todos os rounds
         PlayerPrefs.SetInt("Tempo", 10);

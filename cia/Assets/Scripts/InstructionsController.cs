@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InstructionsController : MonoBehaviour
 {
-    
+    [SerializeField] GameObject blur;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,11 +20,13 @@ public class InstructionsController : MonoBehaviour
     public void ChamarInstrucao(GameObject instrucao)
     {
         instrucao.SetActive(true);
+        blur.SetActive(true);
 
     }
 
     public void FecharInstrucao(GameObject instrucao)
     {
         instrucao.SetActive(false);
+        blur.SetActive(false);
     }
 }

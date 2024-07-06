@@ -43,7 +43,7 @@ public class DialogueController : MonoBehaviour
         Read();
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         voiceAudioSource = GameObject.FindGameObjectWithTag("VASource").GetComponent<AudioSource>();
-        
+
         //fade = GameObject.Find("LevelChanger").GetComponent<Animator>();
         audioManager.PlayBGSong(music);
         
@@ -151,7 +151,6 @@ public class DialogueController : MonoBehaviour
     {
         if (voiceAudioSource.isPlaying)
         {
-            Debug.Log("Passei shiuuu");
             voiceAudioSource.Stop();
         }
     }

@@ -28,7 +28,9 @@ public class PresetsController : MonoBehaviour
 
     void Awake()
     {
-
+        if (PlayerPrefs.GetInt("LoadCaseId") == 100){
+            canvasPreset.SetActive(true);
+        }
 
     }
 

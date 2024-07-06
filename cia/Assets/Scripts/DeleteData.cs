@@ -7,10 +7,12 @@ public class DeleteData : MonoBehaviour
 {
     public GameObject popUp;
     public VolumeSettings volumeSettings;
+    AudioSource MusicAudioSource;
     // Start is called before the first frame update
     void Start()
     {
         volumeSettings =  GameObject.Find("CanvasConfiguração").GetComponent<VolumeSettings>();
+        MusicAudioSource = GameObject.FindGameObjectWithTag("VASource").GetComponent<AudioSource>();
     }
 
     // Update is called once per frame

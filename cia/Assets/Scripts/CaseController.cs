@@ -50,7 +50,7 @@ public class CaseController : MonoBehaviour
     private void Awake()
     {
         presets = GameObject.Find("PresetsController").GetComponent<PresetsController>();
-       
+      
         Read();
         
     }
