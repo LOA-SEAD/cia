@@ -42,7 +42,9 @@ public class CertificateController : MonoBehaviour
 
     public void CountMedals()
     {
-        PlayerPrefs.GetInt("", 0);
+        countOuro = 0;
+        countPrata = 0;
+        countBronze = 0;
         certificate.SetActive(true);
         for (int i = 0; i < caseController.caseDetails.Count; i++) {
             string caseIDString = "RecordeCaso" + i + presets.presetTempo.ToString() + presets.presetPreco.ToString() + presets.presetInvertida.ToString() + presets.presetDiagonal.ToString();

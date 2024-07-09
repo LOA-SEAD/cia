@@ -7028,9 +7028,9 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 705210093}
-          m_TargetAssemblyTypeName: Animations, Assembly-CSharp
-          m_MethodName: AnimationPaper1
+        - m_Target: {fileID: 1178511516}
+          m_TargetAssemblyTypeName: Buttonsfx, Assembly-CSharp
+          m_MethodName: ButtonMouseOver
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
