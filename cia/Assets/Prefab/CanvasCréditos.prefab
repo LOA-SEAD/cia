@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Caterine Santana Ohnuma\nLuiz Val\xE9rio Neto"
+  m_text: "Caterine Santana Ohnuma\nElyssa Dalva Ribeiro Bueno\nLuiz Val\xE9rio Neto\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 10eed7706834c1e49a15cc0e103fe2a9, type: 2}
   m_sharedMaterial: {fileID: 2205697138647577353, guid: 10eed7706834c1e49a15cc0e103fe2a9, type: 2}
@@ -129,7 +129,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: 6.048439, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1448,7 +1448,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6298466198973022441
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2014,7 +2014,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -153.28088, y: -75.1}
+  m_AnchoredPosition: {x: -153.28088, y: -100.3}
   m_SizeDelta: {x: 263.067, y: 30.4133}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9043107373410422264
@@ -2286,7 +2286,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -150, y: -96.1}
+  m_AnchoredPosition: {x: -150, y: -121.5}
   m_SizeDelta: {x: 255.3943, y: 30.4133}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4753783951893763081
@@ -2317,7 +2317,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Elyssa Dalva Ribeiro Bueno\nLuiz Val\xE9rio Neto\nMateus"
+  m_text: "Elyssa Dalva Ribeiro Bueno\nLuiz Val\xE9rio Neto\nMatheus Henrique Cassatti"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 10eed7706834c1e49a15cc0e103fe2a9, type: 2}
   m_sharedMaterial: {fileID: 2205697138647577353, guid: 10eed7706834c1e49a15cc0e103fe2a9, type: 2}
