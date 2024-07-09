@@ -38,7 +38,7 @@ public class ObjectivesController : MonoBehaviour
         
     }
 
-    public void CountObjective(string foundword) //atualiza o número de palavras encontradas no caça
+    public void CountObjective(string foundword) //atualiza o nÃºmero de palavras encontradas no caÃ§a
     {
         contadorPalavras++;
         palavrasTexto.text = "Ache as palavras ("+ contadorPalavras +"/" + totalPalavras + ")";
@@ -49,7 +49,7 @@ public class ObjectivesController : MonoBehaviour
         }
     }
 
-    public void CountObjectivePhrase() //atualiza o número de palavras encontradas na frase
+    public void CountObjectivePhrase() //atualiza o nÃºmero de palavras encontradas na frase
     {
         contadorFrases++;
         frasesTexto.text = "Complete as frases (" + contadorFrases+ "/" + totalPalavras + ")";
@@ -76,7 +76,7 @@ public class ObjectivesController : MonoBehaviour
 
     public void Finish()
     {
-        casoTexto.text = "Conclusão do caso (1/1)";
+        casoTexto.text = "ConclusÃ£o do caso (1/1)";
 
         if (PlayerPrefs.GetInt("LoadCaseId") == 99)
         {

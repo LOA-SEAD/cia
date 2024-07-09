@@ -47,7 +47,7 @@ public class InputFieldController : MonoBehaviour
     private void Awake()
     {
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
-        lupinAnimacao = GameObject.Find("Informação Lupin").GetComponent<Animator>();
+        lupinAnimacao = GameObject.Find("InformaÃ§Ã£o Lupin").GetComponent<Animator>();
         TutControl = GameObject.Find("Camadas tutorial").GetComponent<TutorialController>();
 
         if (PlayerPrefs.GetInt("LoadCaseId") == 99)
@@ -69,7 +69,7 @@ public class InputFieldController : MonoBehaviour
         ReplaceUnderline(eachPhrase[phraseId]);
         objController = GameObject.Find("ObjetivosBG").GetComponent<ObjectivesController>();
         UpdateDetails();
-        detalhesCasoFinal.text = "<b>Resolução do caso: ???</b> ";
+        detalhesCasoFinal.text = "<b>ResoluÃ§Ã£o do caso: ???</b> ";
         //inputField.Select();
 
 
@@ -84,7 +84,7 @@ public class InputFieldController : MonoBehaviour
             EventSystem.current.SetSelectedGameObject(null);
             //inputField.Select();
         }
-       // AnimatorStateInfo animSI = lupinAnimacao.GetCurrentAnimatorStateInfo(0); //checa se a animação acabou
+       // AnimatorStateInfo animSI = lupinAnimacao.GetCurrentAnimatorStateInfo(0); //checa se a animaÃ§Ã£o acabou
         //if (animSI.normalizedTime > 1.0f)
        // {
          //   lupinAnimacao.ResetTrigger("Vai");
@@ -303,7 +303,7 @@ public class InputFieldController : MonoBehaviour
         grid.SetActive(false);
         powerUpCanvas.SetActive(false);
         powerUpLButton.SetActive(true);
-        detalhesCasoFinal.text = "<b>Resolução do caso:</b> " + eachPhrase[eachPhrase.Length - 1].Replace("_", "_____");
+        detalhesCasoFinal.text = "<b>ResoluÃ§Ã£o do caso:</b> " + eachPhrase[eachPhrase.Length - 1].Replace("_", "_____");
         aviso.SetActive(true);
         TutControl.nextStepTutorial();
 
@@ -311,7 +311,7 @@ public class InputFieldController : MonoBehaviour
 
     string Changecharacters(string texto)
     {
-        string comAcentos = "ÄÅÁÂÀÃäáâàãÉÊËÈéêëèÍÎÏÌíîïìÖÓÔÒÕöóôòõÜÚÛüúûùÇç";
+        string comAcentos = "Ã„Ã…ÃÃ‚Ã€ÃƒÃ¤Ã¡Ã¢Ã Ã£Ã‰ÃŠÃ‹ÃˆÃ©ÃªÃ«Ã¨ÃÃÃÃŒÃ­Ã®Ã¯Ã¬Ã–Ã“Ã”Ã’Ã•Ã¶Ã³Ã´Ã²ÃµÃœÃšÃ›Ã¼ÃºÃ»Ã¹Ã‡Ã§";
         string semAcentos = "AAAAAAaaaaaEEEEeeeeIIIIiiiiOOOOOoooooUUUuuuuCc";
 
         for (int i = 0; i < comAcentos.Length; i++)

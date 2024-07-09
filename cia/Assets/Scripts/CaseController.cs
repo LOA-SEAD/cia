@@ -78,7 +78,7 @@ public class CaseController : MonoBehaviour
         }
         else if (presets.presetTempo == 1 && presets.presetPreco == 1 && presets.presetDiagonal == 0 && presets.presetInvertida == 0)
         {
-            showMode.text = "Modo selecionado: Padr„o";
+            showMode.text = "Modo selecionado: Padr√£o";
         }
         else if (presets.presetTempo == 1 && presets.presetPreco == 1 && presets.presetDiagonal == 1 && presets.presetInvertida == 1)
         {
@@ -116,7 +116,7 @@ public class CaseController : MonoBehaviour
                 caseSizeText.text = "Tamanho do tabuleiro: Pequeno";
                 break;
             case "M":
-                caseSizeText.text = "Tamanho do tabuleiro: MÈdio";
+                caseSizeText.text = "Tamanho do tabuleiro: M√©dio";
                 break;
             case "G":
                 caseSizeText.text = "Tamanho do tabuleiro: Grande";
@@ -331,14 +331,14 @@ public class CaseController : MonoBehaviour
             if (recordecaso == 3000)
             {
                 
-                recordCaseText.text = "N„o concluÌdo";
+                recordCaseText.text = "N√£o conclu√≠do";
                 casoFechado.SetActive(false);
                 casoAberto.SetActive(true);
             }
             else
             {
 
-                recordCaseText.text = "ConcluÌdo com sucesso";
+                recordCaseText.text = "Conclu√≠do com sucesso";
                 casoFechado.SetActive(true);
                 casoAberto.SetActive(false);
             }
@@ -468,7 +468,7 @@ public class CaseController : MonoBehaviour
           
         }
 
-        if (countMainCases >= (mainCasesNumber) / 2 && PlayerPrefs.GetInt("NarrativaId", 0) == 0) //checa quando entram o segundo e terceiro dialogo; Checagem muda se aumentar n˙mero de di·logos
+        if (countMainCases >= (mainCasesNumber) / 2 && PlayerPrefs.GetInt("NarrativaId", 0) == 0) //checa quando entram o segundo e terceiro dialogo; Checagem muda se aumentar n√∫mero de di√°logos
         {
             PlayerPrefs.SetInt("NarrativaId", 1);
             SceneManager.LoadScene("Narrativa");
