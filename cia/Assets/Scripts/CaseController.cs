@@ -38,11 +38,12 @@ public class CaseController : MonoBehaviour
     private PresetsController presets;
     [SerializeField] GameObject recordBox;
     private int countMainCases = 0;
-    private int mainCasesNumber;
+    public int mainCasesNumber;
     public GameObject recordShow;
     public GameObject medalInfo;
     public GameObject avisoCasoExtra;
     public GameObject playButton;
+    public CertificateController certificateController;
 
 
 
@@ -50,7 +51,8 @@ public class CaseController : MonoBehaviour
     private void Awake()
     {
         presets = GameObject.Find("PresetsController").GetComponent<PresetsController>();
-      
+        certificateController = GameObject.Find("CertificateController").GetComponent<CertificateController>();
+
         Read();
         
     }
@@ -60,6 +62,7 @@ public class CaseController : MonoBehaviour
         ShowCase();
         SearchForUnfinished();
         CheckNarrative();
+        CheckCertificate();
 
 
 
@@ -148,6 +151,7 @@ public class CaseController : MonoBehaviour
         }
         SetTimeObjectives(caseID);
         ShowRecords(caseID);
+        CheckCertificate();
 
     }
 
@@ -452,7 +456,7 @@ public class CaseController : MonoBehaviour
     {
         countMainCases = 0;
         presets.LoadPreferences();
-        for (int i = 0; i < mainCasesNumber; i++)
+        for (int i = 0; i < caseDetails.Count; i++)
         {
             string caseIDString = "RecordeCaso" + i + presets.presetTempo.ToString() + presets.presetPreco.ToString() + presets.presetInvertida.ToString() + presets.presetDiagonal.ToString();
             float recordecaso = PlayerPrefs.GetFloat(caseIDString, 3000);
@@ -472,11 +476,17 @@ public class CaseController : MonoBehaviour
         else if (countMainCases >= (mainCasesNumber) && PlayerPrefs.GetInt("NarrativaId", 0) == 1)
         {
             PlayerPrefs.SetInt("NarrativaId", 2);
-            PlayerPrefs.SetInt ("Final", 0);
+            PlayerPrefs.SetInt("Final", 0);
             SceneManager.LoadScene("Narrativa");
         }
-     
-    }
+        CheckCertificate();
+
+
+
+
+
+
+        }
 
     public void SearchForUnfinished()
     {
@@ -496,6 +506,22 @@ public class CaseController : MonoBehaviour
 
         } while (checarResolvido != 3000 && caseID != caseDetails.Count - 1);
         ShowCase();
+    }
+
+    public void CheckCertificate()
+    {
+        certificateController.DisableCertifificate();
+        if (countMainCases == (caseDetails.Count) && PlayerPrefs.GetInt("NarrativaId", 0) == 2 && PlayerPrefs.GetInt("PrimeiroCertificado", 0) == 0)
+        {
+            certificateController.EnableCertifificate();
+            certificateController.CountMedals();
+            PlayerPrefs.SetInt("PrimeiroCertificado", 1);
+
+        }
+        else if (countMainCases == (caseDetails.Count) && PlayerPrefs.GetInt("NarrativaId", 0) == 2)
+        {
+            certificateController.EnableCertifificate();
+        }
     }
 
     void Read()

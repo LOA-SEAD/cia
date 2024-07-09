@@ -2174,10 +2174,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Ao completar objetivos voc\xEA ganhar\xE1 moedas para usar como bem entender
-    em dicas que poder\xE3o te ajudar. Mas perceba que algumas delas n\xE3o est\xE3o
-    dispon\xEDveis em alguns modos. Voc\xEA perder\xE1 todas as moedas de uma partida
-    para outra, ent\xE3o n\xE3o precisa economizar"
+  m_text: "Ao completar objetivos voc\xEA ganhar\xE1 moedas para comprar dicas que
+    poder\xE3o te ajudar. Mas perceba que algumas delas n\xE3o est\xE3o dispon\xEDveis
+    em alguns modos. Voc\xEA perder\xE1 todas as moedas de uma partida para outra,
+    ent\xE3o n\xE3o precisa economizar"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 10eed7706834c1e49a15cc0e103fe2a9, type: 2}
   m_sharedMaterial: {fileID: 2205697138647577353, guid: 10eed7706834c1e49a15cc0e103fe2a9, type: 2}
@@ -2204,7 +2204,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 10.3
+  m_fontSize: 10.7
   m_fontSizeBase: 11.5
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -5317,11 +5317,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4081519482049606953, guid: c1c8b7a423108884eb2a6564f304440e, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.49995
       objectReference: {fileID: 0}
     - target: {fileID: 4081519482049606953, guid: c1c8b7a423108884eb2a6564f304440e, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4081519482111872579, guid: c1c8b7a423108884eb2a6564f304440e, type: 3}
       propertyPath: m_AnchorMax.y
@@ -5329,23 +5329,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4081519482152408497, guid: c1c8b7a423108884eb2a6564f304440e, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.49995
       objectReference: {fileID: 0}
     - target: {fileID: 4081519482152408497, guid: c1c8b7a423108884eb2a6564f304440e, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4081519482152408497, guid: c1c8b7a423108884eb2a6564f304440e, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.49995
       objectReference: {fileID: 0}
     - target: {fileID: 4081519482347580528, guid: c1c8b7a423108884eb2a6564f304440e, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.24992499
       objectReference: {fileID: 0}
     - target: {fileID: 4081519482347580528, guid: c1c8b7a423108884eb2a6564f304440e, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4081519482424129443, guid: c1c8b7a423108884eb2a6564f304440e, type: 3}
       propertyPath: m_Name
@@ -5447,21 +5447,45 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4081519482541358008, guid: c1c8b7a423108884eb2a6564f304440e, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 93.573
+      objectReference: {fileID: 0}
+    - target: {fileID: 4081519482541358008, guid: c1c8b7a423108884eb2a6564f304440e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 74.826
+      objectReference: {fileID: 0}
+    - target: {fileID: 4081519482731851675, guid: c1c8b7a423108884eb2a6564f304440e, type: 3}
+      propertyPath: m_margin.z
+      value: -39.41356
+      objectReference: {fileID: 0}
     - target: {fileID: 4081519482890128972, guid: c1c8b7a423108884eb2a6564f304440e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4081519482948353922, guid: c1c8b7a423108884eb2a6564f304440e, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 97.387
+      objectReference: {fileID: 0}
+    - target: {fileID: 4081519482948353922, guid: c1c8b7a423108884eb2a6564f304440e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 76.733
+      objectReference: {fileID: 0}
     - target: {fileID: 4081519482967324923, guid: c1c8b7a423108884eb2a6564f304440e, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.49995
       objectReference: {fileID: 0}
     - target: {fileID: 4081519482967324923, guid: c1c8b7a423108884eb2a6564f304440e, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4081519482967324923, guid: c1c8b7a423108884eb2a6564f304440e, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.49995
+      objectReference: {fileID: 0}
+    - target: {fileID: 4081519482973328414, guid: c1c8b7a423108884eb2a6564f304440e, type: 3}
+      propertyPath: m_Value
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 4081519483085897311, guid: c1c8b7a423108884eb2a6564f304440e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -5485,23 +5509,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4081519483385316332, guid: c1c8b7a423108884eb2a6564f304440e, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.24992499
       objectReference: {fileID: 0}
     - target: {fileID: 4081519483385316332, guid: c1c8b7a423108884eb2a6564f304440e, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4081519483385316332, guid: c1c8b7a423108884eb2a6564f304440e, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.24992499
       objectReference: {fileID: 0}
     - target: {fileID: 4081519483695731994, guid: c1c8b7a423108884eb2a6564f304440e, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.49995
       objectReference: {fileID: 0}
     - target: {fileID: 4081519483695731994, guid: c1c8b7a423108884eb2a6564f304440e, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1c8b7a423108884eb2a6564f304440e, type: 3}
@@ -6251,7 +6275,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Vamos come\xE7ar encontrando palavras. J\xE1 marquei a primeira letra.
-    Arraste o mouse pressionando o bot\xE3o direito para selecionar as letras."
+    Arraste o mouse pressionando o bot\xE3o esquerdo para selecionar as letras."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 10eed7706834c1e49a15cc0e103fe2a9, type: 2}
   m_sharedMaterial: {fileID: 2205697138647577353, guid: 10eed7706834c1e49a15cc0e103fe2a9, type: 2}
@@ -10929,7 +10953,7 @@ RectTransform:
   m_Father: {fileID: 1905833633}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.7199536}
+  m_AnchorMin: {x: 0, y: 0.7199484}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
@@ -12149,7 +12173,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Tamb\xE9m tem a \"consulta\", um texto com informa\xE7\xF5es \xFAteis
-    que pode ser usado quantas vezes quiser e completamente \"na faixa\"."
+    que pode ser usado quantas vezes quiser e completamente de gra\xE7a."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 10eed7706834c1e49a15cc0e103fe2a9, type: 2}
   m_sharedMaterial: {fileID: 2205697138647577353, guid: 10eed7706834c1e49a15cc0e103fe2a9, type: 2}
@@ -20293,7 +20317,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Nos detalhes casos \xE9 poss\xEDvel checar todas as pistas de uma vez,
+  m_text: "Nos detalhes do casos \xE9 poss\xEDvel checar todas as pistas de uma vez,
     e ele \xE9 sempre atualizado com o que voc\xEA j\xE1 completou. \xC9 uma ferramenta
     valiosa para revisar o caso. Quando estiver pr\xF3ximo, a frase que soluciona
     o caso tamb\xE9m estar\xE1 ali."
@@ -21023,7 +21047,7 @@ MonoBehaviour:
   m_Content: {fileID: 1422172232}
   m_Horizontal: 0
   m_Vertical: 1
-  m_MovementType: 1
+  m_MovementType: 2
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
@@ -23705,7 +23729,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 908272186}
   m_Direction: 2
   m_Value: 1.0000005
-  m_Size: 0.2800464
+  m_Size: 0.28005156
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -24222,8 +24246,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 177, y: -70.8}
-  m_SizeDelta: {x: 154.3147, y: 61.217}
+  m_AnchoredPosition: {x: 180.26213, y: -58.2735}
+  m_SizeDelta: {x: 163.0139, y: 55.7379}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1621466394
 MonoBehaviour:
@@ -24245,7 +24269,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Parece pr\xF3ximo! Digite a palavra corretamente"
+  m_text: "Parece pr\xF3ximo! Digite a palavra corretamente incluindo acentua\xE7\xE3o."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 10eed7706834c1e49a15cc0e103fe2a9, type: 2}
   m_sharedMaterial: {fileID: 2205697138647577353, guid: 10eed7706834c1e49a15cc0e103fe2a9, type: 2}
@@ -24272,12 +24296,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 13.4
+  m_fontSize: 11.85
   m_fontSizeBase: 13.4
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 9.7
+  m_fontSizeMax: 24
   m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
@@ -29001,8 +29025,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Quase l\xE1! Ao completar todas as pistas uma nova frase aparecer\xE1
     para concluir a resolu\xE7\xE3o do caso. Aqui voc\xEA dever\xE1 reunir todo o
-    seu conhecimento e digitar a palavra que falta. Lembre-se que est\xE1 palvra
-    n\xE3o est\xE1 dispon\xEDvel no ca\xE7a-palavras."
+    seu conhecimento e digitar a palavra que falta. Lembre-se que esta palavra n\xE3o
+    est\xE1 dispon\xEDvel no ca\xE7a-palavras."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 10eed7706834c1e49a15cc0e103fe2a9, type: 2}
   m_sharedMaterial: {fileID: 2205697138647577353, guid: 10eed7706834c1e49a15cc0e103fe2a9, type: 2}
