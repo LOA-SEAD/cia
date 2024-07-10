@@ -13,7 +13,7 @@ public class WordHunt : MonoBehaviour {
 
     //public TextAsset theme;
 
-    [SerializeField] private TextAsset _csvFile;
+    [SerializeField] private TextAsset palavrasFile;
 
 
 
@@ -703,7 +703,7 @@ public class WordHunt : MonoBehaviour {
     void Read()
     {
 
-        data_string = _csvFile.text;
+        data_string = palavrasFile.text;
         eachLine = new List<string>();
         eachLine.AddRange(data_string.Split("|"[0]));
         words = eachLine[PlayerPrefs.GetInt("LoadCaseId", 0)].Split(';').ToList();

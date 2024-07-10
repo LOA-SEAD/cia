@@ -8,7 +8,7 @@ public class PowerUps : MonoBehaviour
 {
     private float coins=0;
     [SerializeField] private TMP_Text coinDisplay;
-    [SerializeField] private TextAsset _csvFile;
+    [SerializeField] private TextAsset consultaFile;
     private Timer timer;
     private WordHunt wh;
     private ObjectivesController objContr;
@@ -268,7 +268,7 @@ public class PowerUps : MonoBehaviour
     void Read()
     {
 
-        data_string = _csvFile.text;
+        data_string = consultaFile.text;
         eachLine = new List<string>();
         eachLine.AddRange(data_string.Split("|"[0]));
         

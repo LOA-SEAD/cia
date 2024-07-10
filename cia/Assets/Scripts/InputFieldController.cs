@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class InputFieldController : MonoBehaviour
 {
-    [SerializeField] private TextAsset _csvFilePhrases;
+    [SerializeField] private TextAsset frasesFile;
     [SerializeField] private TMP_Text phraseTextBox;
     private List<string> eachLine;
     public string data_string;
@@ -156,7 +156,7 @@ public class InputFieldController : MonoBehaviour
     void Read()
     {
 
-        data_string = _csvFilePhrases.text;
+        data_string = frasesFile.text;
         eachLine = new List<string>();
         eachLine.AddRange(data_string.Split("\n"[0]));
         eachPhrase = eachLine[PlayerPrefs.GetInt("LoadCaseId", 0)].Split(';');

@@ -11,9 +11,9 @@ public class CaseController : MonoBehaviour
     public int line;
     [SerializeField] private GameObject nextButton;
     [SerializeField] private GameObject backButton;
-    [SerializeField] private TextAsset _csvFile;
-    [SerializeField] private TextAsset _csvFile2;
-    [SerializeField] private TextAsset _csvFile3;
+    [SerializeField] private TextAsset casoDetalhesFile;
+    [SerializeField] private TextAsset tamanhoGridFile;
+    [SerializeField] private TextAsset numeroCasosPrincipaisFile;
     public List<string> caseDetails;
     public List<string> caseSize;
     public string data_string;
@@ -35,6 +35,7 @@ public class CaseController : MonoBehaviour
     [SerializeField] GameObject casoAberto;
     [SerializeField] GameObject casoFechado;
     [SerializeField] GameObject filtro;
+    [SerializeField] GameObject fadein;
     private PresetsController presets;
     [SerializeField] GameObject recordBox;
     private int countMainCases = 0;
@@ -63,6 +64,7 @@ public class CaseController : MonoBehaviour
         SearchForUnfinished();
         CheckNarrative();
         CheckCertificate();
+        StartCoroutine(StartDelay());
 
 
 
@@ -523,19 +525,26 @@ public class CaseController : MonoBehaviour
             certificateController.EnableCertifificate();
         }
     }
+    public IEnumerator StartDelay()
+    {
+        
+        yield return new WaitForSeconds(1.25f);
+        fadein.SetActive(false);
+        
+    }
 
     void Read()
     {
 
-        data_string = _csvFile.text;
+        data_string = casoDetalhesFile.text;
         caseDetails = new List<string>();
         caseDetails.AddRange(data_string.Split("\n"[0]));
 
-        data_string = _csvFile2.text;
+        data_string = tamanhoGridFile.text;
         caseSize = new List<string>();
         caseSize.AddRange(data_string.Split(";"[0]));
 
-        mainCasesNumber = int.Parse(_csvFile3.text);
+        mainCasesNumber = int.Parse(numeroCasosPrincipaisFile.text);
 
 
 

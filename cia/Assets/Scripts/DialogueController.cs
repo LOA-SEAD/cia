@@ -11,7 +11,7 @@ public class DialogueController : MonoBehaviour
     public string[] data_balloons;
     public string[] data_expressions;
     public int line;
-    [SerializeField] private TextAsset _csvFile;
+    [SerializeField] private TextAsset dialogueFile;
     public List<string> eachLine;
     public string data_string;
     private Queue<string> sentences;
@@ -161,7 +161,7 @@ public class DialogueController : MonoBehaviour
         id = PlayerPrefs.GetInt("NarrativaId", 0);
         id = id * 3;
 
-        data_string = _csvFile.text;
+        data_string = dialogueFile.text;
         eachLine = new List<string>();
         eachLine.AddRange(data_string.Split("\n"[0]));
         data_sentences = eachLine[id].Split(';');
