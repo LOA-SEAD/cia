@@ -58,7 +58,7 @@ public class AudioManager : MonoBehaviour
 
         //DontDestroyOnLoad(this.gameObject);
 
-        //Para n„o perguntar preset todos os rounds
+        //Para n√£o perguntar preset todos os rounds
         PlayerPrefs.SetInt("Tempo", 10);
     }
 

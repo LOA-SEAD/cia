@@ -8,9 +8,9 @@ public class StartTutorial : MonoBehaviour
     // Start is called before the first frame update
     public GameObject canvas;
     public GameObject avisoTutorial;
-    public string tutorialWords = "watson;londres;moriarty;dedução;doyle;holmes";
-    public string tutorialPhrases = "1 - Ele é acompanhado por um ajudante chamado _.; 2 - Um detetive famoso nas ruas de _; 3 - Seu maior inimigo é  _; 4 - Dizem que ele é um mestre da _; 5 - Seus livros foram escritos por Arthur Conan _; Sem dúvida, meu rival só pode ser Sherlock _";
-    public string tutorialFreeHint = "Não precisa ter vergonha de usar vantagens disponíveis a seu favor. Consultar materiais extras pode ser útil para solucionar casos. Por exemplo, como saberia sem esta consulta que o sobrenome desse detetive londrino tem 6 letras?";
+    public string tutorialWords = "watson;londres;moriarty;deduÃ§Ã£o;doyle;holmes";
+    public string tutorialPhrases = "1 - Ele Ã© acompanhado por um ajudante chamado _.; 2 - Um detetive famoso nas ruas de _; 3 - Seu maior inimigo Ã©  _; 4 - Dizem que ele Ã© um mestre da _; 5 - Seus livros foram escritos por Arthur Conan _; Sem dÃºvida, meu rival sÃ³ pode ser Sherlock _";
+    public string tutorialFreeHint = "NÃ£o precisa ter vergonha de usar vantagens disponÃ­veis a seu favor. Consultar materiais extras pode ser Ãºtil para solucionar casos. Por exemplo, como saberia sem esta consulta que o sobrenome desse detetive londrino tem 6 letras?";
 
 
 

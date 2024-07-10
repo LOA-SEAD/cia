@@ -156,7 +156,7 @@ public class PowerUps : MonoBehaviour
         else
         {
             a = powerUpButton[0].GetComponentInChildren<TMP_Text>();
-            a.text =  "Power up indisponível";
+            a.text =  "Power up indisponÃ­vel";
         }
 
         a = powerUpButton[1].GetComponentInChildren<TMP_Text>();
@@ -166,7 +166,7 @@ public class PowerUps : MonoBehaviour
         if (objContr.contadorFrases == objContr.totalPalavras)
         {
             a = powerUpButton[2].GetComponentInChildren<TMP_Text>();
-            a.text = "Power up indisponível";
+            a.text = "Power up indisponÃ­vel";
 
 
         }

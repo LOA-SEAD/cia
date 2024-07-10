@@ -62,17 +62,17 @@ public class PresetsController : MonoBehaviour
         {
             PlayerPrefs.SetInt("Tempo", 0);
         }
-        else if (toggle1.name == "Tempo padr„o")
+        else if (toggle1.name == "Tempo padr√£o")
         {
             PlayerPrefs.SetInt("Tempo", 1);
         }
         
 
-        if (toggle2.name == "PreÁo reduzido")
+        if (toggle2.name == "Pre√ßo reduzido")
         {
             PlayerPrefs.SetInt("PrecoAjuda", 0);
         }
-        else if (toggle2.name == "PreÁo padr„o")
+        else if (toggle2.name == "Pre√ßo padr√£o")
         {
             PlayerPrefs.SetInt("PrecoAjuda", 1);
         }
