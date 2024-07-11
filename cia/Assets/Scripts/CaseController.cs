@@ -64,7 +64,7 @@ public class CaseController : MonoBehaviour
         SearchForUnfinished();
         CheckNarrative();
         CheckCertificate();
-        StartCoroutine(StartDelay());
+        
 
 
 
@@ -524,13 +524,6 @@ public class CaseController : MonoBehaviour
         {
             certificateController.EnableCertifificate();
         }
-    }
-    public IEnumerator StartDelay()
-    {
-        
-        yield return new WaitForSeconds(1.25f);
-        fadein.SetActive(false);
-        
     }
 
     void Read()
