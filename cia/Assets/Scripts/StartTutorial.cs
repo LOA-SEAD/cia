@@ -8,8 +8,8 @@ public class StartTutorial : MonoBehaviour
     // Start is called before the first frame update
     public GameObject canvas;
     public GameObject avisoTutorial;
-    public string tutorialWords = "watson;londres;moriarty;dedução;doyle;holmes";
-    public string tutorialPhrases = "1 - Ele é acompanhado por um ajudante chamado _.; 2 - Um detetive famoso nas ruas de _; 3 - Seu maior inimigo é  _; 4 - Dizem que ele é um mestre da _; 5 - Seus livros foram escritos por Arthur Conan _; Sem dúvida, meu rival só pode ser Sherlock _";
+    public string tutorialWords = "ajudante;londres;inimigo;dedução;autor;holmes";
+    public string tutorialPhrases = "1 - Ele é acompanhado por um _ chamado Watson.; 2 - Um detetive famoso nas ruas de _; 3 - Seu maior _ é Moriarty; 4 - Dizem que ele é um mestre da _; 5 - O _ de seus livros é Arthur Conan Doyle; Sem dúvida, meu rival só pode ser Sherlock _";
     public string tutorialFreeHint = "Não precisa ter vergonha de usar vantagens disponíveis a seu favor. Consultar materiais extras pode ser útil para solucionar casos. Por exemplo, como saberia sem esta consulta que o sobrenome desse detetive londrino tem 6 letras?";
 
 
@@ -18,8 +18,8 @@ public class StartTutorial : MonoBehaviour
     {
         PlayerPrefs.SetInt("Tempo", 0);
         PlayerPrefs.SetInt("PrecoAjuda", 0);
-        PlayerPrefs.SetInt("PalavrasInvertidas", 1);
-        PlayerPrefs.SetInt("PalavrasDiagonais", 1);
+        PlayerPrefs.SetInt("PalavrasInvertidas", 0);
+        PlayerPrefs.SetInt("PalavrasDiagonais", 0);
         PlayerPrefs.SetInt("LoadCaseId", 99);
         PlayerPrefs.SetString("LoadCaseSize", "M");
         SceneManager.LoadScene("TelaJogo");

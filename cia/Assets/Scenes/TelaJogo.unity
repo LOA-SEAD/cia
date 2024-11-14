@@ -9670,11 +9670,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 53435810}
   avisoTutorial: {fileID: 1443995461}
-  tutorialWords: "watson;londres;moriarty;dedu\xE7\xE3o;doyle;holmes"
-  tutorialPhrases: "1 - Ele \xE9 acompanhado por um ajudante chamado _.; 2 - Um detetive
-    famoso nas ruas de _; 3 - Seu maior inimigo \xE9  _; 4 - Dizem que ele \xE9 um
-    mestre da _; 5 - Seus livros foram escritos por Arthur Conan _; Sem d\xFAvida,
-    meu rival s\xF3 pode ser Sherlock _"
+  tutorialWords: "ajudante;londres;inimigo;dedu\xE7\xE3o;autor;holmes"
+  tutorialPhrases: "1 - Ele \xE9 acompanhado por um _ chamado Watson.; 2 - Um detetive
+    famoso nas ruas de _; 3 - Seu maior _ \xE9 Moriarty; 4 - Dizem que ele \xE9 um
+    mestre da _; 5 - O _ de seus livros \xE9 Arthur Conan Doyle; Sem d\xFAvida, meu
+    rival s\xF3 pode ser Sherlock _"
   tutorialFreeHint: "N\xE3o precisa ter vergonha de usar vantagens dispon\xEDveis
     a seu favor. Consultar materiais extras pode ser \xFAtil para solucionar casos.
     Por exemplo, como saberia sem esta consulta que o sobrenome desse detetive londrino
