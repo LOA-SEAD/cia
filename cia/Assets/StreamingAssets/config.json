@@ -1,0 +1,68 @@
+{
+    "nroCasosPrincipais": 2,
+    "casos": [
+        {
+            "tamanho": "G",
+            "detalhes": "Com sua ajuda preciso descobrir qual esporte meu amigo que desapareceu estava praticando no momento de seu sequestro.",
+            "links": "Um amigo sempre se destacava em um esporte que envolvia uma bola e muita estratégia. Ele aprendeu as regras em uma viagem importante, onde esse jogo era extremamente popular. De volta, começou a participar de torneios locais e internacionais, demonstrando grande habilidade. Era admirado por sua dedicação e por inspirar muitos jovens a seguirem o mesmo caminho. Sua paixão pelo jogo o levou a competir em arenas importantes, trazendo técnicas de lugares onde essa prática já era tradição. Sua trajetória deixou um legado inesquecível, marcado por sua excelência dentro de campo.",
+            "frases": [
+                "1 - Meu amigo participava de _ desse esporte frequentemente.",
+                "2 - Historiadores afirmam que esse esporte surgiu na Inglaterra, no século _.",
+                "3 - No Brasil, nosso país, o esporte chegou graças a Charles _.",
+                "4 - Sua paixão pelo jogo levou meu amigo a competir em _ importantes.",
+                "5 - Esse esporte envolve uma _ e muita estratégia.",
+                "O esporte mais popular e praticado no mundo, nenhum se compara com a facilidade de praticar o esporte que meu amigo praticava que era o _."
+            ],
+            "palavras": [
+                "torneios",
+                "dezenove",
+                "miller",
+                "arenas",
+                "bola",
+                "futebol"
+            ]
+        },
+        {
+            "tamanho": "G",
+            "detalhes": "Durante uma competição de grande precisão, um dos competidores misteriosamente desapareceu logo após o início da disputa. As evidências apontam para um incidente ocorrido em um ambiente controlado, deixando dúvidas sobre o que realmente aconteceu no momento decisivo.",
+            "links": "Em uma manhã de sábado, uma competição silenciosa se preparava para começar. A multidão estava em silêncio absoluto, como se o ambiente exigisse uma calma incomum. Os competidores, concentrados e de olhar fixo, se posicionavam em uma estrutura elevada, esperando o sinal. A temperatura do local era cuidadosamente controlada, e a atmosfera tinha uma umidade perceptível, embora ninguém estivesse preocupado com isso. Quando o sinal soou, todos se lançaram com precisão cronometrada, atravessando o ambiente com velocidade e leveza. Cada movimento era fluido e repetitivo, como se estivessem em sincronia com o próprio tempo. A agitação aumentava conforme os segundos passavam, e os competidores pareciam deslizar com uma precisão impressionante, seus corpos movendo-se como parte de um ritual bem ensaiado. No final, apenas um cruzou a linha à frente dos demais, emergindo triunfante, enquanto os outros completavam o percurso, exaustos, mas satisfeitos com o desempenho.|",
+            "frases": [
+                "1 - Os competidores alinharam-se em uma estrutura elevada, esperando o momento de _ em um ambiente controlado.",
+                "2 - Cada movimento era sincronizado, com os participantes deslizando rapidamente em uma superfície _.",
+                "3 - A precisão era fundamental, pois qualquer erro poderia impactar o tempo final, enquanto eles se moviam com agilidade na _.",
+                "4 - Cada movimento dos atletas era _ e repetitivo",
+                "5 - A atmosfera tinha uma _ perceptível",
+                "Não há dúvidas que tudo ocorreu durante a prática da _."
+            ],
+            "palavras": [
+                "mergulhar",
+                "líquida",
+                "água",
+                "fluido",
+                "umidade",
+                "natação"
+            ]
+        },
+        {
+            "tamanho": "G",
+            "detalhes": "Um velho amigo descobriu a solução para uma vida saudável no futuro. No entanto, ele foi assassinado e deixou apenas algumas pistas sobre esse caso.",
+            "links": "Nos últimos dias, vários relatos surgiram de pessoas que, após adotarem uma série de hábitos diários envolvendo movimentos regulares, começaram a notar uma melhora significativa no humor, na disposição e até no sono. Especialistas investigam se esses pequenos ajustes, que incluem gestos repetitivos e variações de intensidade, podem estar por trás dessas mudanças. O curioso é que, ao contrário dos que mantiveram a rotina habitual, esses indivíduos experimentaram melhorias em sua saúde física e mental. A questão que permanece é: qual é o segredo por trás desses movimentos que transformam tanto o corpo quanto a mente?",
+            "frases": [
+                "1 - Seu estilo de vida sedentário te deixa cada vez mais longe de alcançar uma _ de vida ideal.",
+                "2 - Seu amigo que frequenta a _ realiza um planejamento com base em uma série de sessões.",
+                "3 - Mesmo que não possa frequentar esse local, diversos professores de educação _ estão prontos para auxiliar nesse desafio.",
+                "4 - Após adotarem uma série de hábitos _ eles notam uma melhora significativa",
+                "5 - Esses indivíduos experimentaram melhorias na saúde física e _.",
+                "Por muito tempo fui esquecida, mas no presente e no futuro serei essencial para a construção de uma sociedade saudável. Eu sou a _ física."
+            ],
+            "palavras": [
+                "qualidade",
+                "academia",
+                "física",
+                "diários",
+                "mental",
+                "atividade"
+            ]
+        }
+    ]
+}

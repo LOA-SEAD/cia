@@ -8,7 +8,7 @@ public class PowerUps : MonoBehaviour
 {
     private float coins=0;
     [SerializeField] private TMP_Text coinDisplay;
-    [SerializeField] private TextAsset consultaFile;
+    // [SerializeField] private TextAsset consultaFile;
     private Timer timer;
     private WordHunt wh;
     private ObjectivesController objContr;
@@ -268,10 +268,16 @@ public class PowerUps : MonoBehaviour
     void Read()
     {
 
-        data_string = consultaFile.text;
-        eachLine = new List<string>();
-        eachLine.AddRange(data_string.Split("|"[0]));
+        // data_string = consultaFile.text;
+        // eachLine = new List<string>();
+        // eachLine.AddRange(data_string.Split("|"[0]));
         
+        eachLine = new List<string>();
+
+        foreach (Caso c in Dados.config.casos)
+        {
+            eachLine.Add(c.links);
+        }
 
     }
 }

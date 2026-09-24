@@ -4,6 +4,9 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using JetBrains.Annotations;
+using Unity.Mathematics;
+using System;
 public class CaseController : MonoBehaviour
 {
 
@@ -11,9 +14,9 @@ public class CaseController : MonoBehaviour
     public int line;
     [SerializeField] private GameObject nextButton;
     [SerializeField] private GameObject backButton;
-    [SerializeField] private TextAsset casoDetalhesFile;
-    [SerializeField] private TextAsset tamanhoGridFile;
-    [SerializeField] private TextAsset numeroCasosPrincipaisFile;
+    // [SerializeField] private TextAsset casoDetalhesFile;
+    // [SerializeField] private TextAsset tamanhoGridFile;
+    // [SerializeField] private TextAsset numeroCasosPrincipaisFile;
     public List<string> caseDetails;
     public List<string> caseSize;
     public string data_string;
@@ -529,17 +532,36 @@ public class CaseController : MonoBehaviour
     void Read()
     {
 
-        data_string = casoDetalhesFile.text;
+        BetterStreamingAssets.Initialize();
+
+        // data_string = casoDetalhesFile.text;
+        // data_string = BetterStreamingAssets.ReadAllText("CasosDetalhes.txt");
+        // caseDetails = new List<string>();
+        // caseDetails.AddRange(data_string.Split("\n"[0]));
+
+        // data_string = BetterStreamingAssets.ReadAllText("TamanhosGrid.txt");
+        // data_string = tamanhoGridFile.text;
+        // caseSize = new List<string>();
+        // caseSize.AddRange(data_string.Split(";"[0]));
+
+        // data_string = BetterStreamingAssets.ReadAllText("CasosPrincipais.txt");
+        // mainCasesNumber = int.Parse(numeroCasosPrincipaisFile.text);
+
+        //var jsonText = BetterStreamingAssets.ReadAllText("config.json");
+        //GameConfig config = JsonUtility.FromJson<GameConfig>(jsonText);
+
+        // CarregaDados.Load(this);
+
         caseDetails = new List<string>();
-        caseDetails.AddRange(data_string.Split("\n"[0]));
-
-        data_string = tamanhoGridFile.text;
         caseSize = new List<string>();
-        caseSize.AddRange(data_string.Split(";"[0]));
-
-        mainCasesNumber = int.Parse(numeroCasosPrincipaisFile.text);
-
-
-
+        
+        foreach (Caso c in Dados.config.casos)
+        {
+            caseDetails.Add(c.detalhes);
+            caseSize.Add(c.tamanho);
+        }
+        
+        mainCasesNumber = Dados.config.nroCasosPrincipais;
     }
 }
+

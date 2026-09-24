@@ -13,9 +13,7 @@ public class WordHunt : MonoBehaviour {
 
     //public TextAsset theme;
 
-    [SerializeField] private TextAsset palavrasFile;
-
-
+    // [SerializeField] private TextAsset palavrasFile;
 
     private CanvasGroup canvas;
     private AudioManager audioManager;
@@ -703,10 +701,11 @@ public class WordHunt : MonoBehaviour {
     void Read()
     {
 
-        data_string = palavrasFile.text;
-        eachLine = new List<string>();
-        eachLine.AddRange(data_string.Split("|"[0]));
-        words = eachLine[PlayerPrefs.GetInt("LoadCaseId", 0)].Split(';').ToList();
+        // data_string = palavrasFile.text;
+        // eachLine = new List<string>();
+        // eachLine.AddRange(data_string.Split("|"[0]));
+        // words = eachLine[PlayerPrefs.GetInt("LoadCaseId", 0)].Split(';').ToList();
+        words = Dados.config.casos[PlayerPrefs.GetInt("LoadCaseId", 0)].palavras.ToList();
         //casewords = eachLine[PlayerPrefs.GetInt("LoadCaseId", 0)].Split(';');
 
     }

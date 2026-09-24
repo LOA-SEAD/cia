@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class InputFieldController : MonoBehaviour
 {
-    [SerializeField] private TextAsset frasesFile;
+    // [SerializeField] private TextAsset frasesFile;
     [SerializeField] private TMP_Text phraseTextBox;
     private List<string> eachLine;
     public string data_string;
@@ -156,11 +156,11 @@ public class InputFieldController : MonoBehaviour
     void Read()
     {
 
-        data_string = frasesFile.text;
-        eachLine = new List<string>();
-        eachLine.AddRange(data_string.Split("\n"[0]));
-        eachPhrase = eachLine[PlayerPrefs.GetInt("LoadCaseId", 0)].Split(';');
-
+        // data_string = frasesFile.text;
+        // eachLine = new List<string>();
+        // eachLine.AddRange(data_string.Split("\n"[0]));
+        // eachPhrase = eachLine[PlayerPrefs.GetInt("LoadCaseId", 0)].Split(';');
+        eachPhrase = Dados.config.casos[PlayerPrefs.GetInt("LoadCaseId", 0)].frases;
     }
 
     public void ValidateWords()
